@@ -264,9 +264,11 @@ h3 { text-wrap: balance; }
   gap: 16px;
 }
 
-.compact { margin-top: 16px; flex-direction: row; align-items: baseline; gap: 20px; flex-wrap: wrap; }
-.compact > div { flex: 1 1 420px; display: flex; flex-direction: column; gap: 6px; }
-.compact p { color: var(--ink-2); font-size: 0.95rem; }
+.wide { margin-top: 16px; gap: 18px; }
+.wide-head { display: flex; flex-direction: column; gap: 10px; }
+.wide-head > p:last-child { max-width: 75ch; }
+.wide-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px 32px; }
+.col-title { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 4px !important; }
 
 /* ---------- Timelines ---------- */
 .timeline { list-style: none; margin: 0; padding: 0; }
