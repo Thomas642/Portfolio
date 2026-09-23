@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thomas Jourda · Technicien systèmes & réseaux</title>
+  <meta name="description" content="Portfolio de Thomas Jourda, technicien systèmes et réseaux, alternant ASR au CESI Pau. Infrastructures Windows Server, Active Directory, RDS, réseau, sécurité et observabilité.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230b0f14'/><text x='5' y='22' font-family='monospace' font-size='16' fill='%2334d399'>&gt;_</text></svg>">
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="brand" href="#top">thomas<span class="accent">@</span>infra<span class="muted">:~$</span></a>
+    <nav>
+      <a href="#competences">compétences</a>
+      <a href="#projets">projets</a>
+      <a href="#parcours">parcours</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <p class="prompt"><span class="accent">$</span> <span id="typed" data-text="whoami"></span><span class="cursor">▌</span></p>
+      <h1>Thomas Jourda</h1>
+      <p class="role">Technicien systèmes &amp; réseaux</p>
+      <p class="lead">
+        Alternant ASR au CESI Pau. Je travaille sur des infrastructures multi-sites
+        (Windows Server, Active Directory, RDS, pare-feux, VPN) et je m'entraîne en parallèle
+        sur de l'auto-hébergement et de l'observabilité sur mon propre VPS.
+      </p>
+
+      <div class="status-row">
+        <span class="status"><span class="dot"></span>En recherche de CDI / CDD en informatique</span>
+        <span class="chip">Sud-Ouest · mobile partout en France</span>
+      </div>
+
+      <div class="cta">
+        <a class="btn primary" href="#projets">Voir les projets</a>
+        <a class="btn" href="#contact">Me contacter</a>
+      </div>
+    </section>
+
+    <!-- COMPETENCES -->
+    <section id="competences">
+      <h2><span class="idx">01</span> compétences</h2>
+      <div class="grid panels">
+        <article class="panel">
+          <h3>Systèmes</h3>
+          <ul class="tags">
+            <li>Windows Server</li><li>RDS</li><li>FSLogix</li><li>Active Directory</li><li>GPO</li>
+            <li>Debian</li><li>Ubuntu</li><li>Linux Lite</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h3>Réseau &amp; sécurité</h3>
+          <ul class="tags">
+            <li>Stormshield</li><li>VPN IPsec</li><li>Aruba</li><li>Cloudflare Zero Trust</li>
+            <li>Durcissement SSH</li><li>fail2ban</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h3>Conteneurs &amp; services</h3>
+          <ul class="tags">
+            <li>Docker</li><li>Docker Compose</li><li>Apache Guacamole</li><li>MariaDB</li><li>Nginx</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h3>Supervision</h3>
+          <ul class="tags">
+            <li>Prometheus</li><li>Grafana</li><li>Loki</li><li>Grafana Alloy</li><li>cAdvisor</li><li>node-exporter</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h3>Scripting</h3>
+          <ul class="tags">
+            <li>PowerShell</li><li>Bash</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h3>Collaboration / M365</h3>
+          <ul class="tags">
+            <li>Sync AD → Microsoft 365</li><li>Outlook / Exchange</li><li>GestSup (ticketing)</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJETS -->
+    <section id="projets">
+      <h2><span class="idx">02</span> projets</h2>
+      <div class="grid projects">
+
+        <article class="card">
+          <header>
+            <span class="label perso">perso · VPS</span>
+            <h3>Stack d'observabilité auto-hébergée</h3>
+          </header>
+          <p>Supervision complète d'un VPS Ubuntu avec Prometheus, Grafana, Loki, Alloy, cAdvisor et node-exporter.</p>
+          <ul class="points">
+            <li>Accès protégé par tunnel Cloudflare Zero Trust avec OTP</li>
+            <li>SSH durci : clé ed25519, authentification par mot de passe désactivée</li>
+            <li>Dashboards maison : vue d'ensemble VPS, logs/sécurité, carte géographique des IP bannies par fail2ban (GeoLite2)</li>
+          </ul>
+          <ul class="stack"><li>Prometheus</li><li>Grafana</li><li>Loki</li><li>Cloudflare</li></ul>
+          <a class="more" href="LIEN_A_COMPLETER">voir le dépôt →</a>
+        </article>
+
+        <article class="card">
+          <header>
+            <span class="label pro">pro · anonymisé</span>
+            <h3>Passerelle d'accès distant Apache Guacamole</h3>
+          </header>
+          <p>Remplacement d'AnyDesk par une passerelle Guacamole conteneurisée (guacd, MariaDB, Guacamole) sous Docker Compose.</p>
+          <ul class="points">
+            <li>Authentification LDAP / Active Directory</li>
+            <li>MFA TOTP</li>
+            <li>Groupes d'équilibrage RDS</li>
+            <li>Sauvegarde hebdomadaire automatisée par cron</li>
+          </ul>
+          <ul class="stack"><li>Docker Compose</li><li>Guacamole</li><li>MariaDB</li><li>LDAP</li></ul>
+          <a class="more" href="LIEN_A_COMPLETER">voir le dépôt →</a>
+        </article>
+
+        <article class="card">
+          <header>
+            <span class="label pro">pro · anonymisé</span>
+            <h3>Clients légers Linux sur Dell Wyse</h3>
+          </header>
+          <p>Déploiement de Linux Lite sur Dell Wyse 3070 / 5070 avec accès RDS via Remmina et autologin LightDM.</p>
+          <ul class="points">
+            <li>Rédaction de procédures d'installation versionnées</li>
+            <li>Diagnostic d'une incompatibilité clavier HID sur douchette code-barres en session RDP</li>
+          </ul>
+          <ul class="stack"><li>Linux Lite</li><li>Remmina</li><li>RDS</li><li>LightDM</li></ul>
+          <a class="more" href="LIEN_A_COMPLETER">voir le dépôt →</a>
+        </article>
+
+        <article class="card">
+          <header>
+            <span class="label wip">en conception</span>
+            <h3>Application de géolocalisation familiale</h3>
+          </header>
+          <p>Application auto-hébergée : Node.js / Express, PostgreSQL + PostGIS, PWA, OpenStreetMap / Leaflet.js.</p>
+          <ul class="points">
+            <li>Document de conception : fonctionnalités, schéma de base de données</li>
+            <li>Feuille de route en 4 phases</li>
+            <li>Approche sécurité</li>
+          </ul>
+          <ul class="stack"><li>Node.js</li><li>PostGIS</li><li>PWA</li><li>Leaflet</li></ul>
+          <a class="more" href="LIEN_A_COMPLETER">voir le dépôt →</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- PARCOURS -->
+    <section id="parcours">
+      <h2><span class="idx">03</span> parcours</h2>
+      <ol class="timeline">
+        <li>
+          <h3>Bachelor ASR <span class="muted">· CESI Pau</span></h3>
+          <p>Alternance chez Scieries Lesbats : support et infrastructure multi-sites.</p>
+        </li>
+        <li>
+          <h3>GMSI <span class="muted">· 2 ans, alternance</span></h3>
+          <p>Smart Rx : technicien de maintenance et d'installation.</p>
+        </li>
+        <li>
+          <h3>Bac pro SN option RISC <span class="muted">· 2 ans</span></h3>
+          <p>4 stages en entreprise.</p>
+        </li>
+      </ol>
+      <ul class="tags langs">
+        <li>Anglais B2</li><li>Espagnol B1</li><li>Permis B, véhiculé</li>
+      </ul>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2><span class="idx">04</span> contact</h2>
+      <div class="terminal">
+        <div class="terminal-bar"><span></span><span></span><span></span></div>
+        <pre><span class="accent">$</span> cat contact.txt
+linkedin : <a href="LIEN_A_COMPLETER">LIEN_A_COMPLETER</a>
+email    : <a href="mailto:EMAIL_A_COMPLETER">EMAIL_A_COMPLETER</a>
+github   : <a href="https://github.com/thomas642">github.com/thomas642</a>
+statut   : <span class="ok">disponible</span> · CDI / CDD en informatique</pre>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p class="muted">© Thomas Jourda · site statique hébergé sur GitHub Pages</p>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>
