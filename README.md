@@ -31,13 +31,12 @@ GitHub affiche un README sur la page de profil quand un dépôt **public** porte
 
 ## À compléter avant publication
 
-- **LinkedIn** : dans `index.html`, décommenter la ligne `URL_LINKEDIN` de la section Contact ; dans `profile/README.md`, remplacer `LIEN_A_COMPLETER`.
 - **Dépôts projets** : dans `index.html`, décommenter les lignes `<a class="repo" href="URL_DU_DEPOT">` et y mettre l'URL de chaque dépôt ; dans `profile/README.md`, remplacer les `LIEN_A_COMPLETER`.
 
 ## Sources du contenu
 
 Le contenu reprend uniquement : le CV (juillet 2026), la lettre de motivation du 11/09/2026, le mémoire de Bachelor ASR (projet de Léon) et les dossiers CESI INFRIR3 / INFRIR4 (étude de cas de la mairie).
-Le numéro de téléphone et l'adresse postale ne sont volontairement pas publiés.
+L'adresse postale n'est volontairement pas publiée (seul le département est indiqué).
 
 ## Tester en local
 

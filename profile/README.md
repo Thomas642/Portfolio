@@ -4,7 +4,7 @@
 
 Je travaille sur des infrastructures multi-sites (Windows Server, Active Directory, RDS, pare-feux, VPN) et je m'entraîne en parallèle sur de l'auto-hébergement et de l'observabilité sur mon propre VPS.
 
-🌐 [Portfolio](https://thomas642.github.io/Portfolio/) · 📫 [LinkedIn](LIEN_A_COMPLETER) · [Email](mailto:jrdthomage@gmail.com) · 🔎 En recherche de CDI / CDD en informatique, disponible à partir d'octobre 2026
+🌐 [Portfolio](https://thomas642.github.io/Portfolio/) · 📫 [LinkedIn](https://www.linkedin.com/in/thomas-jourda-a65731283/) · [Email](mailto:thomasjrd6453@gmail.com) · 🔎 En recherche de CDI / CDD en informatique, disponible à partir d'octobre 2026
 
 ---
 
