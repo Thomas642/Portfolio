@@ -160,15 +160,40 @@
 
     </div>
 
-    <article class="project compact">
-      <p class="kind wip">En conception</p>
-      <div>
-        <h3>Application de géolocalisation familiale</h3>
+    <article class="project wide">
+      <div class="wide-head">
+        <p class="kind perso">Perso · en production</p>
+        <h3>BAKO, plateforme web d'une communauté de jeu</h3>
+        <p class="meta">Next.js · PostgreSQL · VPS OVH · <a href="https://famille.gameone-val.com">famille.gameone-val.com</a></p>
         <p>
-          Application auto-hébergée : Node.js / Express, PostgreSQL + PostGIS, PWA, OpenStreetMap / Leaflet.js.
-          Document de conception rédigé : fonctionnalités, schéma de base de données, feuille de route en 4 phases, approche sécurité.
+          Plateforme de gestion d'une « famille » (groupe de joueurs) sur un serveur de jeu DarkRP :
+          suivi des membres, recrutement, sanctions, événements, sondages. Elle remplace le classeur
+          Google Sheets utilisé jusque-là.
         </p>
       </div>
+      <div class="wide-cols">
+        <div>
+          <p class="col-title">Application</p>
+          <ul class="points">
+            <li>Next.js (App Router) et TypeScript</li>
+            <li>PostgreSQL + Prisma : 25 modèles, migrations versionnées</li>
+            <li>Connexion via Steam OpenID, sessions JWT</li>
+            <li>Synchronisation automatique des membres via l'API du serveur de jeu</li>
+            <li>Espace d'administration : rôles, journal d'audit, exports CSV, page de santé</li>
+          </ul>
+        </div>
+        <div>
+          <p class="col-title">Exploitation</p>
+          <ul class="points">
+            <li>VPS OVH sous Ubuntu, Nginx en reverse proxy, HTTPS Let's Encrypt</li>
+            <li>Service systemd, health-check <code>/healthz</code></li>
+            <li>Timers systemd : synchronisation des membres et sauvegarde quotidienne de la base (<code>pg_dump</code> compressé, rotation sur 14 sauvegardes)</li>
+            <li>GitHub Actions : lint, types, tests Vitest et build sur chaque PR, déploiement SSH à chaque fusion sur <code>main</code></li>
+            <li>Remplacement de l'ancien outil par un runbook en phases, avec procédure de retour arrière</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="stack"><li>Next.js</li><li>PostgreSQL</li><li>Prisma</li><li>Nginx</li><li>systemd</li><li>GitHub Actions</li></ul>
     </article>
   </section>
 
@@ -272,10 +297,6 @@
       <div class="contact-row">
         <span class="k">GitHub</span>
         <a class="v" href="https://github.com/thomas642">github.com/thomas642</a>
-      </div>
-      <div class="contact-row">
-        <span class="k">Téléphone</span>
-        <a class="v" href="tel:+33649754027">06 49 75 40 27</a>
       </div>
       <div class="contact-row">
         <span class="k">LinkedIn</span>

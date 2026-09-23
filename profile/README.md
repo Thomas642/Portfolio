@@ -47,10 +47,10 @@ Déploiement de Linux Lite sur Dell Wyse 3070/5070 avec accès RDS via Remmina, 
 Rédaction de procédures d'installation versionnées, diagnostic d'incompatibilité clavier HID sur douchette code-barres en session RDP.
 → [Voir le dépôt](LIEN_A_COMPLETER)
 
-### 📍 Application de géolocalisation familiale (en conception)
-Application auto-hébergée : Node.js/Express, PostgreSQL + PostGIS, PWA, OpenStreetMap / Leaflet.js.
-Document de conception : fonctionnalités, schéma de base de données, feuille de route en 4 phases, approche sécurité.
-→ [Voir le dépôt](LIEN_A_COMPLETER)
+### 🎮 BAKO, plateforme web d'une communauté de jeu (perso, en production)
+Gestion d'une « famille » de joueurs sur un serveur DarkRP (membres, recrutement, sanctions, événements), en remplacement d'un Google Sheets.
+Next.js + TypeScript, PostgreSQL/Prisma, connexion Steam OpenID. Hébergé sur VPS OVH : Nginx + Let's Encrypt, systemd, sauvegarde quotidienne de la base, CI/CD GitHub Actions.
+→ [Voir le site](https://famille.gameone-val.com)
 
 ---
 

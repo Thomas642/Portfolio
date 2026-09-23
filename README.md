@@ -35,8 +35,8 @@ GitHub affiche un README sur la page de profil quand un dépôt **public** porte
 
 ## Sources du contenu
 
-Le contenu reprend uniquement : le CV (juillet 2026), la lettre de motivation du 11/09/2026, le mémoire de Bachelor ASR (projet de Léon) et les dossiers CESI INFRIR3 / INFRIR4 (étude de cas de la mairie).
-L'adresse postale n'est volontairement pas publiée (seul le département est indiqué).
+Le contenu reprend uniquement : le CV (juillet 2026), la lettre de motivation du 11/09/2026, le mémoire de Bachelor ASR (projet de Léon) les dossiers CESI INFRIR3 / INFRIR4 (étude de cas de la mairie) et le dépôt `Thomas642/BAKO`.
+Le numéro de téléphone et l'adresse postale ne sont volontairement pas publiés (seul le département est indiqué).
 
 ## Tester en local
 
