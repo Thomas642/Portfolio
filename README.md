@@ -6,12 +6,15 @@ Site vitrine statique (HTML/CSS/JS, sans framework ni build), pensé pour être 
 
 ```
 index.html          → la page du portfolio
-assets/style.css    → le style (DA « console de supervision »)
-assets/main.js      → petites animations (frappe clavier, apparition au scroll)
+assets/style.css    → le style (DA « étiquette de baie », thème clair/sombre automatique)
+assets/main.js      → bouton « Copier » de l'adresse e-mail
 profile/README.md   → README de profil GitHub, à copier dans le dépôt thomas642/thomas642
 ```
 
 ## Publier le site avec GitHub Pages
+
+> GitHub Pages sur un dépôt **privé** nécessite un abonnement payant (GitHub Pro ou supérieur), et le site publié reste alors **public**.
+> Avec un compte gratuit, il faut repasser le dépôt en public pour activer Pages.
 
 1. Fusionner la branche de travail dans `main`.
 2. Sur GitHub : **Settings → Pages**.
@@ -28,11 +31,13 @@ GitHub affiche un README sur la page de profil quand un dépôt **public** porte
 
 ## À compléter avant publication
 
-Rechercher `LIEN_A_COMPLETER` et `EMAIL_A_COMPLETER` dans `index.html` et `profile/README.md` et les remplacer par :
+- **LinkedIn** : dans `index.html`, décommenter la ligne `URL_LINKEDIN` de la section Contact ; dans `profile/README.md`, remplacer `LIEN_A_COMPLETER`.
+- **Dépôts projets** : dans `index.html`, décommenter les lignes `<a class="repo" href="URL_DU_DEPOT">` et y mettre l'URL de chaque dépôt ; dans `profile/README.md`, remplacer les `LIEN_A_COMPLETER`.
 
-- l'URL LinkedIn ;
-- l'adresse e-mail de contact ;
-- l'URL de chaque dépôt projet.
+## Sources du contenu
+
+Le contenu reprend uniquement : le CV (juillet 2026), la lettre de motivation du 11/09/2026, le mémoire de Bachelor ASR (projet de Léon) et les dossiers CESI INFRIR3 / INFRIR4 (étude de cas de la mairie).
+Le numéro de téléphone et l'adresse postale ne sont volontairement pas publiés.
 
 ## Tester en local
 

@@ -1,206 +1,287 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thomas Jourda · Technicien systèmes & réseaux</title>
-  <meta name="description" content="Portfolio de Thomas Jourda, technicien systèmes et réseaux, alternant ASR au CESI Pau. Infrastructures Windows Server, Active Directory, RDS, réseau, sécurité et observabilité.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230b0f14'/><text x='5' y='22' font-family='monospace' font-size='16' fill='%2334d399'>&gt;_</text></svg>">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Thomas Jourda</title>
+<meta name="description" content="Portfolio de Thomas Jourda, technicien systèmes et réseaux, Bachelor ASR en alternance au CESI Pau. Windows Server, Active Directory, RDS, réseau Aruba, Stormshield, supervision.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230b6e8a'/><text x='16' y='22' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='15' fill='white'>TJ</text></svg>">
 </head>
 <body>
-
-  <header class="topbar">
-    <a class="brand" href="#top">thomas<span class="accent">@</span>infra<span class="muted">:~$</span></a>
-    <nav>
-      <a href="#competences">compétences</a>
-      <a href="#projets">projets</a>
-      <a href="#parcours">parcours</a>
-      <a href="#contact">contact</a>
+<!-- BODY:START -->
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#top">Thomas Jourda</a>
+    <nav aria-label="Sections">
+      <a href="#projets">Projets</a>
+      <a href="#experience">Expérience</a>
+      <a href="#competences">Compétences</a>
+      <a href="#contact">Contact</a>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <main id="top">
+<main id="top" class="wrap">
 
-    <!-- HERO -->
-    <section class="hero">
-      <p class="prompt"><span class="accent">$</span> <span id="typed" data-text="whoami"></span><span class="cursor">▌</span></p>
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">Technicien systèmes &amp; réseaux</p>
       <h1>Thomas Jourda</h1>
-      <p class="role">Technicien systèmes &amp; réseaux</p>
       <p class="lead">
-        Alternant ASR au CESI Pau. Je travaille sur des infrastructures multi-sites
-        (Windows Server, Active Directory, RDS, pare-feux, VPN) et je m'entraîne en parallèle
-        sur de l'auto-hébergement et de l'observabilité sur mon propre VPS.
+        Formé en alternance (GMSI puis Bachelor ASR au CESI Pau), j'administre au quotidien
+        une infrastructure répartie sur cinq sites : Windows Server, RDS, Active Directory,
+        pare-feux Stormshield, réseau Aruba, VPN et accès distant. En parallèle, j'administre
+        mon propre VPS Linux pour pratiquer l'auto-hébergement, la supervision et la sécurité.
       </p>
-
-      <div class="status-row">
-        <span class="status"><span class="dot"></span>En recherche de CDI / CDD en informatique</span>
-        <span class="chip">Sud-Ouest · mobile partout en France</span>
-      </div>
-
       <div class="cta">
         <a class="btn primary" href="#projets">Voir les projets</a>
         <a class="btn" href="#contact">Me contacter</a>
       </div>
-    </section>
+    </div>
 
-    <!-- COMPETENCES -->
-    <section id="competences">
-      <h2><span class="idx">01</span> compétences</h2>
-      <div class="grid panels">
-        <article class="panel">
-          <h3>Systèmes</h3>
-          <ul class="tags">
-            <li>Windows Server</li><li>RDS</li><li>FSLogix</li><li>Active Directory</li><li>GPO</li>
-            <li>Debian</li><li>Ubuntu</li><li>Linux Lite</li>
-          </ul>
-        </article>
-        <article class="panel">
-          <h3>Réseau &amp; sécurité</h3>
-          <ul class="tags">
-            <li>Stormshield</li><li>VPN IPsec</li><li>Aruba</li><li>Cloudflare Zero Trust</li>
-            <li>Durcissement SSH</li><li>fail2ban</li>
-          </ul>
-        </article>
-        <article class="panel">
-          <h3>Conteneurs &amp; services</h3>
-          <ul class="tags">
-            <li>Docker</li><li>Docker Compose</li><li>Apache Guacamole</li><li>MariaDB</li><li>Nginx</li>
-          </ul>
-        </article>
-        <article class="panel">
-          <h3>Supervision</h3>
-          <ul class="tags">
-            <li>Prometheus</li><li>Grafana</li><li>Loki</li><li>Grafana Alloy</li><li>cAdvisor</li><li>node-exporter</li>
-          </ul>
-        </article>
-        <article class="panel">
-          <h3>Scripting</h3>
-          <ul class="tags">
-            <li>PowerShell</li><li>Bash</li>
-          </ul>
-        </article>
-        <article class="panel">
-          <h3>Collaboration / M365</h3>
-          <ul class="tags">
-            <li>Sync AD → Microsoft 365</li><li>Outlook / Exchange</li><li>GestSup (ticketing)</li>
-          </ul>
-        </article>
+    <aside class="asset-tag" aria-label="Fiche récapitulative">
+      <p class="tag-head"><span>FICHE</span><span>TJ-ASR-2026</span></p>
+      <dl>
+        <div><dt>Statut</dt><dd><span class="state ok"></span>En recherche de CDI / CDD</dd></div>
+        <div><dt>Dispo</dt><dd>À partir d'octobre 2026</dd></div>
+        <div><dt>Secteur</dt><dd>Pyrénées-Atlantiques (64)</dd></div>
+        <div><dt>Mobilité</dt><dd>France entière · permis B, véhiculé</dd></div>
+        <div><dt>Langues</dt><dd>Anglais B2 · Espagnol B1</dd></div>
+      </dl>
+    </aside>
+  </section>
+
+  <ul class="stats" aria-label="Chiffres clés">
+    <li><strong>3</strong><span>ans d'alternance en informatique</span></li>
+    <li><strong>5</strong><span>sites industriels supportés</span></li>
+    <li><strong>9</strong><span>switchs remplacés sur le site de Léon</span></li>
+    <li><strong>12</strong><span>VLANs actifs pris en charge</span></li>
+  </ul>
+
+  <!-- PROJETS -->
+  <section id="projets">
+    <h2>Projets</h2>
+
+    <article class="project featured">
+      <div class="project-main">
+        <p class="kind pro">Pro · mémoire de Bachelor ASR</p>
+        <h3>Renouvellement de la commutation réseau d'un site industriel</h3>
+        <p class="meta">Scieries Lesbats · site de Léon (40) · 10/2025 – 04/2026</p>
+        <p>
+          Le site utilisait des switchs vieillissants de plusieurs marques (Cisco, Dell…), dont certains
+          non manageables : pas de SNMP, pas de VLAN, donc une supervision incomplète et des déconnexions
+          difficiles à diagnostiquer. J'ai porté la mise en œuvre technique du remplacement des
+          neuf switchs de distribution par des Aruba Instant On 1930, alignés sur le parc d'un autre site de l'entreprise.
+        </p>
+        <ul class="points">
+          <li>Cartographie de l'existant : inventaire des ports, placement des équipements sur la carte Zabbix</li>
+          <li>Pré-configuration sur le portail Instant On : convention de nommage, VLANs, IP de management</li>
+          <li>Ouverture des flux nécessaires sur le pare-feu Stormshield avant intervention</li>
+          <li>Bascule physique pendant la fermeture de la production, correction des écarts le lundi suivant</li>
+          <li>Intégration des nouveaux switchs dans la supervision Zabbix et Instant On</li>
+        </ul>
+        <p class="lesson">
+          <span>Retour d'expérience</span>
+          La numérotation des ports diffère entre Cisco (<code>Fa0/1</code>) et Aruba (<code>GE1/0/1</code>) :
+          c'est ce qui a provoqué quelques erreurs d'affectation de VLAN lors du report des câbles.
+        </p>
+        <ul class="stack"><li>Aruba Instant On 1930</li><li>802.1Q</li><li>SNMP</li><li>Zabbix</li><li>Stormshield</li><li>GestSup</li></ul>
       </div>
-    </section>
 
-    <!-- PROJETS -->
-    <section id="projets">
-      <h2><span class="idx">02</span> projets</h2>
-      <div class="grid projects">
-
-        <article class="card">
-          <header>
-            <span class="label perso">perso · VPS</span>
-            <h3>Stack d'observabilité auto-hébergée</h3>
-          </header>
-          <p>Supervision complète d'un VPS Ubuntu avec Prometheus, Grafana, Loki, Alloy, cAdvisor et node-exporter.</p>
-          <ul class="points">
-            <li>Accès protégé par tunnel Cloudflare Zero Trust avec OTP</li>
-            <li>SSH durci : clé ed25519, authentification par mot de passe désactivée</li>
-            <li>Dashboards maison : vue d'ensemble VPS, logs/sécurité, carte géographique des IP bannies par fail2ban (GeoLite2)</li>
-          </ul>
-          <ul class="stack"><li>Prometheus</li><li>Grafana</li><li>Loki</li><li>Cloudflare</li></ul>
-          <a class="more" href="LIEN_A_COMPLETER">voir le dépôt →</a>
-        </article>
-
-        <article class="card">
-          <header>
-            <span class="label pro">pro · anonymisé</span>
-            <h3>Passerelle d'accès distant Apache Guacamole</h3>
-          </header>
-          <p>Remplacement d'AnyDesk par une passerelle Guacamole conteneurisée (guacd, MariaDB, Guacamole) sous Docker Compose.</p>
-          <ul class="points">
-            <li>Authentification LDAP / Active Directory</li>
-            <li>MFA TOTP</li>
-            <li>Groupes d'équilibrage RDS</li>
-            <li>Sauvegarde hebdomadaire automatisée par cron</li>
-          </ul>
-          <ul class="stack"><li>Docker Compose</li><li>Guacamole</li><li>MariaDB</li><li>LDAP</li></ul>
-          <a class="more" href="LIEN_A_COMPLETER">voir le dépôt →</a>
-        </article>
-
-        <article class="card">
-          <header>
-            <span class="label pro">pro · anonymisé</span>
-            <h3>Clients légers Linux sur Dell Wyse</h3>
-          </header>
-          <p>Déploiement de Linux Lite sur Dell Wyse 3070 / 5070 avec accès RDS via Remmina et autologin LightDM.</p>
-          <ul class="points">
-            <li>Rédaction de procédures d'installation versionnées</li>
-            <li>Diagnostic d'une incompatibilité clavier HID sur douchette code-barres en session RDP</li>
-          </ul>
-          <ul class="stack"><li>Linux Lite</li><li>Remmina</li><li>RDS</li><li>LightDM</li></ul>
-          <a class="more" href="LIEN_A_COMPLETER">voir le dépôt →</a>
-        </article>
-
-        <article class="card">
-          <header>
-            <span class="label wip">en conception</span>
-            <h3>Application de géolocalisation familiale</h3>
-          </header>
-          <p>Application auto-hébergée : Node.js / Express, PostgreSQL + PostGIS, PWA, OpenStreetMap / Leaflet.js.</p>
-          <ul class="points">
-            <li>Document de conception : fonctionnalités, schéma de base de données</li>
-            <li>Feuille de route en 4 phases</li>
-            <li>Approche sécurité</li>
-          </ul>
-          <ul class="stack"><li>Node.js</li><li>PostGIS</li><li>PWA</li><li>Leaflet</li></ul>
-          <a class="more" href="LIEN_A_COMPLETER">voir le dépôt →</a>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- PARCOURS -->
-    <section id="parcours">
-      <h2><span class="idx">03</span> parcours</h2>
-      <ol class="timeline">
-        <li>
-          <h3>Bachelor ASR <span class="muted">· CESI Pau</span></h3>
-          <p>Alternance chez Scieries Lesbats : support et infrastructure multi-sites.</p>
-        </li>
-        <li>
-          <h3>GMSI <span class="muted">· 2 ans, alternance</span></h3>
-          <p>Smart Rx : technicien de maintenance et d'installation.</p>
-        </li>
-        <li>
-          <h3>Bac pro SN option RISC <span class="muted">· 2 ans</span></h3>
-          <p>4 stages en entreprise.</p>
-        </li>
+      <ol class="runlog" aria-label="Déroulé du projet">
+        <li><time>10/10/2025</time><span>Projet confié, début de l'audit de l'existant</span></li>
+        <li><time>12/12/2025</time><span>Switchs ajoutés sur Instant On, VLANs créés</span></li>
+        <li><time>16/01/2026</time><span>Phase 1 : remplacement du parc principal</span></li>
+        <li><time>20/02/2026</time><span>Phase 2 : réfectoire et extension</span></li>
+        <li><time>03/04/2026</time><span>Clôture : parc 100 % manageable et supervisé</span></li>
+        <li class="next"><time>Phase 2</time><span>Redondance par boucle, planifiée</span></li>
       </ol>
-      <ul class="tags langs">
-        <li>Anglais B2</li><li>Espagnol B1</li><li>Permis B, véhiculé</li>
-      </ul>
-    </section>
+    </article>
 
-    <!-- CONTACT -->
-    <section id="contact">
-      <h2><span class="idx">04</span> contact</h2>
-      <div class="terminal">
-        <div class="terminal-bar"><span></span><span></span><span></span></div>
-        <pre><span class="accent">$</span> cat contact.txt
-linkedin : <a href="LIEN_A_COMPLETER">LIEN_A_COMPLETER</a>
-email    : <a href="mailto:EMAIL_A_COMPLETER">EMAIL_A_COMPLETER</a>
-github   : <a href="https://github.com/thomas642">github.com/thomas642</a>
-statut   : <span class="ok">disponible</span> · CDI / CDD en informatique</pre>
+    <div class="project-grid">
+
+      <article class="project">
+        <p class="kind pro">Pro · anonymisé</p>
+        <h3>Passerelle d'accès distant Apache Guacamole</h3>
+        <p>Remplacement d'AnyDesk par une passerelle Guacamole conteneurisée (guacd, MariaDB, Guacamole) sous Docker Compose.</p>
+        <ul class="points">
+          <li>Authentification LDAP / Active Directory</li>
+          <li>MFA TOTP</li>
+          <li>Groupes d'équilibrage RDS</li>
+          <li>Sauvegarde hebdomadaire automatisée par cron</li>
+        </ul>
+        <ul class="stack"><li>Docker Compose</li><li>Guacamole</li><li>MariaDB</li><li>LDAP</li></ul>
+        <!-- <a class="repo" href="URL_DU_DEPOT">Voir le dépôt</a> -->
+      </article>
+
+      <article class="project">
+        <p class="kind perso">Perso · VPS OVH</p>
+        <h3>Stack d'observabilité auto-hébergée</h3>
+        <p>Supervision complète d'un VPS Ubuntu : Prometheus, Grafana, Loki, Grafana Alloy, cAdvisor, node-exporter.</p>
+        <ul class="points">
+          <li>Accès protégé par tunnel Cloudflare Zero Trust avec OTP</li>
+          <li>SSH durci : clé ed25519, mot de passe désactivé</li>
+          <li>Dashboards maison : vue d'ensemble, logs / sécurité, carte des IP bannies par fail2ban (GeoLite2)</li>
+        </ul>
+        <ul class="stack"><li>Prometheus</li><li>Grafana</li><li>Loki</li><li>Cloudflare</li><li>fail2ban</li></ul>
+        <!-- <a class="repo" href="URL_DU_DEPOT">Voir le dépôt</a> -->
+      </article>
+
+      <article class="project">
+        <p class="kind school">École · CESI</p>
+        <h3>Refonte du SI d'une mairie multi-sites</h3>
+        <p>
+          Étude de cas menée en tant que responsable informatique : 79 agents sur 12 sites,
+          deux sites principaux reliés entre eux et dix sites distants en VPN IPsec sur 4G.
+        </p>
+        <ul class="points">
+          <li><em>Déployer</em> : plan d'adressage <code>10.SITE.VLAN.HOST/24</code>, Active Directory et GPO, virtualisation Hyper-V sur deux sites avec réplication, maquette Packet Tracer, plan de 63 tests unitaires</li>
+          <li><em>Maintenir et sécuriser</em> : écarts résiduels au regard de l'ANSSI, du RGPD et de NIS2, PCA, PRA et politique de sécurité du SI</li>
+        </ul>
+        <ul class="stack"><li>Hyper-V Replica</li><li>VPN IPsec</li><li>Sauvegarde 3-2-1</li><li>PCA / PRA</li></ul>
+      </article>
+
+      <article class="project">
+        <p class="kind pro">Pro · anonymisé</p>
+        <h3>Clients légers Linux sur Dell Wyse</h3>
+        <p>Déploiement de Linux Lite sur Dell Wyse 3070 / 5070 avec accès RDS via Remmina et autologin LightDM.</p>
+        <ul class="points">
+          <li>Rédaction de procédures d'installation versionnées</li>
+          <li>Diagnostic d'une incompatibilité clavier HID sur douchette code-barres en session RDP</li>
+        </ul>
+        <ul class="stack"><li>Linux Lite</li><li>Remmina</li><li>RDS</li><li>LightDM</li></ul>
+        <!-- <a class="repo" href="URL_DU_DEPOT">Voir le dépôt</a> -->
+      </article>
+
+    </div>
+
+    <article class="project compact">
+      <p class="kind wip">En conception</p>
+      <div>
+        <h3>Application de géolocalisation familiale</h3>
+        <p>
+          Application auto-hébergée : Node.js / Express, PostgreSQL + PostGIS, PWA, OpenStreetMap / Leaflet.js.
+          Document de conception rédigé : fonctionnalités, schéma de base de données, feuille de route en 4 phases, approche sécurité.
+        </p>
       </div>
-    </section>
+    </article>
+  </section>
 
-  </main>
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2>Expérience</h2>
+    <ol class="timeline">
+      <li>
+        <time>10/2025 – 09/2026</time>
+        <div>
+          <h3>Alternant support informatique, administration systèmes &amp; réseaux</h3>
+          <p class="meta">Scieries Lesbats · 5 sites dans les Landes</p>
+          <ul class="points">
+            <li>Administration d'un environnement Windows Server et RDS, gestion du domaine Active Directory</li>
+            <li>Réseau et sécurité : switchs Aruba, VPN, pare-feux Stormshield, accès distant Apache Guacamole (Docker, MFA)</li>
+            <li>Migration du parc vers Windows 11 sur plusieurs sites, déploiement de clients légers Linux</li>
+            <li>Supervision avec Zabbix et Aruba Instant On</li>
+            <li>Support utilisateurs multi-sites via GestSup, terminaux mobiles (PDA), téléphonie IP Wildix, scripts PowerShell</li>
+            <li>Intervention sur un serveur Windows hébergeant SQL Server et une application métier</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <time>09/2023 – 09/2025</time>
+        <div>
+          <h3>Technicien de maintenance et d'installation, en alternance (GMSI)</h3>
+          <p class="meta">Smart Rx</p>
+          <ul class="points">
+            <li>Préparation et maintenance des outils informatiques de pharmacies (Windows / Debian, logiciel métier)</li>
+            <li>Point de vente : postes Windows, terminaux bancaires, Sésame-Vitale</li>
+            <li>Caméras de vidéosurveillance, étiquettes électroniques Pricer</li>
+            <li>Réseau : switchs, 4G, Wi-Fi</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <time>07/2023</time>
+        <div>
+          <h3>Technicien informatique, CDD</h3>
+          <p class="meta">Info-Pix · Lescar (64)</p>
+          <ul class="points">
+            <li>Diagnostic, remplacement et ajout de composants</li>
+            <li>Remplacement d'écrans et plasturgie sur ordinateurs portables</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <time>2022 – 2023</time>
+        <div>
+          <h3>Stages de technicien informatique (Bac pro SN)</h3>
+          <p class="meta">IUT de Pau · Aquitaine Consulting · InfoDirect</p>
+        </div>
+      </li>
+    </ol>
+  </section>
 
-  <footer>
-    <p class="muted">© Thomas Jourda · site statique hébergé sur GitHub Pages</p>
-  </footer>
+  <!-- COMPETENCES -->
+  <section id="competences">
+    <h2>Compétences</h2>
+    <dl class="skills">
+      <div><dt>Systèmes</dt><dd><ul class="chips"><li>Windows Server</li><li>RDS</li><li>FSLogix</li><li>Active Directory</li><li>GPO</li><li>Windows 10 / 11</li><li>Debian</li><li>Ubuntu</li><li>Linux Lite</li></ul></dd></div>
+      <div><dt>Réseau</dt><dd><ul class="chips"><li>Routage</li><li>LAN / WAN</li><li>VLAN 802.1Q</li><li>VPN IPsec</li><li>Switchs Aruba</li><li>Wi-Fi</li><li>Cisco Packet Tracer</li></ul></dd></div>
+      <div><dt>Sécurité</dt><dd><ul class="chips"><li>Stormshield</li><li>MFA / TOTP</li><li>Cloudflare Zero Trust</li><li>Durcissement SSH</li><li>fail2ban</li></ul></dd></div>
+      <div><dt>Virtualisation &amp; conteneurs</dt><dd><ul class="chips"><li>Docker</li><li>Docker Compose</li><li>VMware</li><li>VPS OVH</li><li>Apache Guacamole</li><li>MariaDB</li><li>Nginx</li></ul></dd></div>
+      <div><dt>Supervision</dt><dd><ul class="chips"><li>Zabbix</li><li>Aruba Instant On</li><li>Prometheus</li><li>Grafana</li><li>Loki</li><li>Grafana Alloy</li><li>cAdvisor</li><li>node-exporter</li></ul></dd></div>
+      <div><dt>Scripting</dt><dd><ul class="chips"><li>PowerShell</li><li>Bash</li></ul></dd></div>
+      <div><dt>Support &amp; M365</dt><dd><ul class="chips"><li>Synchronisation AD → Microsoft 365</li><li>Outlook / Exchange</li><li>GestSup</li><li>Téléphonie IP Wildix</li></ul></dd></div>
+    </dl>
+  </section>
 
-  <script src="assets/main.js"></script>
+  <!-- FORMATION + PROFIL -->
+  <section class="split">
+    <div>
+      <h2>Formation</h2>
+      <ol class="timeline slim">
+        <li><time>2025 – 2026</time><div><h3>Bachelor Administrateur Systèmes et Réseaux (Bac+3)</h3><p class="meta">CESI Pau · alternance</p></div></li>
+        <li><time>2023 – 2025</time><div><h3>GMSI, Gestionnaire de Maintenance et Support Informatique (Bac+2)</h3><p class="meta">CESI Pau · alternance</p></div></li>
+        <li><time>2021 – 2023</time><div><h3>Bac pro Systèmes Numériques, option RISC</h3><p class="meta">Lycée Saint-Cricq, Pau · 4 stages en entreprise</p></div></li>
+      </ol>
+    </div>
+    <div>
+      <h2>Profil</h2>
+      <dl class="profile">
+        <div><dt>Qualités</dt><dd>Autonome · Rigoureux · Réactif · Sens des responsabilités · Esprit d'équipe</dd></div>
+        <div><dt>Langues</dt><dd>Anglais B2 · Espagnol B1</dd></div>
+        <div><dt>Hors écran</dt><dd>Moto · Ski · Football · Manga · Jeux vidéo</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>Disponible à partir d'octobre 2026 pour un CDI ou un CDD en administration systèmes et réseaux, partout en France.</p>
+    <div class="contact-rows">
+      <div class="contact-row">
+        <span class="k">E-mail</span>
+        <a id="email" class="v" href="mailto:jrdthomage@gmail.com">jrdthomage@gmail.com</a>
+        <button id="copy-email" class="btn small" type="button">Copier</button>
+      </div>
+      <div class="contact-row">
+        <span class="k">GitHub</span>
+        <a class="v" href="https://github.com/thomas642">github.com/thomas642</a>
+      </div>
+      <!-- <div class="contact-row"><span class="k">LinkedIn</span><a class="v" href="URL_LINKEDIN">URL_LINKEDIN</a></div> -->
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <p>Thomas Jourda · 2026</p>
+</footer>
+<!-- BODY:END -->
+<script src="assets/main.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 
 Je travaille sur des infrastructures multi-sites (Windows Server, Active Directory, RDS, pare-feux, VPN) et je m'entraîne en parallèle sur de l'auto-hébergement et de l'observabilité sur mon propre VPS.
 
-🌐 [Portfolio](https://thomas642.github.io/Portfolio/) · 📫 [LinkedIn](LIEN_A_COMPLETER) · [Email](mailto:EMAIL_A_COMPLETER) · 🔎 En recherche de CDI / CDD en informatique
+🌐 [Portfolio](https://thomas642.github.io/Portfolio/) · 📫 [LinkedIn](LIEN_A_COMPLETER) · [Email](mailto:jrdthomage@gmail.com) · 🔎 En recherche de CDI / CDD en informatique, disponible à partir d'octobre 2026
 
 ---
 
@@ -12,16 +12,24 @@ Je travaille sur des infrastructures multi-sites (Windows Server, Active Directo
 
 | Domaine | Technologies |
 |---|---|
-| Systèmes | Windows Server, RDS, FSLogix, Active Directory, GPO, Linux (Debian, Ubuntu, Linux Lite) |
-| Réseau & sécurité | Stormshield, VPN IPsec, Aruba, Cloudflare Zero Trust, durcissement SSH, fail2ban |
-| Conteneurs & services | Docker, Docker Compose, Apache Guacamole, MariaDB, Nginx |
-| Supervision | Prometheus, Grafana, Loki, Grafana Alloy, cAdvisor, node-exporter |
+| Systèmes | Windows Server, RDS, FSLogix, Active Directory, GPO, Windows 10/11, Linux (Debian, Ubuntu, Linux Lite) |
+| Réseau | Routage, LAN/WAN, VLAN 802.1Q, VPN IPsec, switchs Aruba, Wi-Fi, Cisco Packet Tracer |
+| Sécurité | Stormshield, MFA/TOTP, Cloudflare Zero Trust, durcissement SSH, fail2ban |
+| Virtualisation & conteneurs | Docker, Docker Compose, VMware, VPS OVH, Apache Guacamole, MariaDB, Nginx |
+| Supervision | Zabbix, Aruba Instant On, Prometheus, Grafana, Loki, Grafana Alloy, cAdvisor, node-exporter |
 | Scripting | PowerShell, Bash |
 | Collaboration / M365 | Synchronisation AD vers Microsoft 365, Outlook / Exchange, ticketing GestSup |
 
 ---
 
 ## 📂 Projets
+
+### 🔌 Renouvellement de la commutation réseau d'un site industriel (pro, mémoire de Bachelor ASR)
+Scieries Lesbats, site de Léon, 10/2025 – 04/2026. Remplacement de 9 switchs de distribution hétérogènes (dont certains non manageables) par des Aruba Instant On 1930.
+Cartographie de l'existant, pré-configuration sur Instant On (nommage, VLANs, IP de management), bascule pendant la fermeture de la production, intégration dans Zabbix et Instant On.
+
+### 🏛️ Refonte du SI d'une mairie multi-sites (école, CESI)
+Étude de cas en tant que responsable informatique : 79 agents sur 12 sites. Plan de déploiement (adressage, AD/GPO, Hyper-V deux sites avec réplication, maquette Packet Tracer, 63 tests unitaires) puis maintien et sécurisation (écarts ANSSI/RGPD/NIS2, PCA, PRA, PSSI).
 
 ### 🔭 Stack d'observabilité auto-hébergée (VPS perso)
 Supervision complète d'un VPS Ubuntu : Prometheus, Grafana, Loki, Alloy, cAdvisor, node-exporter.
@@ -48,8 +56,9 @@ Document de conception : fonctionnalités, schéma de base de données, feuille 
 
 ## 🎓 Parcours
 
-- **Bachelor ASR** (CESI Pau), alternance chez Scieries Lesbats, support et infrastructure multi-sites
-- **GMSI** (2 ans, alternance) chez Smart Rx, technicien de maintenance et d'installation
-- **Bac pro SN option RISC** (2 ans, 4 stages en entreprise)
+- **2025 – 2026 · Bachelor ASR** (Bac+3, CESI Pau), alternance chez Scieries Lesbats (5 sites) : Windows Server, RDS, AD, Stormshield, Aruba, VPN, migration Windows 11, support multi-sites
+- **2023 – 2025 · GMSI** (Bac+2, CESI Pau), alternance chez Smart Rx : technicien de maintenance et d'installation
+- **07/2023 · Technicien informatique** (CDD), Info-Pix, Lescar
+- **2021 – 2023 · Bac pro SN option RISC**, Lycée Saint-Cricq, Pau (4 stages en entreprise)
 
 🌍 Anglais B2 · Espagnol B1 · Permis B, véhiculé
