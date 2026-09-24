@@ -1,8 +1,24 @@
 const root = document.documentElement;
 
+// ---------- Textes selon la langue de la page ----------
+const EN = (root.lang || "").startsWith("en");
+const T = EN ? {
+  dispoCourt: "Immediately", dispoLong: "Available immediately",
+  toLight: "Switch to light theme", toDark: "Switch to dark theme",
+  project: (n) => `${n} project${n > 1 ? "s" : ""}`,
+  kinds: { all: "", pro: " (work)", perso: " (personal)", ecole: " (school)" },
+  copied: "Copied", selected: "Selected", copy: "Copy",
+} : {
+  dispoCourt: "Immédiate", dispoLong: "Disponible immédiatement",
+  toLight: "Passer en thème clair", toDark: "Passer en thème sombre",
+  project: (n) => `${n} projet${n > 1 ? "s" : ""}`,
+  kinds: { all: "", pro: " pro", perso: " perso", ecole: " d'école" },
+  copied: "Copié", selected: "Sélectionné", copy: "Copier",
+};
+
 // ---------- Disponibilité : bascule automatique au 1er octobre 2026 ----------
 if (new Date() >= new Date(2026, 9, 1)) {
-  const DISPO = { court: "Immédiate", long: "Disponible immédiatement" };
+  const DISPO = { court: T.dispoCourt, long: T.dispoLong };
   document.querySelectorAll("[data-dispo]").forEach((el) => {
     el.textContent = DISPO[el.dataset.dispo] || el.textContent;
   });
@@ -17,7 +33,7 @@ function currentTheme() {
 }
 function updateThemeLabel() {
   if (!themeBtn) return;
-  themeBtn.setAttribute("aria-label", currentTheme() === "dark" ? "Passer en thème clair" : "Passer en thème sombre");
+  themeBtn.setAttribute("aria-label", currentTheme() === "dark" ? T.toLight : T.toDark);
 }
 try {
   const saved = localStorage.getItem("theme");
@@ -80,9 +96,8 @@ if ("IntersectionObserver" in window && sections.length) {
 
 // ---------- Filtre des projets ----------
 const filters = [...document.querySelectorAll(".filter")];
-const projects = [...document.querySelectorAll("#projets [data-kind]")];
+const projects = [...document.querySelectorAll("main [data-kind]")];
 const count = document.getElementById("filter-count");
-const LABELS = { all: "", pro: " pro", perso: " perso", ecole: " d'école" };
 
 filters.forEach((btn) => btn.addEventListener("click", () => {
   const f = btn.dataset.filter;
@@ -93,7 +108,7 @@ filters.forEach((btn) => btn.addEventListener("click", () => {
     p.hidden = !show;
     if (show) n++;
   });
-  if (count) count.textContent = `${n} projet${n > 1 ? "s" : ""}${LABELS[f] || ""}`;
+  if (count) count.textContent = T.project(n) + (T.kinds[f] || "");
 }));
 
 // ---------- Copie de l'adresse e-mail ----------
@@ -104,7 +119,7 @@ if (copyBtn && email) {
     const text = email.textContent.trim();
     try {
       await navigator.clipboard.writeText(text);
-      copyBtn.textContent = "Copié";
+      copyBtn.textContent = T.copied;
     } catch {
       // Repli : sélectionne l'adresse pour une copie manuelle
       const range = document.createRange();
@@ -112,8 +127,8 @@ if (copyBtn && email) {
       const sel = window.getSelection();
       sel.removeAllRanges();
       sel.addRange(range);
-      copyBtn.textContent = "Sélectionné";
+      copyBtn.textContent = T.selected;
     }
-    setTimeout(() => { copyBtn.textContent = "Copier"; }, 2000);
+    setTimeout(() => { copyBtn.textContent = T.copy; }, 2000);
   });
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://thomas642.github.io/Portfolio/</loc>
+    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/"/>
+  </url>
+  <url>
+    <loc>https://thomas642.github.io/Portfolio/en/</loc>
+    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/"/>
+  </url>
+  <url>
+    <loc>https://thomas642.github.io/Portfolio/projets/leon.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/leon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/leon.html"/>
+  </url>
+  <url>
+    <loc>https://thomas642.github.io/Portfolio/en/projects/leon.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/leon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/leon.html"/>
+  </url>
+  <url>
+    <loc>https://thomas642.github.io/Portfolio/projets/guacamole.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/guacamole.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/guacamole.html"/>
+  </url>
+  <url>
+    <loc>https://thomas642.github.io/Portfolio/en/projects/guacamole.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/guacamole.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/guacamole.html"/>
+  </url>
+  <url>
+    <loc>https://thomas642.github.io/Portfolio/projets/observabilite.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/observabilite.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/observability.html"/>
+  </url>
+  <url>
+    <loc>https://thomas642.github.io/Portfolio/en/projects/observability.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/observabilite.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/observability.html"/>
+  </url>
+  <url>
+    <loc>https://thomas642.github.io/Portfolio/projets/bako.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/bako.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/bako.html"/>
+  </url>
+  <url>
+    <loc>https://thomas642.github.io/Portfolio/en/projects/bako.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/bako.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/bako.html"/>
+  </url>
+</urlset>

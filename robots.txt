@@ -1,0 +1,7 @@
+# Les robots ne lisent ce fichier qu'à la racine du domaine.
+# Sur thomas642.github.io/Portfolio/ il n'est donc pas pris en compte ;
+# il deviendra actif le jour où le site aura son propre nom de domaine.
+User-agent: *
+Allow: /
+
+Sitemap: https://thomas642.github.io/Portfolio/sitemap.xml

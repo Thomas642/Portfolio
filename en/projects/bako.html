@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>BAKO · Thomas Jourda</title>
+<meta name="description" content="Case study: a Next.js application hosted and run on an OVH VPS, from the PostgreSQL database to automated deployment.">
+<link rel="canonical" href="https://thomas642.github.io/Portfolio/en/projects/bako.html">
+<link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/bako.html">
+<link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/bako.html">
+<link rel="alternate" hreflang="x-default" href="https://thomas642.github.io/Portfolio/projets/bako.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Thomas Jourda">
+<meta property="og:title" content="BAKO, a web platform for a gaming community">
+<meta property="og:description" content="Next.js, PostgreSQL, Nginx, systemd and GitHub Actions on an OVH VPS. A case study by Thomas Jourda.">
+<meta property="og:url" content="https://thomas642.github.io/Portfolio/en/projects/bako.html">
+<meta property="og:image" content="https://thomas642.github.io/Portfolio/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Thomas Jourda, systems and network technician">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="../../assets/fonts/barlow-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="theme-color" content="#eef2f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../../assets/style.css?v=20260924d">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+</head>
+<body>
+<!-- BODY:START -->
+<a class="skip" href="#context">Skip to content</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="../../en/index.html" aria-label="Thomas Jourda, portfolio home"><span class="mono-tag" aria-hidden="true">TJ</span>Thomas Jourda</a>
+    <nav class="mainnav" aria-label="Sections">
+      <a href="#context">Context</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#approach">Approach</a>
+      <a href="#operations">Operations</a>
+      <a href="#results">Results</a>
+    </nav>
+    <div class="top-actions">
+      <a class="lang-switch" href="../../projets/bako.html" hreflang="fr" lang="fr" aria-label="Version française">FR</a>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch to dark theme">
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+</header>
+
+<main id="top" class="wrap case">
+
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="../../en/index.html#projects">← All projects</a>
+  </nav>
+  <section class="case-hero">
+    <div>
+      <p class="kind perso">Personal · in production</p>
+      <h1>BAKO, a web platform for a gaming community</h1>
+      <p class="lead">
+        A Next.js application hosted and run on my VPS: PostgreSQL database, reverse proxy,
+        systemd services, backups, monitoring and automated deployment.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="https://famille.gameone-val.com">Visit the live site</a>
+      </div>
+    </div>
+    <aside class="asset-tag" aria-label="Project card">
+      <p class="tag-head"><span>PROJECT CARD</span><span>BAKO</span></p>
+      <dl>
+        <div><dt>Status</dt><dd><span class="state ok"></span>In production</dd></div>
+        <div><dt>Address</dt><dd>famille.gameone-val.com</dd></div>
+        <div><dt>Hosting</dt><dd>OVH VPS · Ubuntu 26.04 LTS</dd></div>
+        <div><dt>Stack</dt><dd>Next.js · PostgreSQL · Prisma</dd></div>
+        <div><dt>Since</dt><dd>05/2026</dd></div>
+      </dl>
+    </aside>
+  </section>
+
+  <section id="context">
+    <div class="section-head"><h2>Context</h2></div>
+    <div class="prose">
+      <p>
+        A "family" is a group of players on the LYG DarkRP game server. Keeping track of it (members,
+        ranks, recruitment, sanctions, group life) was done in a Google Sheets workbook fed by a script,
+        and an older tool, FamilyTracker, already sat on the subdomain.
+      </p>
+      <p>
+        The goal: a single, collaborative tool, fed automatically by the game server API,
+        hosted on my VPS alongside the services already running there.
+      </p>
+    </div>
+  </section>
+
+  <section id="architecture">
+    <div class="section-head">
+      <h2>Architecture</h2>
+      <p class="section-intro">Everything runs on a single VPS, without Docker, using standard Linux building blocks.</p>
+    </div>
+    <figure class="diagram">
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 1000 440" role="img" aria-labelledby="bako-title bako-desc">
+          <title id="bako-title">BAKO architecture</title>
+          <desc id="bako-desc">Visitors go through Cloudflare, then Nginx over HTTPS on the VPS, which forwards to the Next.js application, itself connected to PostgreSQL. A systemd timer syncs members from the game server API into the database every 15 minutes. A second timer backs up the database every day. GitHub Actions deploys the code to the VPS over SSH.</desc>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path class="dg-arrow" fill="#4b5b5a" d="M0 0 L10 5 L0 10 z"/>
+            </marker>
+          </defs>
+
+          <!-- Périmètre VPS -->
+          <rect class="dg-group" fill="none" stroke="#0b6e8a" stroke-width="1.5" stroke-dasharray="8 6" x="420" y="20" width="565" height="400" rx="10"/>
+          <text class="dg-group-label" fill="#0b6e8a" font-size="12" x="970" y="408" text-anchor="end">VPS OVH · Ubuntu 26.04 LTS</text>
+
+          <!-- Flux -->
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="170" y1="80" x2="206" y2="80" marker-end="url(#arrow)"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="380" y1="80" x2="441" y2="80" marker-end="url(#arrow)"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="580" y1="80" x2="616" y2="80" marker-end="url(#arrow)"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="770" y1="80" x2="806" y2="80" marker-end="url(#arrow)"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M600 230 H394" marker-end="url(#arrow)"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M740 200 L850 114" marker-end="url(#arrow)"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="880" y1="110" x2="880" y2="196" marker-end="url(#arrow)"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="880" y1="260" x2="880" y2="316" marker-end="url(#arrow)"/>
+          <line class="dg-link dg-deploy" fill="none" stroke="#4b5b5a" stroke-width="1.6" stroke-dasharray="6 5" x1="390" y1="350" x2="436" y2="350" marker-end="url(#arrow)"/>
+          <path class="dg-link dg-deploy" fill="none" stroke="#4b5b5a" stroke-width="1.6" stroke-dasharray="6 5" d="M520 320 V150 H690 V114" marker-end="url(#arrow)"/>
+
+          <!-- Hors VPS -->
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="20" y="50" width="150" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="95" y="76" text-anchor="middle">Visitors</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="95" y="95" text-anchor="middle">browser</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="210" y="50" width="170" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="295" y="76" text-anchor="middle">Cloudflare</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="295" y="95" text-anchor="middle">DNS, proxy</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="210" y="200" width="180" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="300" y="226" text-anchor="middle">Game API</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="300" y="245" text-anchor="middle">100 requests / 15 min</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="20" y="320" width="370" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="205" y="346" text-anchor="middle">GitHub Actions</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="205" y="365" text-anchor="middle">CI: lint, types, tests, build · then SSH</text></g>
+
+          <!-- Dans le VPS -->
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="440" y="50" width="140" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="510" y="76" text-anchor="middle">Nginx</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="510" y="95" text-anchor="middle">HTTPS</text></g>
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="620" y="50" width="150" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="695" y="76" text-anchor="middle">Next.js</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="695" y="95" text-anchor="middle">bako.service</text></g>
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="810" y="50" width="150" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="885" y="76" text-anchor="middle">PostgreSQL</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="885" y="95" text-anchor="middle">Prisma · local</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="600" y="200" width="180" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="690" y="226" text-anchor="middle">bako-sync.timer</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="690" y="245" text-anchor="middle">every 15 min</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="790" y="200" width="180" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="880" y="226" text-anchor="middle">bako-backup.timer</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="880" y="245" text-anchor="middle">daily at 04:00</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="790" y="320" width="180" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="880" y="346" text-anchor="middle">Backups</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="880" y="365" text-anchor="middle">pg_dump · 14 kept</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="440" y="320" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="520" y="346" text-anchor="middle">Deployment</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="520" y="365" text-anchor="middle">migrations, build</text></g>
+        </svg>
+      </div>
+      <figcaption>Simplified flows. Dashed: the deployment chain. Other sites hosted on the same VPS are not shown.</figcaption>
+    </figure>
+  </section>
+
+  <section id="approach">
+    <div class="section-head">
+      <h2>Approach</h2>
+      <p class="section-intro">Document, check what is really there, then switch over in reversible steps.</p>
+    </div>
+    <ol class="steps">
+      <li>
+        <time>Scoping</time>
+        <div><h3>Documentation before code</h3><p>Technical plan, database schema, API integration, deployment and authentication principles, written and versioned in the repository.</p></div>
+      </li>
+      <li>
+        <time>05/2026</time>
+        <div><h3>Audit of the actual VPS</h3><p>Versions recorded (Ubuntu 26.04, Node 22, Nginx 1.28), along with the sites already hosted and the existing certificate. The plan's assumptions were corrected accordingly.</p></div>
+      </li>
+      <li>
+        <time>Phases A → E</time>
+        <div><h3>Set-up in independent phases</h3><p>PostgreSQL, package manager, systemd service with a holding page, Nginx vhost prepared but inactive, then the switch-over. Each phase can be validated on its own.</p></div>
+      </li>
+      <li>
+        <time>Switch-over</time>
+        <div><h3>Reversible replacement of the old tool</h3><p>Existing configuration backed up, then an Nginx symbolic link swapped. The old tool is not deleted: rolling back takes a single command.</p></div>
+      </li>
+      <li>
+        <time>Iterations</time>
+        <div><h3>Core first, then features</h3><p>First Steam sign-in, member sync, profiles and the overview. Then recruitment and interviews, sanctions, polls, events, meetings, notifications, audit log and health page.</p></div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="operations">
+    <div class="section-head">
+      <h2>Operations</h2>
+      <p class="section-intro">The choices that keep the service running day to day.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="callout">
+        <p class="col-title">Sharing the VPS</p>
+        <p>The server already hosts other sites. No Docker for Bako, pnpm through corepack to leave the system Node untouched, a dedicated Nginx vhost and the existing Let's Encrypt certificate reused.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Sync</p>
+        <p>A systemd timer every 15 minutes, matched to the API limit (100 requests per 15 min). If the API goes down, the site serves the last known data and shows a banner.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Backups</p>
+        <p>A compressed <code>pg_dump</code> every day at 04:00, rotation over 14 backups, restore procedure documented in the script.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">CI / CD</p>
+        <p>Lint, types, Vitest tests and build on every pull request. On every merge to <code>main</code>, deployment over SSH: align on <code>main</code>, migrations, build, service restart.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Monitoring</p>
+        <p>A <code>/healthz</code> check endpoint and an admin-only health page: live checks of the API and the database, plus periodic readings kept over time.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Access</p>
+        <p>Only the home page and the recruitment page are public. Everything else requires a Steam sign-in, with roles, and is not indexed by search engines.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="challenges">
+    <div class="section-head"><h2>Challenges</h2></div>
+    <div class="two-col">
+      <div class="callout">
+        <p class="col-title">API rate limit</p>
+        <p>With 100 requests per 15-minute window, a sync never uses the whole budget. Data is cached and every sync is timestamped.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Hardened install</p>
+        <p>On the VPS, pnpm deliberately refuses to run some build scripts and returns an error. The deployment script tolerates that case only; build and restart remain blocking.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="results">
+    <div class="section-head"><h2>Results</h2></div>
+    <ul class="result-list">
+      <li><span class="badge ok">Live</span> BAKO replaced the old tool on <a href="https://famille.gameone-val.com">famille.gameone-val.com</a>, with rollback still possible.</li>
+      <li><span class="badge ok">Automated</span> Every merge to <code>main</code> is tested then deployed with no manual step.</li>
+      <li><span class="badge ok">Backed up</span> The database is backed up daily and the restore procedure is documented.</li>
+    </ul>
+  </section>
+
+  <nav class="next-case" aria-label="Another case study">
+    <a href="leon.html">
+      <span>Next case study</span>
+      <strong>Network switching overhaul at an industrial site →</strong>
+    </a>
+  </nav>
+
+</main>
+
+<footer class="wrap">
+  <div class="footer-inner">
+    <p>Thomas Jourda · Systems &amp; network technician · 2026</p>
+    <nav aria-label="Footer">
+      <a href="../../en/index.html#projects">Projects</a>
+      <a href="../../en/index.html#contact">Contact</a>
+      <a href="#top">Back to top ↑</a>
+    </nav>
+  </div>
+</footer>
+
+<a id="to-top" class="to-top" href="#top" aria-label="Back to top of page" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+<!-- BODY:END -->
+<script src="../../assets/main.js?v=20260924d"></script>
+</body>
+</html>
