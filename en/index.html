@@ -145,11 +145,11 @@
       <article class="project" data-kind="pro">
         <p class="kind pro">Work · anonymised</p>
         <h3>Apache Guacamole remote-access gateway</h3>
-        <p>Replaced AnyDesk with a containerised Guacamole gateway (guacd, MariaDB, Guacamole) running on Docker Compose.</p>
+        <p>Replaced AnyDesk with a containerised Guacamole gateway (guacd, MariaDB, Guacamole) running on Docker Compose, to reach production workstations and systems such as drying kilns.</p>
         <ul class="points">
           <li>LDAP / Active Directory authentication</li>
           <li>TOTP multi-factor authentication</li>
-          <li>RDS load-balancing groups</li>
+          <li>RDP access for vendors to the RDS servers, to update their software</li>
           <li>Weekly automated backup via cron</li>
         </ul>
         <ul class="stack"><li>Docker Compose</li><li>Guacamole</li><li>MariaDB</li><li>LDAP</li></ul>

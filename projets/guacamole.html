@@ -82,9 +82,10 @@
     <div class="section-head"><h2>Contexte</h2></div>
     <div class="prose">
       <p>
-        L'accès distant aux serveurs et aux postes reposait sur AnyDesk. L'objectif : un point d'entrée unique
-        dans le navigateur, sans client à installer, avec une authentification sur l'annuaire de l'entreprise,
-        une double authentification et des droits attribués par périmètre.
+        L'accès distant reposait sur AnyDesk. Le besoin principal : atteindre les postes et systèmes de production,
+        comme les séchoirs. Le besoin secondaire : permettre aux prestataires de se connecter à leurs serveurs pour
+        mettre à jour leurs applications. L'objectif : un point d'entrée unique dans le navigateur, sans client à installer,
+        avec une authentification sur l'annuaire de l'entreprise, une double authentification et des droits attribués par périmètre.
       </p>
     </div>
   </section>
@@ -98,7 +99,7 @@
       <div class="diagram-scroll">
         <svg viewBox="0 0 1000 380" role="img" aria-labelledby="guac-title guac-desc">
           <title id="guac-title">Architecture du bastion Guacamole</title>
-          <desc id="guac-desc">L'utilisateur se connecte en HTTPS à l'application web Guacamole, hébergée avec guacd et MariaDB dans Docker Compose sur un serveur en DMZ. Guacamole vérifie l'identité et les groupes dans l'Active Directory en LDAPS, demande un code TOTP, puis guacd ouvre la session vers les serveurs RDS en RDP, avec répartition de charge.</desc>
+          <desc id="guac-desc">L'utilisateur se connecte en HTTPS à l'application web Guacamole, hébergée avec guacd et MariaDB dans Docker Compose sur un serveur en DMZ. Guacamole vérifie l'identité et les groupes dans l'Active Directory en LDAPS, demande un code TOTP, puis guacd ouvre la session vers les postes et systèmes de production, ou, pour les prestataires, vers les serveurs RDS en RDP.</desc>
           <defs>
             <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path class="dg-arrow" fill="#4b5b5a" d="M0 0 L10 5 L0 10 z"/>
@@ -111,8 +112,9 @@
           <text class="dg-small" fill="#4b5b5a" font-size="12" x="232" y="80" text-anchor="middle">HTTPS</text>
           <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="440" y1="90" x2="516" y2="90" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
           <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="360" y1="120" x2="360" y2="226" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
-          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M600 120 V180 H790 V120" marker-end="url(#arrow)"/>
-          <text class="dg-small" fill="#4b5b5a" font-size="12" x="745" y="172" text-anchor="middle">RDP</text>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="680" y1="80" x2="696" y2="80" marker-end="url(#arrow)"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M600 120 V190 H696" marker-end="url(#arrow)"/>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="648" y="182" text-anchor="middle">RDP</text>
           <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M440 108 H480 V320 H696" marker-end="url(#arrow)"/>
           <text class="dg-small" fill="#4b5b5a" font-size="12" x="578" y="340" text-anchor="middle">LDAPS · compte en lecture seule</text>
 
@@ -120,7 +122,8 @@
           <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="280" y="60" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="86" text-anchor="middle">Guacamole</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="105" text-anchor="middle">web · TOTP</text></g>
           <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="520" y="60" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="600" y="86" text-anchor="middle">guacd</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="600" y="105" text-anchor="middle">passerelle protocoles</text></g>
           <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="280" y="230" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="256" text-anchor="middle">MariaDB</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="275" text-anchor="middle">connexions, droits</text></g>
-          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="700" y="56" width="180" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="790" y="82" text-anchor="middle">Serveurs RDS</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="790" y="101" text-anchor="middle">groupes d'équilibrage</text></g>
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="700" y="50" width="240" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="820" y="76" text-anchor="middle">Systèmes de production</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="820" y="95" text-anchor="middle">séchoirs, postes de travail</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="700" y="160" width="240" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="820" y="186" text-anchor="middle">Serveurs RDS</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="820" y="205" text-anchor="middle">prestataires · mises à jour</text></g>
           <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="700" y="290" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="780" y="316" text-anchor="middle">Active Directory</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="780" y="335" text-anchor="middle">groupes GRP-GUAC-*</text></g>
         </svg>
       </div>
@@ -136,7 +139,7 @@
     <div class="two-col">
       <div class="prose">
         <p>
-          Chaque périmètre (serveurs RDS, équipements d'un atelier…) correspond à un groupe de sécurité AD nommé
+          Chaque périmètre (séchoirs, postes de production, serveurs des prestataires…) correspond à un groupe de sécurité AD nommé
           <code>GRP-GUAC-&lt;PÉRIMÈTRE&gt;</code> et à un groupe Guacamole portant exactement le même nom.
           Le groupe AD contient les personnes, le groupe Guacamole contient les droits sur les machines.
         </p>
