@@ -17,11 +17,13 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Thomas Jourda, technicien systèmes et réseaux">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=20260924b">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230b6e8a'/><text x='16' y='22' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='15' fill='white'>TJ</text></svg>">
+<link rel="preload" href="assets/fonts/barlow-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="theme-color" content="#eef2f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="assets/style.css?v=20260924c">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 </head>
 <body>
 <!-- BODY:START -->
@@ -67,7 +69,7 @@
       <p class="tag-head"><span>FICHE</span><span>TJ-ASR-2026</span></p>
       <dl>
         <div><dt>Statut</dt><dd><span class="state ok"></span>En recherche de CDI / CDD</dd></div>
-        <div><dt>Dispo</dt><dd>À partir d'octobre 2026</dd></div>
+        <div><dt>Dispo</dt><dd data-dispo="court">À partir d'octobre 2026</dd></div>
         <div><dt>Secteur</dt><dd>Pyrénées-Atlantiques (64)</dd></div>
         <div><dt>Mobilité</dt><dd>France entière · permis B, véhiculé</dd></div>
         <div><dt>Langues</dt><dd>Anglais B2 · Espagnol B1</dd></div>
@@ -327,7 +329,7 @@
     <div class="contact-grid">
       <div class="contact-pitch">
         <h2>Contact</h2>
-        <p>Disponible à partir d'octobre 2026 pour un CDI ou un CDD en administration systèmes et réseaux, partout en France.</p>
+        <p><span data-dispo="long">Disponible à partir d'octobre 2026</span> pour un CDI ou un CDD en administration systèmes et réseaux, partout en France.</p>
         <div class="cta">
           <a class="btn primary" href="mailto:thomasjrd6453@gmail.com">Écrire un e-mail</a>
           <a class="btn" href="https://www.linkedin.com/in/thomas-jourda-a65731283/">LinkedIn</a>
@@ -369,6 +371,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 <!-- BODY:END -->
-<script src="assets/main.js?v=20260924b"></script>
+<script src="assets/main.js?v=20260924c"></script>
 </body>
 </html>
