@@ -116,7 +116,7 @@
           <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M600 120 V190 H696" marker-end="url(#arrow)"/>
           <text class="dg-small" fill="#4b5b5a" font-size="12" x="648" y="182" text-anchor="middle">RDP</text>
           <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M440 108 H480 V320 H696" marker-end="url(#arrow)"/>
-          <text class="dg-small" fill="#4b5b5a" font-size="12" x="578" y="340" text-anchor="middle">LDAPS · read-only account</text>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="578" y="340" text-anchor="middle">LDAPS · service account</text>
 
           <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="20" y="60" width="170" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="105" y="86" text-anchor="middle">User</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="105" y="105" text-anchor="middle">web browser</text></g>
           <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="280" y="60" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="86" text-anchor="middle">Guacamole</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="105" text-anchor="middle">web · TOTP</text></g>
@@ -138,6 +138,10 @@
     </div>
     <div class="two-col">
       <div class="prose">
+        <p>
+          <strong>Authentication.</strong> Guacamole binds to the directory with a dedicated, read-only service account.
+          Users then sign in with their own AD account and confirm with a TOTP code.
+        </p>
         <p>
           Each scope (drying kilns, production workstations, servers opened to vendors…) maps to an AD security group named
           <code>GRP-GUAC-&lt;SCOPE&gt;</code> and to a Guacamole group with exactly the same name.
@@ -186,11 +190,12 @@
   <section id="operations">
     <div class="section-head"><h2>Operations</h2></div>
     <ul class="result-list">
+      <li><span class="badge ok">LDAP</span> Active Directory authentication working: a dedicated service account for the bind, personal AD accounts for users.</li>
       <li><span class="badge ok">Backup</span> Weekly automated backup via cron, plus a database export before any manual change.</li>
       <li><span class="badge ok">Troubleshooting</span> A four-step checklist, in order, for the "user signs in but sees nothing" case.</li>
       <li><span class="badge ok">Logs</span> Debug mode used only for troubleshooting and switched off straight after: it writes directory contents to the logs.</li>
       <li><span class="badge wip">To watch</span> Expiry dates of the LDAPS certificates and the root authority: an expired certificate cuts authentication without warning.</li>
-      <li><span class="badge wip">Next step</span> Move the <code>GRP-GUAC-*</code> groups to a dedicated sub-OU so each sign-in no longer reads every group in the domain.</li>
+      <li><span class="badge ok">Dedicated OU</span> The <code>GRP-GUAC-*</code> groups are gathered in an OU reserved for Guacamole, which contains only those groups.</li>
     </ul>
     <p class="note">
       Two documents delivered: a formal operations procedure and a simplified guide for the team.
