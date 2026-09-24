@@ -6,6 +6,9 @@ Site vitrine statique (HTML/CSS/JS, sans framework ni build), pensé pour être 
 
 ```
 index.html          → la page du portfolio
+projets/leon.html   → étude de cas : commutation du site de Léon
+projets/bako.html   → étude de cas : BAKO
+assets/og-image.png → image d'aperçu affichée quand on partage le lien
 assets/style.css    → le style (DA « étiquette de baie », thème clair/sombre automatique)
 assets/main.js      → navigation (section active, progression, retour en haut), filtre des projets, thème clair/sombre, copie de l'e-mail
 profile/README.md   → README de profil GitHub, à copier dans le dépôt thomas642/thomas642
@@ -46,3 +49,23 @@ Ouvrir `index.html` dans un navigateur, ou lancer un petit serveur :
 python3 -m http.server 8000
 # puis http://localhost:8000
 ```
+
+## Aperçu de partage (LinkedIn, mails, messageries)
+
+Chaque page contient des balises Open Graph (`og:title`, `og:description`, `og:image`…) qui pointent vers
+`https://thomas642.github.io/Portfolio/`. LinkedIn garde un aperçu en cache : après une modification,
+le rafraîchir avec son outil « Post Inspector ».
+
+## Brancher un nom de domaine perso
+
+1. Acheter le domaine chez un registraire (OVH, Gandi, Cloudflare…).
+2. Dans GitHub : **Settings → Pages → Custom domain**, saisir le domaine puis **Save**
+   (GitHub ajoute alors un fichier `CNAME` au dépôt).
+3. Chez le registraire, créer les enregistrements DNS indiqués par la documentation GitHub Pages
+   (« Managing a custom domain for your GitHub Pages site ») : des enregistrements `A` / `AAAA`
+   vers les adresses de GitHub Pages pour le domaine nu, et un `CNAME` `www` → `thomas642.github.io`.
+   Reprendre les adresses sur la documentation au moment de la configuration, elles peuvent évoluer.
+4. Vérifier le domaine dans **Settings → Pages** du compte (protège contre la reprise du domaine),
+   puis cocher **Enforce HTTPS** une fois le certificat émis.
+5. Remplacer `https://thomas642.github.io/Portfolio/` par la nouvelle adresse dans les balises
+   `canonical` et `og:*` des trois pages HTML.

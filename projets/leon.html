@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Renouvellement de la commutation · Thomas Jourda</title>
+<meta name="description" content="Étude de cas : remplacement des neuf switchs de distribution d'un site industriel par des Aruba Instant On 1930, sans interrompre la production.">
+<link rel="canonical" href="https://thomas642.github.io/Portfolio/projets/leon.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Thomas Jourda">
+<meta property="og:title" content="Renouvellement de la commutation réseau d'un site industriel">
+<meta property="og:description" content="Neuf switchs remplacés par des Aruba Instant On 1930, sans interrompre la production. Étude de cas de Thomas Jourda.">
+<meta property="og:url" content="https://thomas642.github.io/Portfolio/projets/leon.html">
+<meta property="og:image" content="https://thomas642.github.io/Portfolio/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Thomas Jourda, technicien systèmes et réseaux">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230b6e8a'/><text x='16' y='22' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='15' fill='white'>TJ</text></svg>">
+</head>
+<body>
+<!-- BODY:START -->
+<a class="skip" href="#contexte">Aller au contenu</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="../index.html" aria-label="Thomas Jourda, accueil du portfolio"><span class="mono-tag" aria-hidden="true">TJ</span>Thomas Jourda</a>
+    <nav class="mainnav" aria-label="Sections de l'étude de cas">
+      <a href="#contexte">Contexte</a>
+      <a href="#choix">Choix</a>
+      <a href="#schema">Schéma</a>
+      <a href="#demarche">Démarche</a>
+      <a href="#resultats">Résultats</a>
+    </nav>
+    <button id="theme-toggle" class="icon-btn" type="button" aria-label="Passer en thème sombre">
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+</header>
+
+<main id="top" class="wrap case">
+
+  <nav class="crumbs" aria-label="Fil d'Ariane">
+    <a href="../index.html#projets">← Tous les projets</a>
+  </nav>
+
+  <section class="case-hero">
+    <div>
+      <p class="kind pro">Pro · mémoire de Bachelor ASR</p>
+      <h1>Renouvellement de la commutation réseau d'un site industriel</h1>
+      <p class="lead">
+        Remplacement des neuf switchs de distribution d'une scierie par des Aruba Instant On 1930,
+        sans interrompre la production, avec intégration complète dans la supervision.
+      </p>
+    </div>
+    <aside class="asset-tag" aria-label="Fiche du projet">
+      <p class="tag-head"><span>FICHE PROJET</span><span>LEON-SW</span></p>
+      <dl>
+        <div><dt>Entreprise</dt><dd>Scieries Lesbats · Léon (40)</dd></div>
+        <div><dt>Période</dt><dd>10/2025 – 04/2026</dd></div>
+        <div><dt>Rôle</dt><dd>Audit, pré-configuration, déploiement, supervision</dd></div>
+        <div><dt>Matériel</dt><dd>4 × JL681A · 5 × JL683B</dd></div>
+        <div><dt>Suivi</dt><dd>Ticketing GestSup, RACI, Gantt</dd></div>
+      </dl>
+    </aside>
+  </section>
+
+  <section id="contexte">
+    <div class="section-head"><h2>Contexte</h2></div>
+    <div class="prose">
+      <p>
+        L'entreprise transforme le pin maritime des Landes sur cinq sites, reliés entre eux par des VPN
+        gérés par des pare-feux Stormshield. Le site de Léon, siège social et site de production,
+        est segmenté en <strong>12 VLANs actifs</strong> : bureautique, production, Wi-Fi, VoIP,
+        management, stockage, DMZ, fédération inter-sites et liaisons WAN.
+      </p>
+      <p>Sa commutation reposait sur des switchs de plusieurs constructeurs (Cisco, Dell et autres), avec quatre problèmes :</p>
+    </div>
+    <ul class="issue-grid">
+      <li><strong>Vieillissement</strong><span>Performances dégradées et risque de panne, avec un impact direct sur la production.</span></li>
+      <li><strong>Hétérogénéité</strong><span>Une interface différente par constructeur, donc des diagnostics plus longs et plus de risques d'erreur.</span></li>
+      <li><strong>Non manageables</strong><span>Certains switchs sans SNMP ni VLAN : la segmentation ne pouvait pas s'appliquer partout.</span></li>
+      <li><strong>Supervision incomplète</strong><span>Des déconnexions récurrentes, difficiles à diagnostiquer faute de visibilité sur tous les équipements.</span></li>
+    </ul>
+    <blockquote class="problem">
+      <span>Problématique du mémoire</span>
+      Comment renouveler et homogénéiser l'infrastructure de commutation réseau du site de Léon afin de garantir
+      la fiabilité, la manageabilité et la supervisabilité du réseau local, tout en assurant la continuité de l'activité de l'entreprise ?
+    </blockquote>
+  </section>
+
+  <section id="choix">
+    <div class="section-head">
+      <h2>Choix technique</h2>
+      <p class="section-intro">Homogénéiser avec le parc Aruba déjà en place sur un autre site de l'entreprise.</p>
+    </div>
+    <div class="two-col">
+      <div class="prose">
+        <p>
+          Le modèle retenu est l'<strong>Aruba Instant On 1930</strong>, déjà utilisé sur le site de Saint-Perdon.
+          Après l'inventaire complet des ports, un devis a été demandé puis un comparatif tarifaire a été
+          validé par la direction.
+        </p>
+        <ul class="points">
+          <li>Gestion centralisée via le portail cloud Instant On</li>
+          <li>VLANs 802.1Q, LACP, STP / RSTP</li>
+          <li>PoE+ classe 4 pour les bornes Wi-Fi, caméras et téléphones IP</li>
+          <li>SNMP v1 / v2c / v3 pour la supervision Zabbix</li>
+          <li>Ports SFP / SFP+ pour les liaisons inter-switchs</li>
+        </ul>
+      </div>
+      <div>
+        <div class="table-wrap">
+          <table class="data">
+            <caption>Matériel déployé</caption>
+            <thead><tr><th scope="col">Référence</th><th scope="col">Ports</th><th scope="col">PoE</th><th scope="col" class="num">Qté</th></tr></thead>
+            <tbody>
+              <tr><td><code>JL681A</code></td><td>8 Gigabit + 2 SFP</td><td>124 W</td><td class="num">4</td></tr>
+              <tr><td><code>JL683B</code></td><td>24 Gigabit + 4 SFP+</td><td>195 W</td><td class="num">5</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">
+          Hors périmètre : les trois switchs cœur, les deux switchs serveurs, le pare-feu,
+          les bornes Wi-Fi et le câblage.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="schema">
+    <div class="section-head">
+      <h2>Schéma</h2>
+      <p class="section-intro">Topologie logique de la distribution après migration.</p>
+    </div>
+    <figure class="diagram">
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 1000 470" role="img" aria-labelledby="leon-title leon-desc">
+          <title id="leon-title">Topologie des switchs du site de Léon</title>
+          <desc id="leon-desc">Trois switchs cœur reliés en série par des trunks. Le cœur 1 dessert le réfectoire. Le cœur 2 dessert Trieur 1, lui-même relié à Trieur 2, et Canter 2, relié à Refonte. Le cœur 3 dessert Mécanique, Extension 1, reliée à Extension 2, et Sécurité.</desc>
+
+          <!-- Trunks entre switchs cœur -->
+          <line class="dg-trunk" x1="230" y1="70" x2="320" y2="70"/>
+          <line class="dg-trunk" x1="480" y1="70" x2="690" y2="70"/>
+          <text class="dg-small" x="275" y="58" text-anchor="middle">trunk</text>
+          <text class="dg-small" x="585" y="58" text-anchor="middle">trunk</text>
+
+          <!-- Uplinks cœur → distribution -->
+          <path class="dg-link" d="M150 100 V160 H80 V210"/>
+          <path class="dg-link" d="M400 100 V160 H280 V210"/>
+          <path class="dg-link" d="M400 100 V160 H440 V210"/>
+          <path class="dg-link" d="M770 100 V160 H620 V210"/>
+          <path class="dg-link" d="M770 100 V210"/>
+          <path class="dg-link" d="M770 100 V160 H920 V210"/>
+          <!-- Chaînages distribution → distribution -->
+          <line class="dg-link" x1="280" y1="266" x2="280" y2="330"/>
+          <line class="dg-link" x1="440" y1="266" x2="440" y2="330"/>
+          <line class="dg-link" x1="770" y1="266" x2="770" y2="330"/>
+
+          <!-- Switchs cœur -->
+          <g class="dg-core">
+            <rect x="70" y="40" width="160" height="60" rx="6"/>
+            <text x="150" y="66" text-anchor="middle">Cœur 1</text>
+            <text class="dg-sub" x="150" y="85" text-anchor="middle">conservé</text>
+          </g>
+          <g class="dg-core">
+            <rect x="320" y="40" width="160" height="60" rx="6"/>
+            <text x="400" y="66" text-anchor="middle">Cœur 2</text>
+            <text class="dg-sub" x="400" y="85" text-anchor="middle">conservé</text>
+          </g>
+          <g class="dg-core">
+            <rect x="690" y="40" width="160" height="60" rx="6"/>
+            <text x="770" y="66" text-anchor="middle">Cœur 3</text>
+            <text class="dg-sub" x="770" y="85" text-anchor="middle">conservé</text>
+          </g>
+
+          <!-- Distribution niveau 1 -->
+          <g class="dg-box"><rect x="15" y="210" width="130" height="56" rx="6"/><text x="80" y="234" text-anchor="middle">Réfectoire</text><text class="dg-sub" x="80" y="253" text-anchor="middle">1930 · 8 ports</text></g>
+          <g class="dg-box"><rect x="215" y="210" width="130" height="56" rx="6"/><text x="280" y="234" text-anchor="middle">Trieur 1</text><text class="dg-sub" x="280" y="253" text-anchor="middle">1930 · 8 ports</text></g>
+          <g class="dg-box"><rect x="375" y="210" width="130" height="56" rx="6"/><text x="440" y="234" text-anchor="middle">Canter 2</text><text class="dg-sub" x="440" y="253" text-anchor="middle">1930 · 24 ports</text></g>
+          <g class="dg-box"><rect x="555" y="210" width="130" height="56" rx="6"/><text x="620" y="234" text-anchor="middle">Mécanique</text><text class="dg-sub" x="620" y="253" text-anchor="middle">1930 · 24 ports</text></g>
+          <g class="dg-box"><rect x="705" y="210" width="130" height="56" rx="6"/><text x="770" y="234" text-anchor="middle">Extension 1</text><text class="dg-sub" x="770" y="253" text-anchor="middle">1930 · 24 ports</text></g>
+          <g class="dg-box"><rect x="855" y="210" width="130" height="56" rx="6"/><text x="920" y="234" text-anchor="middle">Sécurité</text><text class="dg-sub" x="920" y="253" text-anchor="middle">1930 · 8 ports</text></g>
+
+          <!-- Distribution niveau 2 -->
+          <g class="dg-box"><rect x="215" y="330" width="130" height="56" rx="6"/><text x="280" y="354" text-anchor="middle">Trieur 2</text><text class="dg-sub" x="280" y="373" text-anchor="middle">1930 · 24 ports</text></g>
+          <g class="dg-box"><rect x="375" y="330" width="130" height="56" rx="6"/><text x="440" y="354" text-anchor="middle">Refonte</text><text class="dg-sub" x="440" y="373" text-anchor="middle">1930 · 8 ports</text></g>
+          <g class="dg-box"><rect x="705" y="330" width="130" height="56" rx="6"/><text x="770" y="354" text-anchor="middle">Extension 2</text><text class="dg-sub" x="770" y="373" text-anchor="middle">1930 · 24 ports</text></g>
+
+          <!-- Légende -->
+          <g class="dg-legend" transform="translate(15 425)">
+            <rect class="dg-leg-core" x="0" y="0" width="16" height="16" rx="3"/>
+            <text x="24" y="13">Switch cœur (hors périmètre)</text>
+            <rect class="dg-leg-box" x="250" y="0" width="16" height="16" rx="3"/>
+            <text x="274" y="13">Aruba Instant On 1930 déployé</text>
+            <line class="dg-trunk" x1="520" y1="8" x2="556" y2="8"/>
+            <text x="564" y="13">Trunk entre cœurs</text>
+            <line class="dg-link" x1="720" y1="8" x2="756" y2="8"/>
+            <text x="764" y="13">Uplink SFP / SFP+</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption>Noms de zones simplifiés, adresses et numéros de ports masqués. Les switchs serveurs, le pare-feu et les bornes Wi-Fi ne sont pas représentés.</figcaption>
+    </figure>
+  </section>
+
+  <section id="demarche">
+    <div class="section-head">
+      <h2>Démarche</h2>
+      <p class="section-intro">Préparer au maximum en amont pour limiter l'intervention sur site à une fenêtre courte.</p>
+    </div>
+    <ol class="steps">
+      <li>
+        <time>10/10/2025</time>
+        <div><h3>Audit de l'existant</h3><p>Projet confié. Inventaire des ports switch par switch dans un fichier de suivi, puis placement des équipements sur la carte Zabbix le 23/10.</p></div>
+      </li>
+      <li>
+        <time>11/2025</time>
+        <div><h3>Budget et commande</h3><p>Inventaire terminé le 07/11, demande de devis, comparatif tarifaire validé par la direction. Matériel reçu le 28/11.</p></div>
+      </li>
+      <li>
+        <time>12/12/2025</time>
+        <div><h3>Pré-configuration</h3><p>Ajout des switchs sur le portail Instant On, convention de nommage, création des VLANs, adresses de management. Autorisations ajoutées sur le pare-feu Stormshield et communication vérifiée.</p></div>
+      </li>
+      <li>
+        <time>16/01/2026</time>
+        <div><h3>Phase 1 : bascule du parc principal</h3><p>Remplacement le vendredi après-midi, pendant la fermeture de la production, puis présence sur site le lundi pour corriger les écarts. Deux switchs manquants identifiés.</p></div>
+      </li>
+      <li>
+        <time>20/02/2026</time>
+        <div><h3>Phase 2 : réfectoire et extension</h3><p>Pose des deux switchs complémentaires (8 et 24 ports), configuration des VLANs, connectivité validée.</p></div>
+      </li>
+      <li>
+        <time>03/04/2026</time>
+        <div><h3>Validation et clôture</h3><p>Tests de connectivité finaux, tests des VPN inter-sites, intégration dans Zabbix et Instant On, documentation technique à jour. Ticket clôturé.</p></div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="difficultes">
+    <div class="section-head"><h2>Difficultés</h2></div>
+    <div class="two-col">
+      <div class="callout">
+        <p class="col-title">Numérotation des ports</p>
+        <p>
+          Les ports ne se nomment pas de la même façon chez Cisco (<code>Fa0/1</code>) et chez Aruba
+          (<code>GE1/0/1</code>). Au report des câbles, cet écart a provoqué quelques erreurs d'affectation
+          de VLAN, corrigées le lundi suivant la migration.
+        </p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Deux switchs manquants</p>
+        <p>
+          La phase 1 a révélé deux emplacements non couverts par la première commande.
+          Un devis complémentaire a été validé et ces deux switchs ont été posés lors d'une seconde phase.
+        </p>
+      </div>
+    </div>
+    <p class="note">
+      Risques identifiés dès le cadrage : interruption de service, erreur de VLAN ou d'adressage,
+      compatibilité PoE avec les bornes Wi-Fi, les caméras et les téléphones IP, erreurs de câblage entre constructeurs.
+    </p>
+  </section>
+
+  <section id="resultats">
+    <div class="section-head"><h2>Résultats</h2></div>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th scope="col">Objectif</th><th scope="col">Résultat</th></tr></thead>
+        <tbody>
+          <tr><td>Anticiper les perturbations réseau de la production</td><td><span class="badge ok">Atteint</span> Alerting Zabbix et Instant On, tout le parc remonté</td></tr>
+          <tr><td>Maîtriser et administrer le réseau</td><td><span class="badge ok">Atteint</span> Parc 100 % manageable, administration centralisée</td></tr>
+          <tr><td>Moderniser les équipements</td><td><span class="badge ok">Atteint</span> 9 Aruba 1930 : PoE+, 802.1Q, SNMP, STP / RSTP</td></tr>
+          <tr><td>Homogénéiser avec l'autre site Aruba</td><td><span class="badge ok">Atteint</span> Même gamme que le site de Saint-Perdon</td></tr>
+          <tr><td>Redondance du réseau par boucle</td><td><span class="badge wip">Planifié</span> Prévu dans une phase suivante</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">
+      Après les corrections du lundi suivant chaque migration, aucun incident n'a été constaté.
+      Au moment de la rédaction du mémoire, le portail Instant On indiquait un parc 100 % en ligne,
+      un état « Excellent » et quatre mois de fonctionnement continu sur les premiers switchs déployés.
+    </p>
+  </section>
+
+  <nav class="next-case" aria-label="Autre étude de cas">
+    <a href="bako.html">
+      <span>Étude de cas suivante</span>
+      <strong>BAKO, plateforme web d'une communauté de jeu →</strong>
+    </a>
+  </nav>
+
+</main>
+
+<footer class="wrap">
+  <div class="footer-inner">
+    <p>Thomas Jourda · Technicien systèmes &amp; réseaux · 2026</p>
+    <nav aria-label="Pied de page">
+      <a href="../index.html#projets">Projets</a>
+      <a href="../index.html#contact">Contact</a>
+      <a href="#top">Haut de page ↑</a>
+    </nav>
+  </div>
+</footer>
+
+<a id="to-top" class="to-top" href="#top" aria-label="Revenir en haut de la page" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+<!-- BODY:END -->
+<script src="../assets/main.js"></script>
+</body>
+</html>

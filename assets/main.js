@@ -41,7 +41,8 @@ window.addEventListener("scroll", () => {
 onScroll();
 
 // ---------- Section active dans la navigation ----------
-const navLinks = [...document.querySelectorAll(".mainnav a")];
+const navLinks = [...document.querySelectorAll(".mainnav a")]
+  .filter((a) => (a.getAttribute("href") || "").startsWith("#"));
 const nav = document.querySelector(".mainnav");
 const sections = navLinks
   .map((a) => document.querySelector(a.getAttribute("href")))
