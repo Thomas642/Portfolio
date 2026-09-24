@@ -310,7 +310,7 @@ p, li { text-wrap: pretty; }
   border-block: 1px solid var(--line);
 }
 @media (min-width: 760px) { .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.stats li { background: var(--ground); padding: 20px 16px; display: flex; align-items: baseline; gap: 10px; }
+.stats li { background: var(--ground); padding: 20px 16px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
 .stats strong { font-family: var(--display); font-size: 2.8rem; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
 .stats span { font-size: 0.86rem; color: var(--ink-2); line-height: 1.35; }
 

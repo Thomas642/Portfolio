@@ -60,4 +60,16 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/bako.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/bako.html"/>
   </url>
+  <url>
+    <loc>https://thomas642.github.io/Portfolio/projets/kernelac.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/kernelac.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/kernelac.html"/>
+  </url>
+  <url>
+    <loc>https://thomas642.github.io/Portfolio/en/projects/kernelac.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/kernelac.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/kernelac.html"/>
+  </url>
 </urlset>

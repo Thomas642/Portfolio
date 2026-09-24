@@ -29,8 +29,9 @@ Scieries Lesbats, site de Léon, 10/2025 – 04/2026. Remplacement de 9 switchs 
 Cartographie de l'existant, pré-configuration sur Instant On (nommage, VLANs, IP de management), bascule pendant la fermeture de la production, intégration dans Zabbix et Instant On.
 → [Lire l'étude de cas](https://thomas642.github.io/Portfolio/projets/leon.html)
 
-### 🏛️ Refonte du SI d'une mairie multi-sites (école, CESI)
+### 🏛️ Refonte du SI d'une mairie multi-sites (école, CESI, projet individuel)
 Étude de cas en tant que responsable informatique : 79 agents sur 12 sites. Plan de déploiement (adressage, AD/GPO, Hyper-V deux sites avec réplication, maquette Packet Tracer, 63 tests unitaires) puis maintien et sécurisation (écarts ANSSI/RGPD/NIS2, PCA, PRA, PSSI).
+→ [Lire l'étude de cas](https://thomas642.github.io/Portfolio/projets/kernelac.html)
 
 ### 🔭 Stack d'observabilité auto-hébergée (VPS perso)
 Supervision complète d'un VPS Ubuntu : Prometheus, Grafana, Loki, Alloy, cAdvisor, node-exporter.
