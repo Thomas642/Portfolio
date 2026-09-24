@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/style.css?v=20260924b">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230b6e8a'/><text x='16' y='22' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='15' fill='white'>TJ</text></svg>">
 </head>
 <body>
@@ -146,62 +146,62 @@
           <desc id="leon-desc">Trois switchs cœur reliés en série par des trunks. Le cœur 1 dessert le réfectoire. Le cœur 2 dessert Trieur 1, lui-même relié à Trieur 2, et Canter 2, relié à Refonte. Le cœur 3 dessert Mécanique, Extension 1, reliée à Extension 2, et Sécurité.</desc>
 
           <!-- Trunks entre switchs cœur -->
-          <line class="dg-trunk" x1="230" y1="70" x2="320" y2="70"/>
-          <line class="dg-trunk" x1="480" y1="70" x2="690" y2="70"/>
-          <text class="dg-small" x="275" y="58" text-anchor="middle">trunk</text>
-          <text class="dg-small" x="585" y="58" text-anchor="middle">trunk</text>
+          <line class="dg-trunk" stroke="#0b6e8a" stroke-width="4" stroke-linecap="round" x1="230" y1="70" x2="320" y2="70"/>
+          <line class="dg-trunk" stroke="#0b6e8a" stroke-width="4" stroke-linecap="round" x1="480" y1="70" x2="690" y2="70"/>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="275" y="58" text-anchor="middle">trunk</text>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="585" y="58" text-anchor="middle">trunk</text>
 
           <!-- Uplinks cœur → distribution -->
-          <path class="dg-link" d="M150 100 V160 H80 V210"/>
-          <path class="dg-link" d="M400 100 V160 H280 V210"/>
-          <path class="dg-link" d="M400 100 V160 H440 V210"/>
-          <path class="dg-link" d="M770 100 V160 H620 V210"/>
-          <path class="dg-link" d="M770 100 V210"/>
-          <path class="dg-link" d="M770 100 V160 H920 V210"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M150 100 V160 H80 V210"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M400 100 V160 H280 V210"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M400 100 V160 H440 V210"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M770 100 V160 H620 V210"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M770 100 V210"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M770 100 V160 H920 V210"/>
           <!-- Chaînages distribution → distribution -->
-          <line class="dg-link" x1="280" y1="266" x2="280" y2="330"/>
-          <line class="dg-link" x1="440" y1="266" x2="440" y2="330"/>
-          <line class="dg-link" x1="770" y1="266" x2="770" y2="330"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="280" y1="266" x2="280" y2="330"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="440" y1="266" x2="440" y2="330"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="770" y1="266" x2="770" y2="330"/>
 
           <!-- Switchs cœur -->
           <g class="dg-core">
-            <rect x="70" y="40" width="160" height="60" rx="6"/>
-            <text x="150" y="66" text-anchor="middle">Cœur 1</text>
-            <text class="dg-sub" x="150" y="85" text-anchor="middle">conservé</text>
+            <rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="70" y="40" width="160" height="60" rx="6"/>
+            <text fill="#152120" font-size="15" font-weight="600" x="150" y="66" text-anchor="middle">Cœur 1</text>
+            <text class="dg-sub" fill="#4b5b5a" font-size="12" x="150" y="85" text-anchor="middle">conservé</text>
           </g>
           <g class="dg-core">
-            <rect x="320" y="40" width="160" height="60" rx="6"/>
-            <text x="400" y="66" text-anchor="middle">Cœur 2</text>
-            <text class="dg-sub" x="400" y="85" text-anchor="middle">conservé</text>
+            <rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="320" y="40" width="160" height="60" rx="6"/>
+            <text fill="#152120" font-size="15" font-weight="600" x="400" y="66" text-anchor="middle">Cœur 2</text>
+            <text class="dg-sub" fill="#4b5b5a" font-size="12" x="400" y="85" text-anchor="middle">conservé</text>
           </g>
           <g class="dg-core">
-            <rect x="690" y="40" width="160" height="60" rx="6"/>
-            <text x="770" y="66" text-anchor="middle">Cœur 3</text>
-            <text class="dg-sub" x="770" y="85" text-anchor="middle">conservé</text>
+            <rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="690" y="40" width="160" height="60" rx="6"/>
+            <text fill="#152120" font-size="15" font-weight="600" x="770" y="66" text-anchor="middle">Cœur 3</text>
+            <text class="dg-sub" fill="#4b5b5a" font-size="12" x="770" y="85" text-anchor="middle">conservé</text>
           </g>
 
           <!-- Distribution niveau 1 -->
-          <g class="dg-box"><rect x="15" y="210" width="130" height="56" rx="6"/><text x="80" y="234" text-anchor="middle">Réfectoire</text><text class="dg-sub" x="80" y="253" text-anchor="middle">1930 · 8 ports</text></g>
-          <g class="dg-box"><rect x="215" y="210" width="130" height="56" rx="6"/><text x="280" y="234" text-anchor="middle">Trieur 1</text><text class="dg-sub" x="280" y="253" text-anchor="middle">1930 · 8 ports</text></g>
-          <g class="dg-box"><rect x="375" y="210" width="130" height="56" rx="6"/><text x="440" y="234" text-anchor="middle">Canter 2</text><text class="dg-sub" x="440" y="253" text-anchor="middle">1930 · 24 ports</text></g>
-          <g class="dg-box"><rect x="555" y="210" width="130" height="56" rx="6"/><text x="620" y="234" text-anchor="middle">Mécanique</text><text class="dg-sub" x="620" y="253" text-anchor="middle">1930 · 24 ports</text></g>
-          <g class="dg-box"><rect x="705" y="210" width="130" height="56" rx="6"/><text x="770" y="234" text-anchor="middle">Extension 1</text><text class="dg-sub" x="770" y="253" text-anchor="middle">1930 · 24 ports</text></g>
-          <g class="dg-box"><rect x="855" y="210" width="130" height="56" rx="6"/><text x="920" y="234" text-anchor="middle">Sécurité</text><text class="dg-sub" x="920" y="253" text-anchor="middle">1930 · 8 ports</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="15" y="210" width="130" height="56" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="80" y="234" text-anchor="middle">Réfectoire</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="80" y="253" text-anchor="middle">1930 · 8 ports</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="215" y="210" width="130" height="56" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="280" y="234" text-anchor="middle">Trieur 1</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="280" y="253" text-anchor="middle">1930 · 8 ports</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="375" y="210" width="130" height="56" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="440" y="234" text-anchor="middle">Canter 2</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="440" y="253" text-anchor="middle">1930 · 24 ports</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="555" y="210" width="130" height="56" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="620" y="234" text-anchor="middle">Mécanique</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="620" y="253" text-anchor="middle">1930 · 24 ports</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="705" y="210" width="130" height="56" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="770" y="234" text-anchor="middle">Extension 1</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="770" y="253" text-anchor="middle">1930 · 24 ports</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="855" y="210" width="130" height="56" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="920" y="234" text-anchor="middle">Sécurité</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="920" y="253" text-anchor="middle">1930 · 8 ports</text></g>
 
           <!-- Distribution niveau 2 -->
-          <g class="dg-box"><rect x="215" y="330" width="130" height="56" rx="6"/><text x="280" y="354" text-anchor="middle">Trieur 2</text><text class="dg-sub" x="280" y="373" text-anchor="middle">1930 · 24 ports</text></g>
-          <g class="dg-box"><rect x="375" y="330" width="130" height="56" rx="6"/><text x="440" y="354" text-anchor="middle">Refonte</text><text class="dg-sub" x="440" y="373" text-anchor="middle">1930 · 8 ports</text></g>
-          <g class="dg-box"><rect x="705" y="330" width="130" height="56" rx="6"/><text x="770" y="354" text-anchor="middle">Extension 2</text><text class="dg-sub" x="770" y="373" text-anchor="middle">1930 · 24 ports</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="215" y="330" width="130" height="56" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="280" y="354" text-anchor="middle">Trieur 2</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="280" y="373" text-anchor="middle">1930 · 24 ports</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="375" y="330" width="130" height="56" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="440" y="354" text-anchor="middle">Refonte</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="440" y="373" text-anchor="middle">1930 · 8 ports</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="705" y="330" width="130" height="56" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="770" y="354" text-anchor="middle">Extension 2</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="770" y="373" text-anchor="middle">1930 · 24 ports</text></g>
 
           <!-- Légende -->
-          <g class="dg-legend" transform="translate(15 425)">
-            <rect class="dg-leg-core" x="0" y="0" width="16" height="16" rx="3"/>
+          <g class="dg-legend" fill="#4b5b5a" font-size="13" transform="translate(15 425)">
+            <rect class="dg-leg-core" fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="0" y="0" width="16" height="16" rx="3"/>
             <text x="24" y="13">Switch cœur (hors périmètre)</text>
-            <rect class="dg-leg-box" x="250" y="0" width="16" height="16" rx="3"/>
+            <rect class="dg-leg-box" fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="250" y="0" width="16" height="16" rx="3"/>
             <text x="274" y="13">Aruba Instant On 1930 déployé</text>
-            <line class="dg-trunk" x1="520" y1="8" x2="556" y2="8"/>
+            <line class="dg-trunk" stroke="#0b6e8a" stroke-width="4" stroke-linecap="round" x1="520" y1="8" x2="556" y2="8"/>
             <text x="564" y="13">Trunk entre cœurs</text>
-            <line class="dg-link" x1="720" y1="8" x2="756" y2="8"/>
+            <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="720" y1="8" x2="756" y2="8"/>
             <text x="764" y="13">Uplink SFP / SFP+</text>
           </g>
         </svg>
@@ -313,6 +313,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 <!-- BODY:END -->
-<script src="../assets/main.js"></script>
+<script src="../assets/main.js?v=20260924b"></script>
 </body>
 </html>
