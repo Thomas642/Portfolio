@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Town hall IT overhaul · Thomas Jourda</title>
+<meta name="description" content="School case study: model, deploy, then maintain and secure the IT system of a fictional town hall with 79 staff across 12 sites.">
+<link rel="canonical" href="https://thomas642.github.io/Portfolio/en/projects/kernelac.html">
+<link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/kernelac.html">
+<link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/kernelac.html">
+<link rel="alternate" hreflang="x-default" href="https://thomas642.github.io/Portfolio/projets/kernelac.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Thomas Jourda">
+<meta property="og:title" content="IT overhaul for a multi-site town hall">
+<meta property="og:description" content="Segmented network, Hyper-V on two sites, IPsec VPN, 3-2-1-1-0 backup, continuity and recovery plans. A case study by Thomas Jourda.">
+<meta property="og:url" content="https://thomas642.github.io/Portfolio/en/projects/kernelac.html">
+<meta property="og:image" content="https://thomas642.github.io/Portfolio/assets/og-image-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Thomas Jourda, systems and network technician">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="../../assets/fonts/barlow-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="theme-color" content="#eef2f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../../assets/style.css?v=20260924g">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+</head>
+<body>
+<!-- BODY:START -->
+<a class="skip" href="#context">Skip to content</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="../../en/index.html" aria-label="Thomas Jourda, portfolio home"><span class="mono-tag" aria-hidden="true">TJ</span>Thomas Jourda</a>
+    <nav class="mainnav" aria-label="Sections">
+      <a href="#context">Context</a>
+      <a href="#approach">Approach</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#choices">Choices</a>
+      <a href="#security">Security</a>
+    </nav>
+    <div class="top-actions">
+      <a class="lang-switch" href="../../projets/kernelac.html" hreflang="fr" lang="fr" aria-label="Version française">FR</a>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch to dark theme">
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+</header>
+
+<main id="top" class="wrap case">
+
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="../../en/index.html#projects">← All projects</a>
+  </nav>
+  <section class="case-hero">
+    <div>
+      <p class="kind school">School · CESI · individual project</p>
+      <h1>IT overhaul for a multi-site town hall</h1>
+      <p class="lead">
+        The year-long project of the ASR bachelor's degree: model, deploy, then maintain and secure the IT system
+        of a fictional town hall with 79 staff across 12 sites, acting as its IT manager.
+      </p>
+    </div>
+    <aside class="asset-tag" aria-label="Project sheet">
+      <p class="tag-head"><span>PROJECT SHEET</span><span>KERNELAC</span></p>
+      <dl>
+        <div><dt>Setting</dt><dd>CESI Pau · ASR bachelor's 2025-2026</dd></div>
+        <div><dt>Format</dt><dd>Individual project in 3 blocks</dd></div>
+        <div><dt>Role</dt><dd>IT manager</dd></div>
+        <div><dt>Scope</dt><dd>79 staff · 12 sites</dd></div>
+        <div><dt>Deliverables</dt><dd>3 reports (32, 43 and 37 pages) + oral defences</dd></div>
+      </dl>
+    </aside>
+  </section>
+
+  <ul class="stats" aria-label="Key figures">
+    <li><strong>7</strong><span>VLANs, 10.SITE.VLAN.HOST/24 scheme</span></li>
+    <li><strong>63</strong><span>unit tests in 8 categories</span></li>
+    <li><strong>15</strong><span>weeks of planned deployment</span></li>
+    <li><strong>€185k</strong><span>CAPEX excl. VAT, contingency included</span></li>
+  </ul>
+
+  <section id="context">
+    <div class="section-head">
+      <h2>Context</h2>
+      <p class="section-intro">A case study provided by the school, starting from a harsh audit.</p>
+    </div>
+    <div class="prose">
+      <p>
+        Kernelac town hall is a fictional local authority: 79 staff across 12 sites, including the town hall,
+        the municipal workshops and ten remote sites (halls, cultural and sports venues, childcare).
+        An audit by the consultancy IT Conseils sets the starting point.
+      </p>
+    </div>
+    <ul class="issue-grid">
+      <li><strong>Obsolescence</strong><span>VMware ESXi 6.5 virtualisation, servers on unsupported Windows Server 2008 R2 and 2012 R2, workstations out of warranty.</span></li>
+      <li><strong>Flat network</strong><span>No VLAN segmentation, guest network not isolated from the internal network.</span></li>
+      <li><strong>Security</strong><span>No MFA on remote access, no central monitoring or SIEM, untested backups.</span></li>
+      <li><strong>Compliance</strong><span>No DPO, no record of processing activities, no DPIA; no security policy, no business continuity or disaster recovery plan.</span></li>
+    </ul>
+    <p class="note">Targets set: 99.9% IT availability, NIS2, ANSSI and GDPR compliance, tested backups, secure remote access and an eco-responsible approach.</p>
+  </section>
+
+  <section id="approach">
+    <div class="section-head">
+      <h2>Three blocks</h2>
+      <p class="section-intro">Each block builds on the choices of the previous one.</p>
+    </div>
+    <ol class="steps">
+      <li>
+        <time>Block 1</time>
+        <div><h3>Model the infrastructure</h3><p>Analysis of the existing system and compliance audit, stakeholders, WBS and RACI matrix, specifications (technical functions and constraints), technology watch and reasoned choices, risk matrix (probability × severity), schedule, KPIs and CAPEX / OPEX budget.</p></div>
+      </li>
+      <li>
+        <time>Block 2</time>
+        <div><h3>Deploy the infrastructure</h3><p>Deployment plan in 8 work packages with RACI and Gantt, LAN, WAN, Wi-Fi, virtualisation and Active Directory designs, flow matrix, Packet Tracer lab, plan of 63 unit tests, acceptance and budget tracking.</p></div>
+      </li>
+      <li>
+        <time>Block 3</time>
+        <div><h3>Maintain and secure</h3><p>Remaining gaps after deployment ranked by criticality, corrective action plan, business continuity and disaster recovery plans, preventive and corrective maintenance, day-to-day administration and information security policy.</p></div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="architecture">
+    <div class="section-head">
+      <h2>Target architecture</h2>
+      <p class="section-intro">Two production sites backing each other up, ten remote sites connected over VPN.</p>
+    </div>
+    <figure class="diagram">
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 1000 400" role="img" aria-labelledby="ker-title ker-desc">
+          <title id="ker-title">Target architecture of Kernelac town hall</title>
+          <desc id="ker-desc">Two production sites, the town hall and the workshops, each with an NGFW firewall, a layer 3 core and a Hyper-V host. They are linked by an AES-256 IPsec tunnel over FTTE fibre with 4G SD-WAN backup, and the workshops host receives Hyper-V replicas from the town hall. The ten remote sites connect to the town hall over IPsec VPN on 4G, mobile staff over SSL/TLS VPN with MFA, and a backup copy goes to a sovereign cloud.</desc>
+          <rect class="dg-group" fill="none" stroke="#0b6e8a" stroke-width="1.5" stroke-dasharray="8 6" x="20" y="20" width="380" height="280" rx="10"/>
+          <text class="dg-group-label" fill="#0b6e8a" font-size="12" x="385" y="290" text-anchor="end">TOWN HALL · 10.1.x.x</text>
+          <rect class="dg-group" fill="none" stroke="#0b6e8a" stroke-width="1.5" stroke-dasharray="8 6" x="600" y="20" width="380" height="280" rx="10"/>
+          <text class="dg-group-label" fill="#0b6e8a" font-size="12" x="965" y="290" text-anchor="end">WORKSHOPS · 10.2.x.x</text>
+
+          <line class="dg-trunk" stroke="#0b6e8a" stroke-width="4" stroke-linecap="round" x1="380" y1="75" x2="620" y2="75"/>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="500" y="62" text-anchor="middle">IPsec AES-256</text>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="500" y="97" text-anchor="middle">FTTE + 4G (SD-WAN)</text>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" stroke-dasharray="6 5" x1="380" y1="215" x2="620" y2="215"/>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="500" y="205" text-anchor="middle">Hyper-V Replica</text>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="210" y1="100" x2="210" y2="120"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="210" y1="170" x2="210" y2="190"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="790" y1="100" x2="790" y2="120"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="790" y1="170" x2="790" y2="190"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M175 320 V310 H30 V75 H40"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M420 320 V92 H380"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" stroke-dasharray="6 5" d="M825 320 V310 H560 V250 H380"/>
+
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="40" y="50" width="340" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="210" y="72" text-anchor="middle">ANSSI-qualified NGFW firewall</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="210" y="90" text-anchor="middle">deny by default · VPN · SD-WAN</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="40" y="120" width="340" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="210" y="142" text-anchor="middle">L3 core + PoE switches</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="210" y="160" text-anchor="middle">7 VLANs · 5 Wi-Fi 6 APs</text></g>
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="40" y="190" width="340" height="70" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="210" y="215" text-anchor="middle">Hyper-V host</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="210" y="234" text-anchor="middle">8 VMs · 16 TB iSCSI SAN</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="210" y="250" text-anchor="middle">Veeam · immutable NAS</text></g>
+
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="620" y="50" width="340" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="790" y="72" text-anchor="middle">ANSSI-qualified NGFW firewall</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="790" y="90" text-anchor="middle">backup site</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="620" y="120" width="340" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="790" y="142" text-anchor="middle">L3 core + PoE switches</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="790" y="160" text-anchor="middle">7 VLANs · 2 Wi-Fi 6 APs</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="620" y="190" width="340" height="70" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="790" y="215" text-anchor="middle">Hyper-V host</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="790" y="234" text-anchor="middle">active AD, DHCP, DFS</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="790" y="250" text-anchor="middle">standby replicas · 5-min RPO</text></g>
+
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="20" y="320" width="310" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="175" y="346" text-anchor="middle">10 remote sites</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="175" y="365" text-anchor="middle">4G/LTE router · IPsec VPN</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="345" y="320" width="310" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="500" y="346" text-anchor="middle">Mobile staff</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="500" y="365" text-anchor="middle">VPN SSL/TLS · MFA</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="670" y="320" width="310" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="825" y="346" text-anchor="middle">Sovereign cloud</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="825" y="365" text-anchor="middle">backup copy · 1 year</text></g>
+        </svg>
+      </div>
+      <figcaption>Outline of the architecture from the Deploy block. Dashed: replication to the workshops and the off-site backup copy.</figcaption>
+    </figure>
+  </section>
+
+  <section id="choices">
+    <div class="section-head">
+      <h2>Technical choices</h2>
+      <p class="section-intro">As described in the Deploy block report.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th scope="col">Area</th><th scope="col">Chosen solution</th></tr></thead>
+        <tbody>
+          <tr><td>Network</td><td>7 VLANs (administration, management, production, office, staff Wi-Fi, guest Wi-Fi, monitoring), <code>10.SITE.VLAN.HOST/24</code> addressing scheme, inter-VLAN traffic filtered by the firewall with deny by default</td></tr>
+          <tr><td>WAN</td><td>1 Gbit/s FTTE fibre and 4G/LTE backup at both main sites, SD-WAN failover in under 30 s, IPsec AES-256-GCM / SHA-384 tunnel between sites</td></tr>
+          <tr><td>Remote access</td><td>Remote sites over IPsec VPN with X.509 certificates (AD CS PKI), mobile staff over SSL/TLS VPN with mandatory MFA</td></tr>
+          <tr><td>Wi-Fi</td><td>15 Wi-Fi 6 access points, staff on WPA3-Enterprise (802.1X via NPS RADIUS), isolated guests with a captive portal</td></tr>
+          <tr><td>Virtualisation</td><td>Hyper-V on two sites, 8 VMs on the main host, Hyper-V Replica: 5-minute RPO, site failover in under 4 h</td></tr>
+          <tr><td>Directory</td><td>Active Directory on Windows Server 2025, tiered admin accounts (T0, T1, T2), hardening GPOs (passwords, BitLocker, USB, session lock)</td></tr>
+          <tr><td>Backup</td><td>3-2-1-1-0 strategy with Veeam: immutable local NAS, copy at the workshops, encrypted copy in a SecNumCloud sovereign cloud, monthly restore tests</td></tr>
+          <tr><td>Monitoring</td><td>Zabbix for monitoring, Wazuh as SIEM with 12 months of log retention</td></tr>
+          <tr><td>Workstations</td><td>79 EPEAT Gold certified laptops, BitLocker encryption, European EDR, Microsoft 365 Business Premium</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="validation">
+    <div class="section-head">
+      <h2>Lab and tests</h2>
+      <p class="section-intro">What was demonstrated, and what still has to be validated on real hardware.</p>
+    </div>
+    <div class="two-col">
+      <div class="callout">
+        <p class="col-title">Packet Tracer lab</p>
+        <p>Three representative sites (town hall, workshops, one remote site). Validated in the lab: inter-VLAN routing with 802.1Q sub-interfaces, WAN convergence through a simulated cloud, end-to-end connectivity between the two firewalls. IPsec, SD-WAN failover, 802.1X and ACL filtering require a licence not available in the lab: their configuration is documented for acceptance on the physical equipment.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Test plan and acceptance</p>
+        <p>63 unit tests in 8 categories: delivery, network, systems, workstations, backup, security, training and non-regression. They come before technical then functional acceptance, co-signed by the mayor and the chief executive.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="security">
+    <div class="section-head">
+      <h2>Maintain and secure</h2>
+      <p class="section-intro">Keeping the architecture running day to day and preparing for a crisis.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="callout">
+        <p class="col-title">Remaining gaps</p>
+        <p>Gaps ranked by criticality (severity × probability), then handled over three horizons: 0 to 3 months, 3 to 6 months, 6 to 12 months. An open-source ITSM/CMDB tool (GLPI) handles ticketing, inventory and the knowledge base.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Continuity and recovery</p>
+        <p>Targets: RTO under 4 h and RPO under 1 h. Five recovery sheets per service × risk pair, up to the total loss of the town hall site, with a restart order from the network up to the applications.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Maintenance</p>
+        <p>Incidents prioritised from P1 (under 30 min, on call) to P4 (under 5 days), following ITIL v4 good practice.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Security policy</p>
+        <p>Rights assigned with the AGDLP method, separate privileged accounts, incident procedure with notification of the CNIL (French data protection authority) within 72 h in case of a data breach, crisis contact list.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="budget">
+    <div class="section-head">
+      <h2>Budget</h2>
+      <p class="section-intro">Costed in the Model block, carried over unchanged in the Deploy block.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th scope="col">Item</th><th scope="col" class="num">Amount excl. VAT</th></tr></thead>
+        <tbody>
+          <tr><td>CAPEX: servers, storage, network and 79 workstations, 10% contingency included</td><td class="num">€185,411</td></tr>
+          <tr><td>First-year OPEX: licences, links, maintenance and training, contingency included</td><td class="num">€58,081</td></tr>
+          <tr><td>5-year total cost of ownership</td><td class="num">€475,816</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Fictional town hall and figures: this is a case study carried out as part of the degree, with no real deployment.</p>
+  </section>
+
+  <nav class="next-case" aria-label="Another case study">
+    <a href="leon.html">
+      <span>Next case study</span>
+      <strong>Network switching overhaul at an industrial site →</strong>
+    </a>
+  </nav>
+
+</main>
+
+<footer class="wrap">
+  <div class="footer-inner">
+    <p>Thomas Jourda · Systems &amp; network technician · 2026</p>
+    <nav aria-label="Footer">
+      <a href="../../en/index.html#projects">Projects</a>
+      <a href="../../en/index.html#contact">Contact</a>
+      <a href="#top">Back to top ↑</a>
+    </nav>
+  </div>
+</footer>
+
+<a id="to-top" class="to-top" href="#top" aria-label="Back to top of page" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+<!-- BODY:END -->
+<script src="../../assets/main.js?v=20260924g"></script>
+</body>
+</html>

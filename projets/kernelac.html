@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Refonte du SI d'une mairie · Thomas Jourda</title>
+<meta name="description" content="Étude de cas école : modéliser, déployer puis maintenir et sécuriser le SI d'une mairie fictive de 79 agents sur 12 sites.">
+<link rel="canonical" href="https://thomas642.github.io/Portfolio/projets/kernelac.html">
+<link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/kernelac.html">
+<link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/kernelac.html">
+<link rel="alternate" hreflang="x-default" href="https://thomas642.github.io/Portfolio/projets/kernelac.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Thomas Jourda">
+<meta property="og:title" content="Refonte du SI d'une mairie multi-sites">
+<meta property="og:description" content="Réseau segmenté, Hyper-V sur deux sites, VPN IPsec, sauvegarde 3-2-1-1-0, PCA et PRA. Étude de cas de Thomas Jourda.">
+<meta property="og:url" content="https://thomas642.github.io/Portfolio/projets/kernelac.html">
+<meta property="og:image" content="https://thomas642.github.io/Portfolio/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Thomas Jourda, technicien systèmes et réseaux">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="../assets/fonts/barlow-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="theme-color" content="#eef2f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/style.css?v=20260924g">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+</head>
+<body>
+<!-- BODY:START -->
+<a class="skip" href="#contexte">Aller au contenu</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="../index.html" aria-label="Thomas Jourda, accueil du portfolio"><span class="mono-tag" aria-hidden="true">TJ</span>Thomas Jourda</a>
+    <nav class="mainnav" aria-label="Sections">
+      <a href="#contexte">Contexte</a>
+      <a href="#demarche">Démarche</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#choix">Choix</a>
+      <a href="#securite">Sécurité</a>
+    </nav>
+    <div class="top-actions">
+      <a class="lang-switch" href="../en/projects/kernelac.html" hreflang="en" lang="en" aria-label="English version">EN</a>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Passer en thème sombre">
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+</header>
+
+<main id="top" class="wrap case">
+
+  <nav class="crumbs" aria-label="Fil d'Ariane">
+    <a href="../index.html#projets">← Tous les projets</a>
+  </nav>
+  <section class="case-hero">
+    <div>
+      <p class="kind school">École · CESI · projet individuel</p>
+      <h1>Refonte du SI d'une mairie multi-sites</h1>
+      <p class="lead">
+        Le fil rouge du Bachelor ASR : modéliser, déployer, puis maintenir et sécuriser le système d'information
+        d'une mairie fictive de 79 agents répartis sur 12 sites, en tenant le rôle de responsable informatique.
+      </p>
+    </div>
+    <aside class="asset-tag" aria-label="Fiche du projet">
+      <p class="tag-head"><span>FICHE PROJET</span><span>KERNELAC</span></p>
+      <dl>
+        <div><dt>Cadre</dt><dd>CESI Pau · Bachelor ASR 2025-2026</dd></div>
+        <div><dt>Format</dt><dd>Projet individuel en 3 blocs</dd></div>
+        <div><dt>Rôle</dt><dd>Responsable informatique (RSI)</dd></div>
+        <div><dt>Périmètre</dt><dd>79 agents · 12 sites</dd></div>
+        <div><dt>Livrables</dt><dd>3 dossiers (32, 43 et 37 pages) + soutenances</dd></div>
+      </dl>
+    </aside>
+  </section>
+
+  <ul class="stats" aria-label="Chiffres clés">
+    <li><strong>7</strong><span>VLAN, plan 10.SITE.VLAN.HOST/24</span></li>
+    <li><strong>63</strong><span>tests unitaires en 8 catégories</span></li>
+    <li><strong>15</strong><span>semaines de déploiement planifiées</span></li>
+    <li><strong>185 k€</strong><span>de CAPEX HT, contingence incluse</span></li>
+  </ul>
+
+  <section id="contexte">
+    <div class="section-head">
+      <h2>Contexte</h2>
+      <p class="section-intro">Une étude de cas fournie par l'école, un audit sévère en point de départ.</p>
+    </div>
+    <div class="prose">
+      <p>
+        La Mairie de Kernelac est une collectivité fictive : 79 agents répartis sur 12 sites, dont la mairie,
+        les ateliers municipaux et dix sites distants (salles, espaces culturels et sportifs, petite enfance).
+        Un audit du cabinet IT Conseils dresse le constat de départ.
+      </p>
+    </div>
+    <ul class="issue-grid">
+      <li><strong>Obsolescence</strong><span>Virtualisation VMware ESXi 6.5, serveurs sous Windows Server 2008 R2 et 2012 R2 sans support, postes hors garantie.</span></li>
+      <li><strong>Réseau plat</strong><span>Aucune segmentation VLAN, réseau invité non isolé du réseau interne.</span></li>
+      <li><strong>Sécurité</strong><span>Pas de MFA sur les accès distants, pas de supervision centralisée ni de SIEM, sauvegardes non testées.</span></li>
+      <li><strong>Conformité</strong><span>Ni DPO, ni registre des traitements, ni PIA ; pas de PSSI, pas de PCA ni de PRA.</span></li>
+    </ul>
+    <p class="note">Objectifs fixés : disponibilité du SI de 99,9 %, conformité NIS2, ANSSI et RGPD, sauvegarde testée, accès distant sécurisé et démarche éco-responsable.</p>
+  </section>
+
+  <section id="demarche">
+    <div class="section-head">
+      <h2>Trois blocs</h2>
+      <p class="section-intro">Chaque bloc reprend les choix du précédent et les pousse plus loin.</p>
+    </div>
+    <ol class="steps">
+      <li>
+        <time>Bloc 1</time>
+        <div><h3>Modéliser l'infrastructure</h3><p>Analyse de l'existant et audit de conformité, parties prenantes, WBS et matrice RACI, cahier des charges (fonctions techniques et contraintes), veille et choix argumentés, matrice des risques (probabilité × gravité), planning, indicateurs et budget CAPEX / OPEX.</p></div>
+      </li>
+      <li>
+        <time>Bloc 2</time>
+        <div><h3>Déployer les infrastructures</h3><p>Plan de déploiement en 8 lots avec RACI et Gantt, architectures LAN, WAN, Wi-Fi, virtualisation et Active Directory, matrice des flux, maquette Packet Tracer, plan de 63 tests unitaires, recette et pilotage budgétaire.</p></div>
+      </li>
+      <li>
+        <time>Bloc 3</time>
+        <div><h3>Maintenir et sécuriser</h3><p>Écarts résiduels après déploiement classés par criticité, plan d'action correctif, PCA et PRA, maintenance préventive et curative, administration courante et politique de sécurité du SI (PSSI).</p></div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="architecture">
+    <div class="section-head">
+      <h2>Architecture cible</h2>
+      <p class="section-intro">Deux sites de production qui se secourent, dix sites distants reliés en VPN.</p>
+    </div>
+    <figure class="diagram">
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 1000 400" role="img" aria-labelledby="ker-title ker-desc">
+          <title id="ker-title">Architecture cible de la Mairie de Kernelac</title>
+          <desc id="ker-desc">Deux sites de production, la Mairie et les Ateliers, chacun avec un pare-feu NGFW, un cœur de réseau L3 et un hyperviseur Hyper-V. Ils sont reliés par un tunnel IPsec AES-256 sur fibre FTTE avec secours 4G en SD-WAN, et l'hyperviseur des Ateliers reçoit les répliques Hyper-V de la Mairie. Les dix sites distants se raccordent à la Mairie en VPN IPsec sur 4G, les nomades en VPN SSL/TLS avec MFA, et une copie de sauvegarde part vers un cloud souverain.</desc>
+          <rect class="dg-group" fill="none" stroke="#0b6e8a" stroke-width="1.5" stroke-dasharray="8 6" x="20" y="20" width="380" height="280" rx="10"/>
+          <text class="dg-group-label" fill="#0b6e8a" font-size="12" x="385" y="290" text-anchor="end">MAIRIE · 10.1.x.x</text>
+          <rect class="dg-group" fill="none" stroke="#0b6e8a" stroke-width="1.5" stroke-dasharray="8 6" x="600" y="20" width="380" height="280" rx="10"/>
+          <text class="dg-group-label" fill="#0b6e8a" font-size="12" x="965" y="290" text-anchor="end">ATELIERS · 10.2.x.x</text>
+
+          <line class="dg-trunk" stroke="#0b6e8a" stroke-width="4" stroke-linecap="round" x1="380" y1="75" x2="620" y2="75"/>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="500" y="62" text-anchor="middle">IPsec AES-256</text>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="500" y="97" text-anchor="middle">FTTE + 4G (SD-WAN)</text>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" stroke-dasharray="6 5" x1="380" y1="215" x2="620" y2="215"/>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="500" y="205" text-anchor="middle">Hyper-V Replica</text>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="210" y1="100" x2="210" y2="120"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="210" y1="170" x2="210" y2="190"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="790" y1="100" x2="790" y2="120"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="790" y1="170" x2="790" y2="190"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M175 320 V310 H30 V75 H40"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M420 320 V92 H380"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" stroke-dasharray="6 5" d="M825 320 V310 H560 V250 H380"/>
+
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="40" y="50" width="340" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="210" y="72" text-anchor="middle">Pare-feu NGFW qualifié ANSSI</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="210" y="90" text-anchor="middle">deny by default · VPN · SD-WAN</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="40" y="120" width="340" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="210" y="142" text-anchor="middle">Cœur L3 + commutateurs PoE</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="210" y="160" text-anchor="middle">7 VLAN · 5 bornes Wi-Fi 6</text></g>
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="40" y="190" width="340" height="70" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="210" y="215" text-anchor="middle">Hyperviseur Hyper-V</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="210" y="234" text-anchor="middle">8 VM · SAN iSCSI 16 To</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="210" y="250" text-anchor="middle">Veeam · NAS immuable</text></g>
+
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="620" y="50" width="340" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="790" y="72" text-anchor="middle">Pare-feu NGFW qualifié ANSSI</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="790" y="90" text-anchor="middle">site de secours</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="620" y="120" width="340" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="790" y="142" text-anchor="middle">Cœur L3 + commutateurs PoE</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="790" y="160" text-anchor="middle">7 VLAN · 2 bornes Wi-Fi 6</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="620" y="190" width="340" height="70" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="790" y="215" text-anchor="middle">Hyperviseur Hyper-V</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="790" y="234" text-anchor="middle">AD, DHCP, DFS actifs</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="790" y="250" text-anchor="middle">répliques en attente · RPO 5 min</text></g>
+
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="20" y="320" width="310" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="175" y="346" text-anchor="middle">10 sites distants</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="175" y="365" text-anchor="middle">routeur 4G/LTE · VPN IPsec</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="345" y="320" width="310" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="500" y="346" text-anchor="middle">Agents nomades</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="500" y="365" text-anchor="middle">VPN SSL/TLS · MFA</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="670" y="320" width="310" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="825" y="346" text-anchor="middle">Cloud souverain</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="825" y="365" text-anchor="middle">copie de sauvegarde · 1 an</text></g>
+        </svg>
+      </div>
+      <figcaption>Schéma de principe de l'architecture du bloc Déployer. En pointillés : la réplication vers les Ateliers et la copie de sauvegarde externalisée.</figcaption>
+    </figure>
+  </section>
+
+  <section id="choix">
+    <div class="section-head">
+      <h2>Choix techniques</h2>
+      <p class="section-intro">Tels que décrits dans le dossier du bloc Déployer.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th scope="col">Domaine</th><th scope="col">Solution retenue</th></tr></thead>
+        <tbody>
+          <tr><td>Réseau</td><td>7 VLAN (administration, direction, production, bureautique, Wi-Fi agents, Wi-Fi invités, supervision), plan d'adressage <code>10.SITE.VLAN.HOST/24</code>, flux inter-VLAN filtrés par le pare-feu en « deny by default »</td></tr>
+          <tr><td>WAN</td><td>Fibre FTTE 1 Gbit/s et secours 4G/LTE sur les deux sites principaux, bascule SD-WAN en moins de 30 s, tunnel IPsec AES-256-GCM / SHA-384 entre les sites</td></tr>
+          <tr><td>Accès distants</td><td>Sites distants en VPN IPsec avec certificats X.509 (PKI AD CS), nomades en VPN SSL/TLS avec MFA obligatoire</td></tr>
+          <tr><td>Wi-Fi</td><td>15 bornes Wi-Fi 6, agents en WPA3-Enterprise (802.1X via NPS RADIUS), invités isolés avec portail captif</td></tr>
+          <tr><td>Virtualisation</td><td>Hyper-V sur deux sites, 8 VM sur l'hyperviseur principal, réplication Hyper-V Replica : RPO 5 min, bascule du site en moins de 4 h</td></tr>
+          <tr><td>Annuaire</td><td>Active Directory Windows Server 2025, comptes d'administration par niveau (tiering T0, T1, T2), GPO de durcissement (mots de passe, BitLocker, USB, verrouillage de session)</td></tr>
+          <tr><td>Sauvegarde</td><td>Stratégie 3-2-1-1-0 avec Veeam : NAS local immuable, copie aux Ateliers, copie chiffrée dans un cloud souverain SecNumCloud, tests de restauration mensuels</td></tr>
+          <tr><td>Supervision</td><td>Zabbix pour la supervision, Wazuh comme SIEM avec 12 mois de rétention des journaux</td></tr>
+          <tr><td>Postes</td><td>79 portables certifiés EPEAT Gold, chiffrement BitLocker, EDR européen, Microsoft 365 Business Premium</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="validation">
+    <div class="section-head">
+      <h2>Maquette et tests</h2>
+      <p class="section-intro">Ce qui a été démontré, et ce qui reste à valider sur du vrai matériel.</p>
+    </div>
+    <div class="two-col">
+      <div class="callout">
+        <p class="col-title">Maquette Packet Tracer</p>
+        <p>Trois sites représentatifs (Mairie, Ateliers, un site distant). Validés en maquette : routage inter-VLAN par sous-interfaces 802.1Q, convergence WAN via un cloud simulé, connectivité de bout en bout entre les deux pare-feux. IPsec, bascule SD-WAN, 802.1X et filtrage ACL nécessitent une licence non disponible dans la maquette : leur configuration est documentée pour une recette sur les équipements physiques.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Plan de tests et recette</p>
+        <p>63 tests unitaires en 8 catégories : réception, réseau, système, parc, sauvegarde, sécurité, formation et non-régression. Ils précèdent une recette technique puis fonctionnelle cosignée par le Maire et le DGS.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="securite">
+    <div class="section-head">
+      <h2>Maintenir et sécuriser</h2>
+      <p class="section-intro">Faire vivre l'architecture au quotidien et préparer la crise.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="callout">
+        <p class="col-title">Écarts résiduels</p>
+        <p>Écarts classés par criticité (gravité × probabilité) puis traités en trois horizons : 0 à 3 mois, 3 à 6 mois, 6 à 12 mois. Un outil ITSM/CMDB libre (GLPI) sert au ticketing, à l'inventaire et à la base de connaissances.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">PCA et PRA</p>
+        <p>Objectifs RTO inférieur à 4 h et RPO inférieur à 1 h. Cinq fiches de reprise par couple service × risque, jusqu'au sinistre total du site Mairie, avec un ordre de redémarrage du réseau vers les applications.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Maintenance</p>
+        <p>Incidents priorisés de P1 (moins de 30 min, en astreinte) à P4 (moins de 5 jours), dans le cadre des bonnes pratiques ITIL v4.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">PSSI</p>
+        <p>Droits attribués par la méthode AGDLP, comptes à privilèges séparés, procédure d'incident avec notification de la CNIL sous 72 h en cas de violation de données, annuaire de crise.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="budget">
+    <div class="section-head">
+      <h2>Budget</h2>
+      <p class="section-intro">Chiffré dès le bloc Modéliser, repris à l'identique au bloc Déployer.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th scope="col">Poste</th><th scope="col" class="num">Montant HT</th></tr></thead>
+        <tbody>
+          <tr><td>CAPEX : serveurs, stockage, réseau et 79 postes, contingence de 10 % incluse</td><td class="num">185 411 €</td></tr>
+          <tr><td>OPEX de la première année : licences, liaisons, maintenance et formation, contingence incluse</td><td class="num">58 081 €</td></tr>
+          <tr><td>Coût total de possession sur 5 ans</td><td class="num">475 816 €</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Mairie et chiffres fictifs : il s'agit d'une étude de cas réalisée dans le cadre de la formation, sans déploiement réel.</p>
+  </section>
+
+  <nav class="next-case" aria-label="Autre étude de cas">
+    <a href="leon.html">
+      <span>Étude de cas suivante</span>
+      <strong>Renouvellement de la commutation réseau d'un site industriel →</strong>
+    </a>
+  </nav>
+
+</main>
+
+<footer class="wrap">
+  <div class="footer-inner">
+    <p>Thomas Jourda · Technicien systèmes &amp; réseaux · 2026</p>
+    <nav aria-label="Pied de page">
+      <a href="../index.html#projets">Projets</a>
+      <a href="../index.html#contact">Contact</a>
+      <a href="#top">Haut de page ↑</a>
+    </nav>
+  </div>
+</footer>
+
+<a id="to-top" class="to-top" href="#top" aria-label="Revenir en haut de la page" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+<!-- BODY:END -->
+<script src="../assets/main.js?v=20260924g"></script>
+</body>
+</html>
