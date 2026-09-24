@@ -40,7 +40,7 @@ Dashboards maison : vue d'ensemble VPS, logs/sécurité, carte géographique des
 
 ### 🖥️ Passerelle d'accès distant Apache Guacamole (contexte pro, anonymisé)
 Remplacement d'AnyDesk par une passerelle Guacamole conteneurisée (guacd, MariaDB, Guacamole) sous Docker Compose, pour accéder aux postes et systèmes de production (séchoirs…).
-Authentification LDAP/AD, MFA TOTP, accès RDP des prestataires aux serveurs RDS pour mettre à jour leurs logiciels, sauvegarde hebdomadaire automatisée par cron.
+Authentification LDAP/AD, MFA TOTP, accès RDP des prestataires aux serveurs RDS de l'entreprise pour mettre à jour leurs logiciels ou dépanner, sauvegarde hebdomadaire automatisée par cron.
 → [Lire l'étude de cas](https://thomas642.github.io/Portfolio/projets/guacamole.html)
 
 ### 🐧 Clients légers Linux sur Dell Wyse (contexte pro, anonymisé)

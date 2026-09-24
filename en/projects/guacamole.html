@@ -83,8 +83,8 @@
     <div class="prose">
       <p>
         Remote access relied on AnyDesk. The main need: reaching production workstations and systems,
-        such as the drying kilns. The secondary need: letting vendors connect to their servers to update
-        their applications. The goal: a single entry point in the browser, with no client to install,
+        such as the drying kilns. The secondary need: letting vendors connect to the company's servers to update
+        their software or help out when it breaks down. The goal: a single entry point in the browser, with no client to install,
         authentication against the company directory, multi-factor authentication and rights granted per scope.
       </p>
     </div>
@@ -99,7 +99,7 @@
       <div class="diagram-scroll">
         <svg viewBox="0 0 1000 380" role="img" aria-labelledby="guac-title guac-desc">
           <title id="guac-title">Guacamole gateway architecture</title>
-          <desc id="guac-desc">The user connects over HTTPS to the Guacamole web application, hosted with guacd and MariaDB in Docker Compose on a DMZ server. Guacamole checks identity and groups in Active Directory over LDAPS, asks for a TOTP code, then guacd opens the session to production workstations and systems or, for vendors, to the RDS servers over RDP.</desc>
+          <desc id="guac-desc">The user connects over HTTPS to the Guacamole web application, hosted with guacd and MariaDB in Docker Compose on a DMZ server. Guacamole checks identity and groups in Active Directory over LDAPS, asks for a TOTP code, then guacd opens the session to production workstations and systems or, for vendors, to the company's RDS servers over RDP.</desc>
           <defs>
             <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path class="dg-arrow" fill="#4b5b5a" d="M0 0 L10 5 L0 10 z"/>
@@ -123,7 +123,7 @@
           <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="520" y="60" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="600" y="86" text-anchor="middle">guacd</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="600" y="105" text-anchor="middle">protocol gateway</text></g>
           <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="280" y="230" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="256" text-anchor="middle">MariaDB</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="275" text-anchor="middle">connections, rights</text></g>
           <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="700" y="50" width="240" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="820" y="76" text-anchor="middle">Production systems</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="820" y="95" text-anchor="middle">kilns, workstations</text></g>
-          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="700" y="160" width="240" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="820" y="186" text-anchor="middle">RDS servers</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="820" y="205" text-anchor="middle">vendors · updates</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="700" y="160" width="240" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="820" y="186" text-anchor="middle">RDS servers</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="820" y="205" text-anchor="middle">vendors: updates, support</text></g>
           <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="700" y="290" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="780" y="316" text-anchor="middle">Active Directory</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="780" y="335" text-anchor="middle">GRP-GUAC-* groups</text></g>
         </svg>
       </div>
@@ -139,7 +139,7 @@
     <div class="two-col">
       <div class="prose">
         <p>
-          Each scope (drying kilns, production workstations, vendor servers…) maps to an AD security group named
+          Each scope (drying kilns, production workstations, servers opened to vendors…) maps to an AD security group named
           <code>GRP-GUAC-&lt;SCOPE&gt;</code> and to a Guacamole group with exactly the same name.
           The AD group holds the people, the Guacamole group holds the rights on the machines.
         </p>
