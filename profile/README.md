@@ -27,6 +27,7 @@ Je travaille sur des infrastructures multi-sites (Windows Server, Active Directo
 ### 🔌 Renouvellement de la commutation réseau d'un site industriel (pro, mémoire de Bachelor ASR)
 Scieries Lesbats, site de Léon, 10/2025 – 04/2026. Remplacement de 9 switchs de distribution hétérogènes (dont certains non manageables) par des Aruba Instant On 1930.
 Cartographie de l'existant, pré-configuration sur Instant On (nommage, VLANs, IP de management), bascule pendant la fermeture de la production, intégration dans Zabbix et Instant On.
+→ [Lire l'étude de cas](https://thomas642.github.io/Portfolio/projets/leon.html)
 
 ### 🏛️ Refonte du SI d'une mairie multi-sites (école, CESI)
 Étude de cas en tant que responsable informatique : 79 agents sur 12 sites. Plan de déploiement (adressage, AD/GPO, Hyper-V deux sites avec réplication, maquette Packet Tracer, 63 tests unitaires) puis maintien et sécurisation (écarts ANSSI/RGPD/NIS2, PCA, PRA, PSSI).
@@ -35,22 +36,21 @@ Cartographie de l'existant, pré-configuration sur Instant On (nommage, VLANs, I
 Supervision complète d'un VPS Ubuntu : Prometheus, Grafana, Loki, Alloy, cAdvisor, node-exporter.
 Accès protégé par tunnel Cloudflare Zero Trust avec OTP, SSH durci (clé ed25519, mot de passe désactivé).
 Dashboards maison : vue d'ensemble VPS, logs/sécurité, carte géographique des IP bannies par fail2ban (GeoLite2).
-→ [Voir le dépôt](LIEN_A_COMPLETER)
+→ [Lire l'étude de cas](https://thomas642.github.io/Portfolio/projets/observabilite.html)
 
 ### 🖥️ Passerelle d'accès distant Apache Guacamole (contexte pro, anonymisé)
-Remplacement d'AnyDesk par une passerelle Guacamole conteneurisée (guacd, MariaDB, Guacamole) sous Docker Compose.
-Authentification LDAP/AD, MFA TOTP, groupes d'équilibrage RDS, sauvegarde hebdomadaire automatisée par cron.
-→ [Voir le dépôt](LIEN_A_COMPLETER)
+Remplacement d'AnyDesk par une passerelle Guacamole conteneurisée (guacd, MariaDB, Guacamole) sous Docker Compose, pour accéder aux postes et systèmes de production (séchoirs…).
+Authentification LDAP/AD, MFA TOTP, accès RDP des prestataires aux serveurs RDS de l'entreprise pour mettre à jour leurs logiciels ou dépanner, sauvegarde hebdomadaire automatisée par cron.
+→ [Lire l'étude de cas](https://thomas642.github.io/Portfolio/projets/guacamole.html)
 
 ### 🐧 Clients légers Linux sur Dell Wyse (contexte pro, anonymisé)
 Déploiement de Linux Lite sur Dell Wyse 3070/5070 avec accès RDS via Remmina, autologin LightDM.
 Rédaction de procédures d'installation versionnées, diagnostic d'incompatibilité clavier HID sur douchette code-barres en session RDP.
-→ [Voir le dépôt](LIEN_A_COMPLETER)
 
 ### 🎮 BAKO, plateforme web d'une communauté de jeu (perso, en production)
 Gestion d'une « famille » de joueurs sur un serveur DarkRP (membres, recrutement, sanctions, événements), en remplacement d'un Google Sheets.
 Next.js + TypeScript, PostgreSQL/Prisma, connexion Steam OpenID. Hébergé sur VPS OVH : Nginx + Let's Encrypt, systemd, sauvegarde quotidienne de la base, CI/CD GitHub Actions.
-→ [Voir le site](https://famille.gameone-val.com)
+→ [Voir le site](https://famille.gameone-val.com) · [Lire l'étude de cas](https://thomas642.github.io/Portfolio/projets/bako.html)
 
 ---
 
