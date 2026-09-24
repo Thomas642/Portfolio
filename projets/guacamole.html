@@ -24,7 +24,7 @@
 <link rel="preload" href="../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="theme-color" content="#eef2f1" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
-<link rel="stylesheet" href="../assets/style.css?v=20260924d">
+<link rel="stylesheet" href="../assets/style.css?v=20260924e">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 </head>
@@ -116,7 +116,7 @@
           <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M600 120 V190 H696" marker-end="url(#arrow)"/>
           <text class="dg-small" fill="#4b5b5a" font-size="12" x="648" y="182" text-anchor="middle">RDP</text>
           <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M440 108 H480 V320 H696" marker-end="url(#arrow)"/>
-          <text class="dg-small" fill="#4b5b5a" font-size="12" x="578" y="340" text-anchor="middle">LDAPS · compte en lecture seule</text>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="578" y="340" text-anchor="middle">LDAPS · compte de service dédié</text>
 
           <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="20" y="60" width="170" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="105" y="86" text-anchor="middle">Utilisateur</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="105" y="105" text-anchor="middle">navigateur web</text></g>
           <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="280" y="60" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="86" text-anchor="middle">Guacamole</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="105" text-anchor="middle">web · TOTP</text></g>
@@ -138,6 +138,10 @@
     </div>
     <div class="two-col">
       <div class="prose">
+        <p>
+          <strong>Authentification.</strong> Guacamole se lie à l'annuaire avec un compte de service dédié, en lecture seule.
+          Les utilisateurs se connectent ensuite avec leur propre compte AD, puis valident un code TOTP.
+        </p>
         <p>
           Chaque périmètre (séchoirs, postes de production, serveurs ouverts aux prestataires…) correspond à un groupe de sécurité AD nommé
           <code>GRP-GUAC-&lt;PÉRIMÈTRE&gt;</code> et à un groupe Guacamole portant exactement le même nom.
@@ -186,11 +190,12 @@
   <section id="exploitation">
     <div class="section-head"><h2>Exploitation</h2></div>
     <ul class="result-list">
+      <li><span class="badge ok">LDAP</span> Authentification sur l'Active Directory opérationnelle : compte de service dédié pour la liaison, comptes AD personnels pour les utilisateurs.</li>
       <li><span class="badge ok">Sauvegarde</span> Sauvegarde hebdomadaire automatisée par cron, et export de la base avant toute intervention manuelle.</li>
       <li><span class="badge ok">Diagnostic</span> Une grille de quatre vérifications, dans l'ordre, pour le cas « l'utilisateur se connecte mais ne voit rien ».</li>
       <li><span class="badge ok">Journaux</span> Mode debug réservé au diagnostic et désactivé aussitôt après : il écrit le contenu de l'annuaire dans les journaux.</li>
       <li><span class="badge wip">À surveiller</span> Échéances des certificats LDAPS et de l'autorité racine : un certificat expiré coupe l'authentification sans préavis.</li>
-      <li><span class="badge wip">Piste</span> Déplacer les groupes <code>GRP-GUAC-*</code> dans une sous-OU dédiée, pour que chaque connexion ne lise plus tous les groupes du domaine.</li>
+      <li><span class="badge ok">OU dédiée</span> Les groupes <code>GRP-GUAC-*</code> sont regroupés dans une OU réservée à Guacamole, qui ne contient que ces groupes.</li>
     </ul>
     <p class="note">
       Deux documents livrés : une procédure d'exploitation formelle et un guide simplifié pour l'équipe.
@@ -223,6 +228,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 <!-- BODY:END -->
-<script src="../assets/main.js?v=20260924d"></script>
+<script src="../assets/main.js?v=20260924e"></script>
 </body>
 </html>
