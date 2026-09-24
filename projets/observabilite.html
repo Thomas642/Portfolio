@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Stack d'observabilité · Thomas Jourda</title>
+<meta name="description" content="Étude de cas : supervision d'un VPS avec Prometheus, Loki et Grafana, derrière Cloudflare Zero Trust.">
+<link rel="canonical" href="https://thomas642.github.io/Portfolio/projets/observabilite.html">
+<link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/observabilite.html">
+<link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/observability.html">
+<link rel="alternate" hreflang="x-default" href="https://thomas642.github.io/Portfolio/projets/observabilite.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Thomas Jourda">
+<meta property="og:title" content="Stack d'observabilité auto-hébergée">
+<meta property="og:description" content="Prometheus, Loki et Grafana sur un VPS, derrière Cloudflare Zero Trust. Étude de cas de Thomas Jourda.">
+<meta property="og:url" content="https://thomas642.github.io/Portfolio/projets/observabilite.html">
+<meta property="og:image" content="https://thomas642.github.io/Portfolio/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Thomas Jourda, technicien systèmes et réseaux">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="../assets/fonts/barlow-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="theme-color" content="#eef2f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/style.css?v=20260924d">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+</head>
+<body>
+<!-- BODY:START -->
+<a class="skip" href="#contexte">Aller au contenu</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="../index.html" aria-label="Thomas Jourda, accueil du portfolio"><span class="mono-tag" aria-hidden="true">TJ</span>Thomas Jourda</a>
+    <nav class="mainnav" aria-label="Sections">
+      <a href="#contexte">Contexte</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#dashboards">Dashboards</a>
+      <a href="#securite">Sécurisation</a>
+      <a href="#resultats">Résultats</a>
+    </nav>
+    <div class="top-actions">
+      <a class="lang-switch" href="../en/projects/observability.html" hreflang="en" lang="en" aria-label="English version">EN</a>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Passer en thème sombre">
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+</header>
+
+<main id="top" class="wrap case">
+
+  <nav class="crumbs" aria-label="Fil d'Ariane">
+    <a href="../index.html#projets">← Tous les projets</a>
+  </nav>
+  <section class="case-hero">
+    <div>
+      <p class="kind perso">Perso · VPS OVH</p>
+      <h1>Stack d'observabilité auto-hébergée</h1>
+      <p class="lead">
+        Métriques, journaux et sécurité d'un VPS Ubuntu réunis dans Grafana, derrière un accès
+        Cloudflare Zero Trust. Un terrain d'entraînement à la supervision, en conditions réelles.
+      </p>
+    </div>
+    <aside class="asset-tag" aria-label="Fiche du projet">
+      <p class="tag-head"><span>FICHE PROJET</span><span>OBS-VPS</span></p>
+      <dl>
+        <div><dt>Hôte</dt><dd>VPS OVH · Ubuntu</dd></div>
+        <div><dt>Métriques</dt><dd>Prometheus · node-exporter · cAdvisor</dd></div>
+        <div><dt>Journaux</dt><dd>Loki · Grafana Alloy</dd></div>
+        <div><dt>Accès</dt><dd>Cloudflare Zero Trust + OTP</dd></div>
+        <div><dt>Sécurité</dt><dd>SSH ed25519 · fail2ban</dd></div>
+      </dl>
+    </aside>
+  </section>
+
+  <section id="contexte">
+    <div class="section-head"><h2>Contexte</h2></div>
+    <div class="prose">
+      <p>
+        En entreprise, j'utilise Zabbix et Aruba Instant On pour superviser le réseau. Sur mon propre VPS,
+        je voulais monter une supervision complète moi-même, avec la pile Grafana : métriques système et
+        conteneurs, centralisation des journaux, et un œil sur les attaques que subit tout serveur exposé sur Internet.
+      </p>
+    </div>
+  </section>
+
+  <section id="architecture">
+    <div class="section-head">
+      <h2>Architecture</h2>
+      <p class="section-intro">Deux chaînes de collecte, une seule interface, aucun port d'administration ouvert au public.</p>
+    </div>
+    <figure class="diagram">
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 1000 400" role="img" aria-labelledby="obs-title obs-desc">
+          <title id="obs-title">Architecture de la stack d'observabilité</title>
+          <desc id="obs-desc">node-exporter et cAdvisor exposent les métriques du système et des conteneurs, collectées par Prometheus. Grafana Alloy collecte les journaux d'authentification, de fail2ban et de nginx et les envoie à Loki. Grafana lit Prometheus et Loki. L'administrateur accède à Grafana par un tunnel Cloudflare Zero Trust protégé par un code à usage unique.</desc>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path class="dg-arrow" fill="#4b5b5a" d="M0 0 L10 5 L0 10 z"/>
+            </marker>
+          </defs>
+          <rect class="dg-group" fill="none" stroke="#0b6e8a" stroke-width="1.5" stroke-dasharray="8 6" x="250" y="20" width="735" height="360" rx="10"/>
+          <text class="dg-group-label" fill="#0b6e8a" font-size="12" x="970" y="368" text-anchor="end">VPS OVH · Ubuntu</text>
+
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="440" y1="80" x2="516" y2="80" marker-end="url(#arrow)"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M440 170 H480 V100 H516" marker-end="url(#arrow)"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="440" y1="290" x2="516" y2="290" marker-end="url(#arrow)"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M680 80 H740 V215 H776" marker-end="url(#arrow)"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M680 290 H740 V255 H776" marker-end="url(#arrow)"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="190" y1="235" x2="776" y2="235" marker-end="url(#arrow)" marker-start="url(#arrow)" stroke-dasharray="6 5"/>
+
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="20" y="200" width="170" height="70" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="105" y="228" text-anchor="middle">Administrateur</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="105" y="248" text-anchor="middle">Cloudflare Zero Trust</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="105" y="262" text-anchor="middle">tunnel + OTP</text></g>
+
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="280" y="50" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="76" text-anchor="middle">node-exporter</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="95" text-anchor="middle">métriques système</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="280" y="140" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="166" text-anchor="middle">cAdvisor</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="185" text-anchor="middle">conteneurs</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="280" y="260" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="286" text-anchor="middle">Journaux</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="305" text-anchor="middle">auth · fail2ban · nginx</text></g>
+
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="520" y="50" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="600" y="76" text-anchor="middle">Prometheus</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="600" y="95" text-anchor="middle">séries temporelles</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="520" y="260" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="600" y="286" text-anchor="middle">Grafana Alloy</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="600" y="305" text-anchor="middle">collecte → Loki</text></g>
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="780" y="200" width="180" height="70" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="870" y="228" text-anchor="middle">Grafana</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="870" y="248" text-anchor="middle">dashboards + Loki</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="870" y="262" text-anchor="middle">GeoLite2</text></g>
+        </svg>
+      </div>
+      <figcaption>Schéma de principe. En pointillés : l'accès administrateur, qui passe uniquement par le tunnel Cloudflare.</figcaption>
+    </figure>
+  </section>
+
+  <section id="dashboards">
+    <div class="section-head">
+      <h2>Dashboards</h2>
+      <p class="section-intro">Des tableaux de bord construits pour répondre à une question précise chacun.</p>
+    </div>
+    <div class="shots">
+      <figure class="shot">
+        <a href="../assets/img/grafana-vps.webp"><img src="../assets/img/grafana-vps.webp" width="1531" height="762" loading="lazy" decoding="async" alt="Dashboard Grafana de l'état du VPS : uptime de 11,1 semaines, CPU à 34,5 %, RAM à 32 %, disque à 68,4 %, avec les courbes CPU, mémoire, réseau et charge système sur 6 heures."></a>
+        <figcaption><strong>Vue d'ensemble du VPS.</strong> Disponibilité, CPU, mémoire, disque, débit réseau et charge système, sur les 6 dernières heures. Capture du 24/09/2026.</figcaption>
+      </figure>
+      <figure class="shot">
+        <a href="../assets/img/grafana-securite.webp"><img src="../assets/img/grafana-securite.webp" width="1531" height="399" loading="lazy" decoding="async" alt="Dashboard Grafana des journaux et de la sécurité : 1,22 k tentatives SSH échouées, 134 bannissements fail2ban, 66 erreurs nginx, 12 k requêtes nginx, et le volume de journaux par source."></a>
+        <figcaption><strong>Journaux et sécurité.</strong> Tentatives SSH échouées, bannissements fail2ban, erreurs et requêtes nginx, volume de journaux par source, sur 2 jours. Capture du 24/09/2026.</figcaption>
+      </figure>
+    </div>
+    <p class="note">Un troisième tableau de bord place sur une carte les adresses IP bannies par fail2ban, géolocalisées avec la base GeoLite2.</p>
+  </section>
+
+  <section id="securite">
+    <div class="section-head">
+      <h2>Sécurisation</h2>
+      <p class="section-intro">Superviser un serveur exposé, c'est d'abord réduire sa surface d'attaque.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="callout">
+        <p class="col-title">Accès à Grafana</p>
+        <p>Grafana n'est pas exposé directement : on y accède par un tunnel Cloudflare Zero Trust, protégé par un code à usage unique (OTP).</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">SSH durci</p>
+        <p>Authentification par clé ed25519 uniquement, connexion par mot de passe désactivée.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">fail2ban</p>
+        <p>Les adresses qui multiplient les échecs sont bannies automatiquement, et chaque bannissement remonte dans les tableaux de bord.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="resultats">
+    <div class="section-head"><h2>Ce que ça montre</h2></div>
+    <ul class="result-list">
+      <li><span class="badge ok">Visible</span> Sur 2 jours : 1,22 k tentatives de connexion SSH échouées et 134 adresses bannies. Le bruit de fond d'Internet devient mesurable.</li>
+      <li><span class="badge ok">Stable</span> Au moment de la capture, le serveur tournait depuis 11,1 semaines sans redémarrage.</li>
+      <li><span class="badge ok">Centralisé</span> Métriques et journaux sont consultables au même endroit, avec un seul point d'accès protégé.</li>
+    </ul>
+  </section>
+
+  <nav class="next-case" aria-label="Autre étude de cas">
+    <a href="bako.html">
+      <span>Étude de cas suivante</span>
+      <strong>BAKO, plateforme web d'une communauté de jeu →</strong>
+    </a>
+  </nav>
+
+</main>
+
+<footer class="wrap">
+  <div class="footer-inner">
+    <p>Thomas Jourda · Technicien systèmes &amp; réseaux · 2026</p>
+    <nav aria-label="Pied de page">
+      <a href="../index.html#projets">Projets</a>
+      <a href="../index.html#contact">Contact</a>
+      <a href="#top">Haut de page ↑</a>
+    </nav>
+  </div>
+</footer>
+
+<a id="to-top" class="to-top" href="#top" aria-label="Revenir en haut de la page" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+<!-- BODY:END -->
+<script src="../assets/main.js?v=20260924d"></script>
+</body>
+</html>

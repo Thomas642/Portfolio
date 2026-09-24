@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Guacamole gateway · Thomas Jourda</title>
+<meta name="description" content="Case study: AnyDesk replaced with a containerised Apache Guacamole gateway, with access rights managed from Active Directory.">
+<link rel="canonical" href="https://thomas642.github.io/Portfolio/en/projects/guacamole.html">
+<link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/guacamole.html">
+<link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/guacamole.html">
+<link rel="alternate" hreflang="x-default" href="https://thomas642.github.io/Portfolio/projets/guacamole.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Thomas Jourda">
+<meta property="og:title" content="Apache Guacamole remote-access gateway">
+<meta property="og:description" content="AnyDesk replaced with a containerised web gateway, rights managed from Active Directory. A case study by Thomas Jourda.">
+<meta property="og:url" content="https://thomas642.github.io/Portfolio/en/projects/guacamole.html">
+<meta property="og:image" content="https://thomas642.github.io/Portfolio/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Thomas Jourda, systems and network technician">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="../../assets/fonts/barlow-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="theme-color" content="#eef2f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../../assets/style.css?v=20260924d">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+</head>
+<body>
+<!-- BODY:START -->
+<a class="skip" href="#context">Skip to content</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="../../en/index.html" aria-label="Thomas Jourda, portfolio home"><span class="mono-tag" aria-hidden="true">TJ</span>Thomas Jourda</a>
+    <nav class="mainnav" aria-label="Sections">
+      <a href="#context">Context</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#access">Access</a>
+      <a href="#challenges">Challenges</a>
+      <a href="#operations">Operations</a>
+    </nav>
+    <div class="top-actions">
+      <a class="lang-switch" href="../../projets/guacamole.html" hreflang="fr" lang="fr" aria-label="Version française">FR</a>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch to dark theme">
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+</header>
+
+<main id="top" class="wrap case">
+
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="../../en/index.html#projects">← All projects</a>
+  </nav>
+  <section class="case-hero">
+    <div>
+      <p class="kind pro">Work · anonymised</p>
+      <h1>Apache Guacamole remote-access gateway</h1>
+      <p class="lead">
+        AnyDesk replaced with a containerised web gateway whose access rights are managed
+        entirely from Active Directory.
+      </p>
+    </div>
+    <aside class="asset-tag" aria-label="Project card">
+      <p class="tag-head"><span>PROJECT CARD</span><span>BASTION</span></p>
+      <dl>
+        <div><dt>Context</dt><dd>Multi-site company</dd></div>
+        <div><dt>Version</dt><dd>Apache Guacamole 1.6.0</dd></div>
+        <div><dt>Hosting</dt><dd>Docker Compose · DMZ</dd></div>
+        <div><dt>Identity</dt><dd>LDAPS (Active Directory) + TOTP</dd></div>
+        <div><dt>Deliverables</dt><dd>Operations procedure + guide</dd></div>
+      </dl>
+    </aside>
+  </section>
+
+  <section id="context">
+    <div class="section-head"><h2>Context</h2></div>
+    <div class="prose">
+      <p>
+        Remote access to servers and workstations relied on AnyDesk. The goal: a single entry point
+        in the browser, with no client to install, authentication against the company directory,
+        multi-factor authentication and rights granted per scope.
+      </p>
+    </div>
+  </section>
+
+  <section id="architecture">
+    <div class="section-head">
+      <h2>Architecture</h2>
+      <p class="section-intro">Three containers on a DMZ server, with the directory as the source of truth.</p>
+    </div>
+    <figure class="diagram">
+      <div class="diagram-scroll">
+        <svg viewBox="0 0 1000 380" role="img" aria-labelledby="guac-title guac-desc">
+          <title id="guac-title">Guacamole gateway architecture</title>
+          <desc id="guac-desc">The user connects over HTTPS to the Guacamole web application, hosted with guacd and MariaDB in Docker Compose on a DMZ server. Guacamole checks identity and groups in Active Directory over LDAPS, asks for a TOTP code, then guacd opens the session to the RDS servers over RDP, with load balancing.</desc>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path class="dg-arrow" fill="#4b5b5a" d="M0 0 L10 5 L0 10 z"/>
+            </marker>
+          </defs>
+          <rect class="dg-group" fill="none" stroke="#0b6e8a" stroke-width="1.5" stroke-dasharray="8 6" x="250" y="20" width="440" height="290" rx="10"/>
+          <text class="dg-group-label" fill="#0b6e8a" font-size="12" x="675" y="298" text-anchor="end">DMZ · Docker Compose</text>
+
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="190" y1="90" x2="276" y2="90" marker-end="url(#arrow)"/>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="232" y="80" text-anchor="middle">HTTPS</text>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="440" y1="90" x2="516" y2="90" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="360" y1="120" x2="360" y2="226" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M600 120 V180 H790 V120" marker-end="url(#arrow)"/>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="745" y="172" text-anchor="middle">RDP</text>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M440 108 H480 V320 H696" marker-end="url(#arrow)"/>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="578" y="340" text-anchor="middle">LDAPS · read-only account</text>
+
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="20" y="60" width="170" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="105" y="86" text-anchor="middle">User</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="105" y="105" text-anchor="middle">web browser</text></g>
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="280" y="60" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="86" text-anchor="middle">Guacamole</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="105" text-anchor="middle">web · TOTP</text></g>
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="520" y="60" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="600" y="86" text-anchor="middle">guacd</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="600" y="105" text-anchor="middle">protocol gateway</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="280" y="230" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="256" text-anchor="middle">MariaDB</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="275" text-anchor="middle">connections, rights</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="700" y="56" width="180" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="790" y="82" text-anchor="middle">RDS servers</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="790" y="101" text-anchor="middle">load-balancing groups</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="700" y="290" width="160" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="780" y="316" text-anchor="middle">Active Directory</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="780" y="335" text-anchor="middle">GRP-GUAC-* groups</text></g>
+        </svg>
+      </div>
+      <figcaption>Conceptual diagram, server names and addresses removed.</figcaption>
+    </figure>
+  </section>
+
+  <section id="access">
+    <div class="section-head">
+      <h2>Access model</h2>
+      <p class="section-intro">One group in the directory, one group with the same name in Guacamole.</p>
+    </div>
+    <div class="two-col">
+      <div class="prose">
+        <p>
+          Each scope (RDS servers, a workshop's equipment…) maps to an AD security group named
+          <code>GRP-GUAC-&lt;SCOPE&gt;</code> and to a Guacamole group with exactly the same name.
+          The AD group holds the people, the Guacamole group holds the rights on the machines.
+        </p>
+        <p>
+          Day to day, everything happens in the Active Directory console: adding someone to the group opens
+          the machines to them, removing them closes access. A leaver processed in the directory automatically loses gateway access.
+        </p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Break-glass access</p>
+        <p>
+          One admin group was deliberately kept local, with no counterpart in the directory.
+          If Active Directory or the LDAPS link goes down, it is the only way left into the gateway.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="challenges">
+    <div class="section-head">
+      <h2>Challenges</h2>
+      <p class="section-intro">Silent traps, identified then documented for whoever comes next.</p>
+    </div>
+    <div class="grid-2">
+      <div class="callout">
+        <p class="col-title">Deletion bug in 1.6.0</p>
+        <p>Deleting a group from the interface returns "Unexpected error": the JDBC extension builds an SQL query missing an <code>AND</code> operator. Deletion is therefore done in the database, after a backup, by ID, with a final check of the related tables.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Invisible tree</p>
+        <p>Allowing a connection is not enough: every parent folder must be allowed too, and they are not ticked automatically. Otherwise the user signs in and sees nothing, with no error message.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Wrong directory queried</p>
+        <p>The MySQL extension loads before LDAP: an account that also exists locally never queries the directory. Troubleshooting therefore starts by checking for <code>authenticated by "ldap"</code> in the logs.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Failures without errors</p>
+        <p>A group name differing by one capital letter or a space, or a deletion by name with an accented character: the operation "succeeds" and does nothing. Hence the rules: copy-paste names and delete by ID.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="operations">
+    <div class="section-head"><h2>Operations</h2></div>
+    <ul class="result-list">
+      <li><span class="badge ok">Backup</span> Weekly automated backup via cron, plus a database export before any manual change.</li>
+      <li><span class="badge ok">Troubleshooting</span> A four-step checklist, in order, for the "user signs in but sees nothing" case.</li>
+      <li><span class="badge ok">Logs</span> Debug mode used only for troubleshooting and switched off straight after: it writes directory contents to the logs.</li>
+      <li><span class="badge wip">To watch</span> Expiry dates of the LDAPS certificates and the root authority: an expired certificate cuts authentication without warning.</li>
+      <li><span class="badge wip">Next step</span> Move the <code>GRP-GUAC-*</code> groups to a dedicated sub-OU so each sign-in no longer reads every group in the domain.</li>
+    </ul>
+    <p class="note">
+      Two documents delivered: a formal operations procedure and a simplified guide for the team.
+      When they were written (09/2026), the RDS servers group and the break-glass access were in place;
+      the other scopes were planned.
+    </p>
+  </section>
+
+  <nav class="next-case" aria-label="Another case study">
+    <a href="observability.html">
+      <span>Next case study</span>
+      <strong>Self-hosted observability stack →</strong>
+    </a>
+  </nav>
+
+</main>
+
+<footer class="wrap">
+  <div class="footer-inner">
+    <p>Thomas Jourda · Systems &amp; network technician · 2026</p>
+    <nav aria-label="Footer">
+      <a href="../../en/index.html#projects">Projects</a>
+      <a href="../../en/index.html#contact">Contact</a>
+      <a href="#top">Back to top ↑</a>
+    </nav>
+  </div>
+</footer>
+
+<a id="to-top" class="to-top" href="#top" aria-label="Back to top of page" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+<!-- BODY:END -->
+<script src="../../assets/main.js?v=20260924d"></script>
+</body>
+</html>

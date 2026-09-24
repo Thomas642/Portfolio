@@ -6,6 +6,9 @@
 <title>Thomas Jourda</title>
 <meta name="description" content="Portfolio de Thomas Jourda, technicien systèmes et réseaux, Bachelor ASR en alternance au CESI Pau. Windows Server, Active Directory, RDS, réseau Aruba, Stormshield, supervision.">
 <link rel="canonical" href="https://thomas642.github.io/Portfolio/">
+<link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/">
+<link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/">
+<link rel="alternate" hreflang="x-default" href="https://thomas642.github.io/Portfolio/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Thomas Jourda">
@@ -21,7 +24,7 @@
 <link rel="preload" href="assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="theme-color" content="#eef2f1" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
-<link rel="stylesheet" href="assets/style.css?v=20260924c">
+<link rel="stylesheet" href="assets/style.css?v=20260924d">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 </head>
@@ -30,7 +33,7 @@
 <a class="skip" href="#projets">Aller au contenu</a>
 <header class="topbar">
   <div class="wrap topbar-inner">
-    <a class="brand" href="#top" aria-label="Thomas Jourda, haut de page"><span class="mono-tag" aria-hidden="true">TJ</span>Thomas Jourda</a>
+    <a class="brand" href="#top" aria-label="Thomas Jourda, accueil du portfolio"><span class="mono-tag" aria-hidden="true">TJ</span>Thomas Jourda</a>
     <nav class="mainnav" aria-label="Sections">
       <a href="#projets">Projets</a>
       <a href="#experience">Expérience</a>
@@ -38,15 +41,19 @@
       <a href="#formation">Formation</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button id="theme-toggle" class="icon-btn" type="button" aria-label="Passer en thème sombre">
+    <div class="top-actions">
+      <a class="lang-switch" href="en/index.html" hreflang="en" lang="en" aria-label="English version">EN</a>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Passer en thème sombre">
       <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
       <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-    </button>
+      </button>
+    </div>
   </div>
   <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
 </header>
 
 <main id="top" class="wrap">
+
 
   <section class="hero">
     <div class="hero-text">
@@ -149,12 +156,13 @@
           <li>Sauvegarde hebdomadaire automatisée par cron</li>
         </ul>
         <ul class="stack"><li>Docker Compose</li><li>Guacamole</li><li>MariaDB</li><li>LDAP</li></ul>
-        <!-- <a class="repo" href="URL_DU_DEPOT">Voir le dépôt</a> -->
+        <a class="case-link" href="projets/guacamole.html">Lire l'étude de cas <span aria-hidden="true">→</span></a>
       </article>
 
       <article class="project" data-kind="perso">
         <p class="kind perso">Perso · VPS OVH</p>
         <h3>Stack d'observabilité auto-hébergée</h3>
+        <a class="thumb" href="projets/observabilite.html" tabindex="-1" aria-hidden="true"><img src="assets/img/grafana-securite.webp" width="1531" height="399" loading="lazy" decoding="async" alt=""></a>
         <p>Supervision complète d'un VPS Ubuntu : Prometheus, Grafana, Loki, Grafana Alloy, cAdvisor, node-exporter.</p>
         <ul class="points">
           <li>Accès protégé par tunnel Cloudflare Zero Trust avec OTP</li>
@@ -162,7 +170,7 @@
           <li>Dashboards maison : vue d'ensemble, logs / sécurité, carte des IP bannies par fail2ban (GeoLite2)</li>
         </ul>
         <ul class="stack"><li>Prometheus</li><li>Grafana</li><li>Loki</li><li>Cloudflare</li><li>fail2ban</li></ul>
-        <!-- <a class="repo" href="URL_DU_DEPOT">Voir le dépôt</a> -->
+        <a class="case-link" href="projets/observabilite.html">Lire l'étude de cas <span aria-hidden="true">→</span></a>
       </article>
 
       <article class="project" data-kind="ecole">
@@ -188,7 +196,6 @@
           <li>Diagnostic d'une incompatibilité clavier HID sur douchette code-barres en session RDP</li>
         </ul>
         <ul class="stack"><li>Linux Lite</li><li>Remmina</li><li>RDS</li><li>LightDM</li></ul>
-        <!-- <a class="repo" href="URL_DU_DEPOT">Voir le dépôt</a> -->
       </article>
 
     </div>
@@ -360,7 +367,6 @@
     <p>Thomas Jourda · Technicien systèmes &amp; réseaux · 2026</p>
     <nav aria-label="Pied de page">
       <a href="#projets">Projets</a>
-      <a href="#experience">Expérience</a>
       <a href="#contact">Contact</a>
       <a href="#top">Haut de page ↑</a>
     </nav>
@@ -371,6 +377,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 <!-- BODY:END -->
-<script src="assets/main.js?v=20260924c"></script>
+<script src="assets/main.js?v=20260924d"></script>
 </body>
 </html>
