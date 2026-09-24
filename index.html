@@ -13,16 +13,23 @@
 </head>
 <body>
 <!-- BODY:START -->
+<a class="skip" href="#projets">Aller au contenu</a>
 <header class="topbar">
   <div class="wrap topbar-inner">
-    <a class="brand" href="#top">Thomas Jourda</a>
-    <nav aria-label="Sections">
+    <a class="brand" href="#top" aria-label="Thomas Jourda, haut de page"><span class="mono-tag" aria-hidden="true">TJ</span>Thomas Jourda</a>
+    <nav class="mainnav" aria-label="Sections">
       <a href="#projets">Projets</a>
       <a href="#experience">Expérience</a>
       <a href="#competences">Compétences</a>
+      <a href="#formation">Formation</a>
       <a href="#contact">Contact</a>
     </nav>
+    <button id="theme-toggle" class="icon-btn" type="button" aria-label="Passer en thème sombre">
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
   </div>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
 </header>
 
 <main id="top" class="wrap">
@@ -53,6 +60,7 @@
         <div><dt>Mobilité</dt><dd>France entière · permis B, véhiculé</dd></div>
         <div><dt>Langues</dt><dd>Anglais B2 · Espagnol B1</dd></div>
       </dl>
+      <div class="barcode" aria-hidden="true"></div>
     </aside>
   </section>
 
@@ -65,9 +73,19 @@
 
   <!-- PROJETS -->
   <section id="projets">
-    <h2>Projets</h2>
+    <div class="section-head">
+      <h2>Projets</h2>
+      <p class="section-intro">En entreprise, en formation et sur mon propre serveur.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filtrer les projets">
+      <button type="button" class="filter" data-filter="all" aria-pressed="true">Tous</button>
+      <button type="button" class="filter" data-filter="pro" aria-pressed="false">Pro</button>
+      <button type="button" class="filter" data-filter="perso" aria-pressed="false">Perso</button>
+      <button type="button" class="filter" data-filter="ecole" aria-pressed="false">École</button>
+      <p id="filter-count" class="filter-count" aria-live="polite">6 projets</p>
+    </div>
 
-    <article class="project featured">
+    <article class="project featured" data-kind="pro">
       <div class="project-main">
         <p class="kind pro">Pro · mémoire de Bachelor ASR</p>
         <h3>Renouvellement de la commutation réseau d'un site industriel</h3>
@@ -105,7 +123,7 @@
 
     <div class="project-grid">
 
-      <article class="project">
+      <article class="project" data-kind="pro">
         <p class="kind pro">Pro · anonymisé</p>
         <h3>Passerelle d'accès distant Apache Guacamole</h3>
         <p>Remplacement d'AnyDesk par une passerelle Guacamole conteneurisée (guacd, MariaDB, Guacamole) sous Docker Compose.</p>
@@ -119,7 +137,7 @@
         <!-- <a class="repo" href="URL_DU_DEPOT">Voir le dépôt</a> -->
       </article>
 
-      <article class="project">
+      <article class="project" data-kind="perso">
         <p class="kind perso">Perso · VPS OVH</p>
         <h3>Stack d'observabilité auto-hébergée</h3>
         <p>Supervision complète d'un VPS Ubuntu : Prometheus, Grafana, Loki, Grafana Alloy, cAdvisor, node-exporter.</p>
@@ -132,7 +150,7 @@
         <!-- <a class="repo" href="URL_DU_DEPOT">Voir le dépôt</a> -->
       </article>
 
-      <article class="project">
+      <article class="project" data-kind="ecole">
         <p class="kind school">École · CESI</p>
         <h3>Refonte du SI d'une mairie multi-sites</h3>
         <p>
@@ -146,7 +164,7 @@
         <ul class="stack"><li>Hyper-V Replica</li><li>VPN IPsec</li><li>Sauvegarde 3-2-1</li><li>PCA / PRA</li></ul>
       </article>
 
-      <article class="project">
+      <article class="project" data-kind="pro">
         <p class="kind pro">Pro · anonymisé</p>
         <h3>Clients légers Linux sur Dell Wyse</h3>
         <p>Déploiement de Linux Lite sur Dell Wyse 3070 / 5070 avec accès RDS via Remmina et autologin LightDM.</p>
@@ -160,7 +178,7 @@
 
     </div>
 
-    <article class="project wide">
+    <article class="project wide" data-kind="perso">
       <div class="wide-head">
         <p class="kind perso">Perso · en production</p>
         <h3>BAKO, plateforme web d'une communauté de jeu</h3>
@@ -199,7 +217,10 @@
 
   <!-- EXPERIENCE -->
   <section id="experience">
-    <h2>Expérience</h2>
+    <div class="section-head">
+      <h2>Expérience</h2>
+      <p class="section-intro">Trois ans d'alternance, du dépannage terrain à l'administration d'un SI multi-sites.</p>
+    </div>
     <ol class="timeline">
       <li>
         <time>10/2025 – 09/2026</time>
@@ -252,7 +273,10 @@
 
   <!-- COMPETENCES -->
   <section id="competences">
-    <h2>Compétences</h2>
+    <div class="section-head">
+      <h2>Compétences</h2>
+      <p class="section-intro">Outils utilisés en entreprise, en formation ou sur mes projets.</p>
+    </div>
     <dl class="skills">
       <div><dt>Systèmes</dt><dd><ul class="chips"><li>Windows Server</li><li>RDS</li><li>FSLogix</li><li>Active Directory</li><li>GPO</li><li>Windows 10 / 11</li><li>Debian</li><li>Ubuntu</li><li>Linux Lite</li></ul></dd></div>
       <div><dt>Réseau</dt><dd><ul class="chips"><li>Routage</li><li>LAN / WAN</li><li>VLAN 802.1Q</li><li>VPN IPsec</li><li>Switchs Aruba</li><li>Wi-Fi</li><li>Cisco Packet Tracer</li></ul></dd></div>
@@ -265,7 +289,7 @@
   </section>
 
   <!-- FORMATION + PROFIL -->
-  <section class="split">
+  <section id="formation" class="split">
     <div>
       <h2>Formation</h2>
       <ol class="timeline slim">
@@ -286,8 +310,15 @@
 
   <!-- CONTACT -->
   <section id="contact" class="contact">
-    <h2>Contact</h2>
-    <p>Disponible à partir d'octobre 2026 pour un CDI ou un CDD en administration systèmes et réseaux, partout en France.</p>
+    <div class="contact-grid">
+      <div class="contact-pitch">
+        <h2>Contact</h2>
+        <p>Disponible à partir d'octobre 2026 pour un CDI ou un CDD en administration systèmes et réseaux, partout en France.</p>
+        <div class="cta">
+          <a class="btn primary" href="mailto:thomasjrd6453@gmail.com">Écrire un e-mail</a>
+          <a class="btn" href="https://www.linkedin.com/in/thomas-jourda-a65731283/">LinkedIn</a>
+        </div>
+      </div>
     <div class="contact-rows">
       <div class="contact-row">
         <span class="k">E-mail</span>
@@ -303,13 +334,26 @@
         <a class="v" href="https://www.linkedin.com/in/thomas-jourda-a65731283/">linkedin.com/in/thomas-jourda-a65731283</a>
       </div>
     </div>
+    </div>
   </section>
 
 </main>
 
 <footer class="wrap">
-  <p>Thomas Jourda · 2026</p>
+  <div class="footer-inner">
+    <p>Thomas Jourda · Technicien systèmes &amp; réseaux · 2026</p>
+    <nav aria-label="Pied de page">
+      <a href="#projets">Projets</a>
+      <a href="#experience">Expérience</a>
+      <a href="#contact">Contact</a>
+      <a href="#top">Haut de page ↑</a>
+    </nav>
+  </div>
 </footer>
+
+<a id="to-top" class="to-top" href="#top" aria-label="Revenir en haut de la page" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
 <!-- BODY:END -->
 <script src="assets/main.js"></script>
 </body>

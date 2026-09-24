@@ -7,7 +7,7 @@ Site vitrine statique (HTML/CSS/JS, sans framework ni build), pensé pour être 
 ```
 index.html          → la page du portfolio
 assets/style.css    → le style (DA « étiquette de baie », thème clair/sombre automatique)
-assets/main.js      → bouton « Copier » de l'adresse e-mail
+assets/main.js      → navigation (section active, progression, retour en haut), filtre des projets, thème clair/sombre, copie de l'e-mail
 profile/README.md   → README de profil GitHub, à copier dans le dépôt thomas642/thomas642
 ```
 
