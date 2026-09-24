@@ -1,5 +1,13 @@
 const root = document.documentElement;
 
+// ---------- Disponibilité : bascule automatique au 1er octobre 2026 ----------
+if (new Date() >= new Date(2026, 9, 1)) {
+  const DISPO = { court: "Immédiate", long: "Disponible immédiatement" };
+  document.querySelectorAll("[data-dispo]").forEach((el) => {
+    el.textContent = DISPO[el.dataset.dispo] || el.textContent;
+  });
+}
+
 // ---------- Thème clair / sombre ----------
 const themeBtn = document.getElementById("theme-toggle");
 const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
