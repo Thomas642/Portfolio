@@ -650,7 +650,7 @@ table.data .num { text-align: right; font-variant-numeric: tabular-nums; }
 .diagram svg { display: block; width: 100%; min-width: 760px; height: auto; font-family: var(--sans); }
 .diagram figcaption { margin-top: 10px; font-size: 0.85rem; color: var(--ink-2); }
 .dg-box rect { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.5; }
-.dg-core rect { fill: color-mix(in srgb, var(--accent) 14%, var(--surface)); stroke: var(--accent); stroke-width: 1.5; }
+.dg-core rect { fill: var(--surface-2); fill: color-mix(in srgb, var(--accent) 14%, var(--surface)); stroke: var(--accent); stroke-width: 1.5; }
 .dg-box text, .dg-core text { fill: var(--ink); font-size: 15px; font-weight: 600; }
 .dg-box .dg-sub, .dg-core .dg-sub, .dg-sub { fill: var(--ink-2); font-size: 12px; font-weight: 400; font-family: var(--mono); }
 .dg-small { fill: var(--ink-2); font-size: 12px; font-family: var(--mono); }
@@ -658,10 +658,10 @@ table.data .num { text-align: right; font-variant-numeric: tabular-nums; }
 .dg-deploy { stroke-dasharray: 6 5; }
 .dg-trunk { stroke: var(--accent); stroke-width: 4; stroke-linecap: round; }
 .dg-arrow { fill: var(--ink-2); }
-.dg-group { fill: color-mix(in srgb, var(--accent) 4%, transparent); stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 8 6; }
+.dg-group { fill: none; fill: color-mix(in srgb, var(--accent) 4%, transparent); stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 8 6; }
 .dg-group-label { fill: var(--accent); font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; }
 .dg-legend text { fill: var(--ink-2); font-size: 13px; }
-.dg-leg-core { fill: color-mix(in srgb, var(--accent) 14%, var(--surface)); stroke: var(--accent); stroke-width: 1.5; }
+.dg-leg-core { fill: var(--surface-2); fill: color-mix(in srgb, var(--accent) 14%, var(--surface)); stroke: var(--accent); stroke-width: 1.5; }
 .dg-leg-box { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.5; }
 
 /* Étude de cas suivante */
