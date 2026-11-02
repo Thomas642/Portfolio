@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://thomas642.github.io/Portfolio/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/"/>
   </url>
   <url>
     <loc>https://thomas642.github.io/Portfolio/en/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/"/>
   </url>
@@ -62,14 +62,26 @@
   </url>
   <url>
     <loc>https://thomas642.github.io/Portfolio/projets/kernelac.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/kernelac.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/kernelac.html"/>
   </url>
   <url>
     <loc>https://thomas642.github.io/Portfolio/en/projects/kernelac.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-11-02</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/kernelac.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/kernelac.html"/>
+  </url>
+  <url>
+    <loc>https://thomas642.github.io/Portfolio/projets/deploiement.html</loc>
+    <lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/deploiement.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/deployment.html"/>
+  </url>
+  <url>
+    <loc>https://thomas642.github.io/Portfolio/en/projects/deployment.html</loc>
+    <lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/deploiement.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/deployment.html"/>
   </url>
 </urlset>

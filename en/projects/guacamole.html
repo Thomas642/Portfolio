@@ -24,7 +24,7 @@
 <link rel="preload" href="../../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="theme-color" content="#eef2f1" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
-<link rel="stylesheet" href="../../assets/style.css?v=20260924g">
+<link rel="stylesheet" href="../../assets/style.css?v=20261102a">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
 </head>
@@ -96,7 +96,7 @@
       <p class="section-intro">Three containers on a DMZ server, with the directory as the source of truth.</p>
     </div>
     <figure class="diagram">
-      <div class="diagram-scroll">
+      <div class="diagram-scroll" tabindex="0">
         <svg viewBox="0 0 1000 380" role="img" aria-labelledby="guac-title guac-desc">
           <title id="guac-title">Guacamole gateway architecture</title>
           <desc id="guac-desc">The user connects over HTTPS to the Guacamole web application, hosted with guacd and MariaDB in Docker Compose on a DMZ server. Guacamole checks identity and groups in Active Directory over LDAPS, asks for a TOTP code, then guacd opens the session to production workstations and systems or, for vendors, to the company's RDS servers over RDP.</desc>
@@ -228,6 +228,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 <!-- BODY:END -->
-<script src="../../assets/main.js?v=20260924g"></script>
+<script src="../../assets/main.js?v=20261102a"></script>
 </body>
 </html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Workstation deployment server · Thomas Jourda</title>
+<meta name="description" content="Case study: a WDS + MDT server on Windows Server 2022 that automates workstation preparation at Smart Rx, from 30 to 3-4 minutes of technician time per machine.">
+<link rel="canonical" href="https://thomas642.github.io/Portfolio/en/projects/deployment.html">
+<link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/deploiement.html">
+<link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/deployment.html">
+<link rel="alternate" hreflang="x-default" href="https://thomas642.github.io/Portfolio/projets/deploiement.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Thomas Jourda">
+<meta property="og:title" content="Automated workstation deployment server">
+<meta property="og:description" content="WDS, MDT, DHCP and NAT on Windows Server 2022: 7 workstations deployed in parallel. A case study by Thomas Jourda.">
+<meta property="og:url" content="https://thomas642.github.io/Portfolio/en/projects/deployment.html">
+<meta property="og:image" content="https://thomas642.github.io/Portfolio/assets/og-image-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Thomas Jourda, systems and network technician">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="../../assets/fonts/barlow-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="theme-color" content="#eef2f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../../assets/style.css?v=20261102a">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+</head>
+<body>
+<!-- BODY:START -->
+<a class="skip" href="#context">Skip to content</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="../../en/index.html" aria-label="Thomas Jourda, portfolio home"><span class="mono-tag" aria-hidden="true">TJ</span>Thomas Jourda</a>
+    <nav class="mainnav" aria-label="Sections">
+      <a href="#context">Context</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#masters">Masters</a>
+      <a href="#results">Results</a>
+      <a href="#operations">Operations</a>
+    </nav>
+    <div class="top-actions">
+      <a class="lang-switch" href="../../projets/deploiement.html" hreflang="fr" lang="fr" aria-label="Version française">FR</a>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch to dark theme">
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+</header>
+
+<main id="top" class="wrap case">
+
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="../../en/index.html#projects">← All projects</a>
+  </nav>
+  <section class="case-hero">
+    <div>
+      <p class="kind pro">Work · Smart Rx · GMSI final project</p>
+      <h1>Automated workstation deployment server</h1>
+      <p class="lead">
+        Technicians prepared every workstation by hand before installing it at a pharmacy.
+        I built a WDS + MDT server on reclaimed hardware: a workstation plugged into the bench
+        boots from the network and comes out with its system, drivers and software.
+      </p>
+    </div>
+    <aside class="asset-tag" aria-label="Project sheet">
+      <p class="tag-head"><span>PROJECT SHEET</span><span>GMSI PROJECT</span></p>
+      <dl>
+        <div><dt>Company</dt><dd>Smart Rx, a Cegedim subsidiary</dd></div>
+        <div><dt>Setting</dt><dd>GMSI work-study · CESI Pau</dd></div>
+        <div><dt>Role</dt><dd>Project owner, from analysis to go-live</dd></div>
+        <div><dt>Serveur</dt><dd>Windows Server 2022</dd></div>
+        <div><dt>Deliverable</dt><dd>108-page report, including 8 procedure appendices</dd></div>
+      </dl>
+    </aside>
+  </section>
+
+  <ul class="stats" aria-label="Key figures">
+    <li><strong>3–4</strong><span>minutes of technician time per workstation, down from 30</span></li>
+    <li><strong>7</strong><span>workstations deployed at the same time</span></li>
+    <li><strong>15</strong><span>minutes for a full deployment</span></li>
+    <li><strong>€0</strong><span>of new hardware: everything is reclaimed</span></li>
+  </ul>
+
+  <section id="context">
+    <div class="section-head">
+      <h2>Context</h2>
+      <p class="section-intro">A daily task, done entirely by hand.</p>
+    </div>
+    <div class="prose">
+      <p>
+        Smart Rx develops and installs IT tools for pharmacies: pharmacy management software,
+        workstations, servers, networking, video surveillance. Before each installation, the branch's technicians
+        prepare the workstations. This was done one machine at a time, with no automation server.
+      </p>
+    </div>
+    <ul class="issue-grid">
+      <li><strong>Time</strong><span>About 30 minutes per workstation, with a technician tied up from start to finish.</span></li>
+      <li><strong>Errors</strong><span>Manual, repetitive configuration, so steps could be missed.</span></li>
+      <li><strong>Inconsistency</strong><span>Preparation that varied with the technician doing it.</span></li>
+      <li><strong>Availability</strong><span>Less time for support, installations and preparing other equipment.</span></li>
+    </ul>
+  </section>
+
+  <section id="architecture">
+    <div class="section-head">
+      <h2>Architecture</h2>
+      <p class="section-intro">A server with two network cards, between the company network and the deployment bench.</p>
+    </div>
+    <figure class="diagram">
+      <div class="diagram-scroll" tabindex="0">
+        <svg viewBox="0 0 1000 400" role="img" aria-labelledby="dep-title dep-desc">
+          <title id="dep-title">Deployment server architecture</title>
+          <desc id="dep-desc">The Windows Server 2022 server has two network cards. The first is connected to the company network, which provides Internet access. Routing and NAT link it to the second card, which serves the deployment bench through a 24-port switch where up to seven workstations are plugged in. The server hosts DHCP with the PXE options, WDS for network boot, MDT with the masters and task sequences, plus backup and scheduled tasks.</desc>
+          <rect class="dg-group" fill="none" stroke="#0b6e8a" stroke-width="1.5" stroke-dasharray="8 6" x="240" y="20" width="460" height="360" rx="10"/>
+          <text class="dg-group-label" fill="#0b6e8a" font-size="12" x="685" y="368" text-anchor="end">SERVER · WINDOWS SERVER 2022</text>
+
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="200" y1="75" x2="260" y2="75"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="360" y1="100" x2="360" y2="120"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M460 145 H470 V285 H480"/>
+          <line class="dg-trunk" stroke="#0b6e8a" stroke-width="4" stroke-linecap="round" x1="680" y1="285" x2="740" y2="285"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M860 285 H875 V145 H890 M875 285 H890 M875 285 V355 H890"/>
+
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="20" y="45" width="180" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="110" y="70" text-anchor="middle">Company network</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="110" y="89" text-anchor="middle">Internet · DNS</text></g>
+
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="260" y="50" width="200" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="72" text-anchor="middle">Card 1</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="90" text-anchor="middle">company side</text></g>
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="260" y="120" width="200" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="142" text-anchor="middle">Routing + NAT</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="160" text-anchor="middle">RRAS</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="260" y="190" width="200" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="212" text-anchor="middle">Backup</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="230" text-anchor="middle">full server · 500 GB</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="260" y="260" width="200" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="282" text-anchor="middle">Scheduled tasks</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="300" text-anchor="middle">cleanup · restart</text></g>
+
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="480" y="50" width="200" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="580" y="72" text-anchor="middle">DHCP</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="580" y="90" text-anchor="middle">options 003 · 060 · 066</text></g>
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="480" y="120" width="200" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="580" y="142" text-anchor="middle">WDS</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="580" y="160" text-anchor="middle">PXE boot</text></g>
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="480" y="190" width="200" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="580" y="212" text-anchor="middle">MDT</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="580" y="230" text-anchor="middle">masters · task sequences</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="480" y="260" width="200" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="580" y="282" text-anchor="middle">Card 2</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="580" y="300" text-anchor="middle">deployment bench</text></g>
+
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="740" y="260" width="120" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="800" y="282" text-anchor="middle">Switch</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="800" y="300" text-anchor="middle">24 ports</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="890" y="120" width="95" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="937" y="150" text-anchor="middle">Workstation</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="890" y="260" width="95" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="937" y="290" text-anchor="middle">Workstation</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="890" y="330" width="95" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="937" y="360" text-anchor="middle">Workstation</text></g>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="937" y="222" text-anchor="middle">up to 7</text>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="937" y="240" text-anchor="middle">in parallel</text>
+        </svg>
+      </div>
+      <figcaption>Outline diagram. The server acts as a gateway: bench workstations get their address from DHCP and reach the Internet through NAT.</figcaption>
+    </figure>
+  </section>
+
+  <section id="workflow">
+    <div class="section-head">
+      <h2>Deploying a workstation</h2>
+      <p class="section-intro">The technician only steps in at the start: the rest runs on its own.</p>
+    </div>
+    <ol class="flow">
+      <li><em class="who tech">Technician</em><strong>Network boot</strong><span>The workstation is plugged into the bench and booted from the network (PXE).</span></li>
+      <li><em class="who auto">Automatic</em><strong>IP address</strong><span>DHCP hands out an address and points to the boot server (options 060 and 066) and the gateway (003).</span></li>
+      <li><em class="who auto">Automatic</em><strong>Boot image</strong><span>WDS sends the LiteTouch Windows PE boot image generated by MDT.</span></li>
+      <li><em class="who auto">Automatic</em><strong>Connection</strong><span><code>Bootstrap.ini</code> provides the <code>DeploymentShare$</code> path and the access account: no credentials to type.</span></li>
+      <li><em class="who tech">Technician</em><strong>MDT wizard</strong><span>The technician picks the task sequence for the workstation model; the other questions are hidden by <code>CustomSettings.ini</code>.</span></li>
+      <li><em class="who auto">Automatic</em><strong>Master</strong><span>The sequence applies the model's image: system, drivers, applications and settings.</span></li>
+    </ol>
+    <div class="two-col config">
+      <div>
+        <p class="col-title">CustomSettings.ini · rules</p>
+<pre class="code" tabindex="0"><code>[Default]
+OSInstall=Y
+SkipCapture=YES
+SkipAdminPassword=YES
+SkipProductKey=YES
+SkipComputerBackup=YES
+SkipBitLocker=YES
+SkipUserData=YES
+SkipMoveData=YES</code></pre>
+      </div>
+      <div>
+        <p class="col-title">What these rules skip</p>
+        <ul class="points">
+          <li>choosing the administrator password</li>
+          <li>capturing an image of the workstation</li>
+          <li>the Windows product key prompt</li>
+          <li>the backup before deployment</li>
+          <li>enabling BitLocker</li>
+          <li>user data migration</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="masters">
+    <div class="section-head">
+      <h2>Capturing the masters</h2>
+      <p class="section-intro">The main challenge of the project.</p>
+    </div>
+    <div class="two-col">
+      <div class="prose">
+        <p>
+          A master is the reference image of a workstation model: Windows up to date, applications installed, settings done.
+          I first inventoried the models used at customer sites, then prepared one workstation of each model.
+        </p>
+        <p>
+          Capture through MDT failed every time on these workstations, probably because of their BIOS settings.
+          So I built a Windows PE USB key with the ADK (<code>copype</code>, <code>MakeWinPEMedia</code>) and captured
+          each workstation with DISM, then imported the images into MDT.
+        </p>
+      </div>
+      <div>
+        <p class="col-title">Capture from Windows PE</p>
+<pre class="code" tabindex="0"><code>Dism /Capture-Image
+  /ImageFile:"C:\WIMFiles\MonImage.wim"
+  /CaptureDir:C:
+  /Name:"Windows 10"
+  /Compress:max</code></pre>
+        <p class="lesson">
+          <span>Lesson learned</span>
+          My initial schedule covered 8 weeks and left out many intermediate steps.
+          I rebuilt it along the way to match reality.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="results">
+    <div class="section-head">
+      <h2>Results</h2>
+      <p class="section-intro">Measured on the time the technician spends at the workstation.</p>
+    </div>
+    <figure class="compare">
+      <figcaption class="col-title">Technician time per workstation</figcaption>
+      <div class="bar-row">
+        <span class="bar-label">Manual preparation</span>
+        <span class="bar-track"><span class="bar muted" style="width:100%"></span></span>
+        <span class="bar-val">≈ 30 min</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Deployment server</span>
+        <span class="bar-track"><span class="bar" style="width:13%"></span></span>
+        <span class="bar-val">3 to 4 min</span>
+      </div>
+      <p class="note">A full deployment takes 15 minutes and up to 7 workstations go through at once. Meanwhile, the technician works on something else.</p>
+    </figure>
+    <div class="feature-grid">
+      <div class="callout">
+        <p class="col-title">In production</p>
+        <p>Put into production on 17 February after sign-off with the technicians, the server is used daily by the team.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Testing</p>
+        <p>Connectivity checked with ping, a deployment on each workstation model, then a real-conditions run with 7 machines in parallel.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Cost</p>
+        <p>No purchases: reclaimed server and switches. Measured consumption of 8.4 kWh per day, or €45.36 of energy per month.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="exploitation">
+    <div class="section-head">
+      <h2>Operations</h2>
+      <p class="section-intro">A server that maintains itself before the technicians arrive.</p>
+    </div>
+    <ol class="timeline">
+      <li><time>04:30 · every 2 days</time><div><h3>Backup cleanup</h3><p>A batch script deletes the old backup: the 500 GB disk can only hold two.</p></div></li>
+      <li><time>05:00 · daily</time><div><h3>Full server backup</h3><p>Windows Server Backup to a dedicated disk: the whole server can be restored.</p></div></li>
+      <li><time>07:30 · daily</time><div><h3>Scheduled restart</h3><p><code>shutdown /r /f /t 60</code>: applies pending updates and restarts services.</p></div></li>
+      <li><time>08:00</time><div><h3>Technicians arrive</h3><p>The server is ready for the day.</p></div></li>
+    </ol>
+    <div class="two-col">
+      <div class="callout">
+        <p class="col-title">Follow-up</p>
+        <p>Regular checks for the rest of my degree: deployment errors, server updates, masters kept current.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Next steps</p>
+        <p>PowerShell scripts to install applications and run Windows Update, BIOS automation with the supplier, server monitoring, and full documentation so other branches can build the same server.</p>
+      </div>
+    </div>
+  </section>
+
+  <nav class="next-case" aria-label="Another case study">
+    <a href="leon.html">
+      <span>Next case study</span>
+      <strong>Network switching overhaul at an industrial site →</strong>
+    </a>
+  </nav>
+
+</main>
+
+<footer class="wrap">
+  <div class="footer-inner">
+    <p>Thomas Jourda · Systems &amp; network technician · 2026</p>
+    <nav aria-label="Footer">
+      <a href="../../en/index.html#projects">Projects</a>
+      <a href="../../en/index.html#contact">Contact</a>
+      <a href="#top">Back to top ↑</a>
+    </nav>
+  </div>
+</footer>
+
+<a id="to-top" class="to-top" href="#top" aria-label="Back to top of page" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+<!-- BODY:END -->
+<script src="../../assets/main.js?v=20261102a"></script>
+</body>
+</html>

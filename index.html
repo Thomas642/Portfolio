@@ -24,7 +24,7 @@
 <link rel="preload" href="assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="theme-color" content="#eef2f1" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
-<link rel="stylesheet" href="assets/style.css?v=20260924g">
+<link rel="stylesheet" href="assets/style.css?v=20261102a">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 </head>
@@ -199,6 +199,19 @@
         <ul class="stack"><li>Linux Lite</li><li>Remmina</li><li>RDS</li><li>LightDM</li></ul>
       </article>
 
+      <article class="project" data-kind="pro">
+        <p class="kind pro">Pro · Smart Rx · PFE GMSI</p>
+        <h3>Serveur de déploiement automatisé des postes</h3>
+        <p>Serveur Windows Server 2022 sur matériel de récupération : un poste branché au banc démarre en PXE et reçoit son master via WDS et MDT.</p>
+        <ul class="points">
+          <li>DHCP avec options PXE, routage et NAT entre deux cartes réseau</li>
+          <li>Masters capturés avec Windows PE et DISM, séquences de tâches MDT</li>
+          <li>3 à 4 minutes de technicien par poste au lieu de 30, 7 postes en parallèle</li>
+        </ul>
+        <ul class="stack"><li>WDS</li><li>MDT</li><li>Windows PE</li><li>DHCP</li><li>NAT</li></ul>
+        <a class="case-link" href="projets/deploiement.html">Lire l'étude de cas <span aria-hidden="true">→</span></a>
+      </article>
+
     </div>
 
     <article class="project wide" data-kind="perso">
@@ -271,6 +284,7 @@
             <li>Point de vente : postes Windows, terminaux bancaires, Sésame-Vitale</li>
             <li>Caméras de vidéosurveillance, étiquettes électroniques Pricer</li>
             <li>Réseau : switchs, 4G, Wi-Fi</li>
+            <li>Projet de fin d'études : <a href="projets/deploiement.html">serveur de déploiement WDS / MDT</a></li>
           </ul>
         </div>
       </li>
@@ -302,7 +316,7 @@
       <p class="section-intro">Outils utilisés en entreprise, en formation ou sur mes projets.</p>
     </div>
     <dl class="skills">
-      <div><dt>Systèmes</dt><dd><ul class="chips"><li>Windows Server</li><li>RDS</li><li>FSLogix</li><li>Active Directory</li><li>GPO</li><li>Windows 10 / 11</li><li>Debian</li><li>Ubuntu</li><li>Linux Lite</li></ul></dd></div>
+      <div><dt>Systèmes</dt><dd><ul class="chips"><li>Windows Server</li><li>RDS</li><li>FSLogix</li><li>Active Directory</li><li>GPO</li><li>Windows 10 / 11</li><li>WDS / MDT</li><li>Debian</li><li>Ubuntu</li><li>Linux Lite</li></ul></dd></div>
       <div><dt>Réseau</dt><dd><ul class="chips"><li>Routage</li><li>LAN / WAN</li><li>VLAN 802.1Q</li><li>VPN IPsec</li><li>Switchs Aruba</li><li>Wi-Fi</li><li>Cisco Packet Tracer</li></ul></dd></div>
       <div><dt>Sécurité</dt><dd><ul class="chips"><li>Stormshield</li><li>MFA / TOTP</li><li>Cloudflare Zero Trust</li><li>Durcissement SSH</li><li>fail2ban</li></ul></dd></div>
       <div><dt>Virtualisation &amp; conteneurs</dt><dd><ul class="chips"><li>Docker</li><li>Docker Compose</li><li>VMware</li><li>VPS OVH</li><li>Apache Guacamole</li><li>MariaDB</li><li>Nginx</li></ul></dd></div>
@@ -378,6 +392,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 <!-- BODY:END -->
-<script src="assets/main.js?v=20260924g"></script>
+<script src="assets/main.js?v=20261102a"></script>
 </body>
 </html>
