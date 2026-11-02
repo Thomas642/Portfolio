@@ -86,7 +86,7 @@ body {
 }
 
 a { color: var(--accent); text-underline-offset: 3px; }
-a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex="0"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 code { font-family: var(--mono); font-size: 0.86em; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
 ::selection { background: color-mix(in srgb, var(--accent) 28%, transparent); }
 
@@ -752,3 +752,13 @@ pre.code code { background: none; padding: 0; font-size: inherit; }
 .bar.muted { background: var(--line-strong); }
 .bar-val { font-family: var(--mono); font-size: 0.86rem; text-align: right; font-variant-numeric: tabular-nums; }
 @media (max-width: 520px) { .bar-row { grid-template-columns: minmax(0, 1fr) 5rem; } .bar-label { grid-column: 1 / -1; } }
+
+/* Menu « Écrire un e-mail » : application, Gmail, Outlook ou copie */
+.mail-menu { position: relative; }
+.mail-menu > summary { list-style: none; }
+.mail-menu > summary::-webkit-details-marker { display: none; }
+.mail-menu > summary::after { content: ""; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .15s; }
+.mail-menu[open] > summary::after { transform: translateY(2px) rotate(-135deg); }
+.mail-pop { position: absolute; z-index: 20; top: calc(100% + 6px); left: 0; min-width: 240px; display: flex; flex-direction: column; padding: 6px; background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--r); box-shadow: var(--shadow); }
+.mail-pop a, .mail-pop button { display: block; width: 100%; text-align: left; padding: 10px 12px; border: 0; border-radius: 6px; background: none; color: var(--ink); font: 500 0.93rem var(--sans); text-decoration: none; cursor: pointer; }
+.mail-pop a:hover, .mail-pop button:hover, .mail-pop a:focus-visible, .mail-pop button:focus-visible { background: var(--surface-2); }
