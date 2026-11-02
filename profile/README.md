@@ -33,6 +33,11 @@ Cartographie de l'existant, pré-configuration sur Instant On (nommage, VLANs, I
 Étude de cas en tant que responsable informatique : 79 agents sur 12 sites. Plan de déploiement (adressage, AD/GPO, Hyper-V deux sites avec réplication, maquette Packet Tracer, 63 tests unitaires) puis maintien et sécurisation (écarts ANSSI/RGPD/NIS2, PCA, PRA, PSSI).
 → [Lire l'étude de cas](https://thomas642.github.io/Portfolio/projets/kernelac.html)
 
+### 🚀 Serveur de déploiement automatisé des postes (pro, PFE GMSI chez Smart Rx)
+Windows Server 2022 sur matériel de récupération : DHCP avec options PXE, routage/NAT entre deux cartes réseau, WDS et MDT (masters capturés avec Windows PE et DISM).
+3 à 4 minutes de technicien par poste au lieu de 30, jusqu'à 7 postes déployés en parallèle.
+→ [Lire l'étude de cas](https://thomas642.github.io/Portfolio/projets/deploiement.html)
+
 ### 🔭 Stack d'observabilité auto-hébergée (VPS perso)
 Supervision complète d'un VPS Ubuntu : Prometheus, Grafana, Loki, Alloy, cAdvisor, node-exporter.
 Accès protégé par tunnel Cloudflare Zero Trust avec OTP, SSH durci (clé ed25519, mot de passe désactivé).

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Serveur de déploiement des postes · Thomas Jourda</title>
+<meta name="description" content="Étude de cas : un serveur WDS + MDT sous Windows Server 2022 qui automatise la préparation des postes chez Smart Rx, de 30 à 3-4 minutes de technicien par poste.">
+<link rel="canonical" href="https://thomas642.github.io/Portfolio/projets/deploiement.html">
+<link rel="alternate" hreflang="fr" href="https://thomas642.github.io/Portfolio/projets/deploiement.html">
+<link rel="alternate" hreflang="en" href="https://thomas642.github.io/Portfolio/en/projects/deployment.html">
+<link rel="alternate" hreflang="x-default" href="https://thomas642.github.io/Portfolio/projets/deploiement.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Thomas Jourda">
+<meta property="og:title" content="Serveur de déploiement automatisé des postes">
+<meta property="og:description" content="WDS, MDT, DHCP et NAT sur Windows Server 2022 : 7 postes déployés en parallèle. Étude de cas de Thomas Jourda.">
+<meta property="og:url" content="https://thomas642.github.io/Portfolio/projets/deploiement.html">
+<meta property="og:image" content="https://thomas642.github.io/Portfolio/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Thomas Jourda, technicien systèmes et réseaux">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="../assets/fonts/barlow-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="theme-color" content="#eef2f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/style.css?v=20261102a">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+</head>
+<body>
+<!-- BODY:START -->
+<a class="skip" href="#contexte">Aller au contenu</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="../index.html" aria-label="Thomas Jourda, accueil du portfolio"><span class="mono-tag" aria-hidden="true">TJ</span>Thomas Jourda</a>
+    <nav class="mainnav" aria-label="Sections">
+      <a href="#contexte">Contexte</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#deroulement">Déroulement</a>
+      <a href="#masters">Masters</a>
+      <a href="#resultats">Résultats</a>
+      <a href="#exploitation">Exploitation</a>
+    </nav>
+    <div class="top-actions">
+      <a class="lang-switch" href="../en/projects/deployment.html" hreflang="en" lang="en" aria-label="English version">EN</a>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Passer en thème sombre">
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+</header>
+
+<main id="top" class="wrap case">
+
+  <nav class="crumbs" aria-label="Fil d'Ariane">
+    <a href="../index.html#projets">← Tous les projets</a>
+  </nav>
+  <section class="case-hero">
+    <div>
+      <p class="kind pro">Pro · Smart Rx · projet de fin d'études GMSI</p>
+      <h1>Serveur de déploiement automatisé des postes</h1>
+      <p class="lead">
+        Les techniciens préparaient chaque poste à la main avant de l'installer en pharmacie.
+        J'ai monté un serveur WDS + MDT sur du matériel de récupération : un poste branché au banc
+        démarre sur le réseau et repart avec son système, ses pilotes et ses logiciels.
+      </p>
+    </div>
+    <aside class="asset-tag" aria-label="Fiche du projet">
+      <p class="tag-head"><span>FICHE PROJET</span><span>PFE GMSI</span></p>
+      <dl>
+        <div><dt>Entreprise</dt><dd>Smart Rx, filiale de Cegedim</dd></div>
+        <div><dt>Cadre</dt><dd>Alternance GMSI · CESI Pau</dd></div>
+        <div><dt>Rôle</dt><dd>Porteur du projet, de l'analyse à la mise en production</dd></div>
+        <div><dt>Serveur</dt><dd>Windows Server 2022</dd></div>
+        <div><dt>Livrable</dt><dd>Dossier de 108 pages, dont 8 annexes de procédures</dd></div>
+      </dl>
+    </aside>
+  </section>
+
+  <ul class="stats" aria-label="Chiffres clés">
+    <li><strong>3–4</strong><span>minutes de présence du technicien par poste, contre 30 avant</span></li>
+    <li><strong>7</strong><span>postes déployés en même temps</span></li>
+    <li><strong>15</strong><span>minutes pour un déploiement complet</span></li>
+    <li><strong>0 €</strong><span>de matériel neuf : tout est récupéré</span></li>
+  </ul>
+
+  <section id="contexte">
+    <div class="section-head">
+      <h2>Contexte</h2>
+      <p class="section-intro">Une tâche quotidienne, entièrement manuelle.</p>
+    </div>
+    <div class="prose">
+      <p>
+        Smart Rx développe et installe les outils informatiques des pharmacies : logiciel de gestion d'officine,
+        postes, serveurs, réseau, vidéosurveillance. Avant chaque installation, les techniciens de l'agence
+        préparent les postes de travail. Cette préparation se faisait poste par poste, sans serveur d'automatisation.
+      </p>
+    </div>
+    <ul class="issue-grid">
+      <li><strong>Temps</strong><span>Environ 30 minutes par poste, avec un technicien mobilisé du début à la fin.</span></li>
+      <li><strong>Erreurs</strong><span>Une configuration manuelle et répétitive, donc des oublis possibles.</span></li>
+      <li><strong>Hétérogénéité</strong><span>Une préparation qui varie selon le technicien qui s'en charge.</span></li>
+      <li><strong>Disponibilité</strong><span>Moins de temps pour le SAV, les installations et la préparation des autres équipements.</span></li>
+    </ul>
+  </section>
+
+  <section id="architecture">
+    <div class="section-head">
+      <h2>Architecture</h2>
+      <p class="section-intro">Un serveur à deux cartes réseau, entre le réseau de l'entreprise et le banc de déploiement.</p>
+    </div>
+    <figure class="diagram">
+      <div class="diagram-scroll" tabindex="0">
+        <svg viewBox="0 0 1000 400" role="img" aria-labelledby="dep-title dep-desc">
+          <title id="dep-title">Architecture du serveur de déploiement</title>
+          <desc id="dep-desc">Le serveur Windows Server 2022 a deux cartes réseau. La première est reliée au réseau de l'entreprise, qui fournit l'accès à Internet. Le routage et le NAT relient cette carte à la seconde, qui dessert le banc de déploiement par un switch 24 ports où se branchent jusqu'à sept postes. Le serveur héberge le DHCP avec les options PXE, WDS pour le démarrage réseau, MDT avec les masters et les séquences de tâches, ainsi que la sauvegarde et les tâches planifiées.</desc>
+          <rect class="dg-group" fill="none" stroke="#0b6e8a" stroke-width="1.5" stroke-dasharray="8 6" x="240" y="20" width="460" height="360" rx="10"/>
+          <text class="dg-group-label" fill="#0b6e8a" font-size="12" x="685" y="368" text-anchor="end">SERVEUR · WINDOWS SERVER 2022</text>
+
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="200" y1="75" x2="260" y2="75"/>
+          <line class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" x1="360" y1="100" x2="360" y2="120"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M460 145 H470 V285 H480"/>
+          <line class="dg-trunk" stroke="#0b6e8a" stroke-width="4" stroke-linecap="round" x1="680" y1="285" x2="740" y2="285"/>
+          <path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.6" d="M860 285 H875 V145 H890 M875 285 H890 M875 285 V355 H890"/>
+
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="20" y="45" width="180" height="60" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="110" y="70" text-anchor="middle">Réseau entreprise</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="110" y="89" text-anchor="middle">Internet · DNS</text></g>
+
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="260" y="50" width="200" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="72" text-anchor="middle">Carte 1</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="90" text-anchor="middle">côté entreprise</text></g>
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="260" y="120" width="200" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="142" text-anchor="middle">Routage + NAT</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="160" text-anchor="middle">RRAS</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="260" y="190" width="200" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="212" text-anchor="middle">Sauvegarde</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="230" text-anchor="middle">serveur complet · 500 Go</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="260" y="260" width="200" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="360" y="282" text-anchor="middle">Tâches planifiées</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="360" y="300" text-anchor="middle">nettoyage · redémarrage</text></g>
+
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="480" y="50" width="200" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="580" y="72" text-anchor="middle">DHCP</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="580" y="90" text-anchor="middle">options 003 · 060 · 066</text></g>
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="480" y="120" width="200" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="580" y="142" text-anchor="middle">WDS</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="580" y="160" text-anchor="middle">démarrage PXE</text></g>
+          <g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="480" y="190" width="200" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="580" y="212" text-anchor="middle">MDT</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="580" y="230" text-anchor="middle">masters · task sequences</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="480" y="260" width="200" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="580" y="282" text-anchor="middle">Carte 2</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="580" y="300" text-anchor="middle">banc de déploiement</text></g>
+
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="740" y="260" width="120" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="800" y="282" text-anchor="middle">Switch</text><text class="dg-sub" fill="#4b5b5a" font-size="12" x="800" y="300" text-anchor="middle">24 ports</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="890" y="120" width="95" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="937" y="150" text-anchor="middle">Poste</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="890" y="260" width="95" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="937" y="290" text-anchor="middle">Poste</text></g>
+          <g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="890" y="330" width="95" height="50" rx="6"/><text fill="#152120" font-size="15" font-weight="600" x="937" y="360" text-anchor="middle">Poste</text></g>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="937" y="222" text-anchor="middle">jusqu'à 7</text>
+          <text class="dg-small" fill="#4b5b5a" font-size="12" x="937" y="240" text-anchor="middle">en parallèle</text>
+        </svg>
+      </div>
+      <figcaption>Schéma de principe. Le serveur sert de passerelle : les postes du banc reçoivent leur adresse du DHCP et accèdent à Internet par le NAT.</figcaption>
+    </figure>
+  </section>
+
+  <section id="deroulement">
+    <div class="section-head">
+      <h2>Le déploiement d'un poste</h2>
+      <p class="section-intro">Le technicien n'intervient qu'au début : le reste s'enchaîne seul.</p>
+    </div>
+    <ol class="flow">
+      <li><em class="who tech">Technicien</em><strong>Démarrage réseau</strong><span>Le poste est branché au banc et démarré sur le réseau (PXE).</span></li>
+      <li><em class="who auto">Automatique</em><strong>Adresse IP</strong><span>Le DHCP attribue une adresse et indique le serveur de démarrage (options 060 et 066) et la passerelle (003).</span></li>
+      <li><em class="who auto">Automatique</em><strong>Environnement</strong><span>WDS envoie l'image de démarrage LiteTouch Windows PE générée par MDT.</span></li>
+      <li><em class="who auto">Automatique</em><strong>Connexion</strong><span><code>Bootstrap.ini</code> donne le chemin du partage <code>DeploymentShare$</code> et le compte d'accès : aucun identifiant à saisir.</span></li>
+      <li><em class="who tech">Technicien</em><strong>Assistant MDT</strong><span>Le technicien choisit la séquence de tâches du modèle de poste ; les autres questions sont masquées par <code>CustomSettings.ini</code>.</span></li>
+      <li><em class="who auto">Automatique</em><strong>Master</strong><span>La séquence applique l'image du modèle de poste : système, pilotes, applications et paramètres.</span></li>
+    </ol>
+    <div class="two-col config">
+      <div>
+        <p class="col-title">CustomSettings.ini · règles</p>
+<pre class="code" tabindex="0"><code>[Default]
+OSInstall=Y
+SkipCapture=YES
+SkipAdminPassword=YES
+SkipProductKey=YES
+SkipComputerBackup=YES
+SkipBitLocker=YES
+SkipUserData=YES
+SkipMoveData=YES</code></pre>
+      </div>
+      <div>
+        <p class="col-title">Ce que ces règles évitent</p>
+        <ul class="points">
+          <li>le choix du mot de passe administrateur</li>
+          <li>la capture d'image du poste</li>
+          <li>la demande de clé Windows</li>
+          <li>la sauvegarde avant déploiement</li>
+          <li>l'activation de BitLocker</li>
+          <li>la migration des données utilisateur</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="masters">
+    <div class="section-head">
+      <h2>Récupérer les masters</h2>
+      <p class="section-intro">La principale difficulté du projet.</p>
+    </div>
+    <div class="two-col">
+      <div class="prose">
+        <p>
+          Un master est l'image de référence d'un modèle de poste : Windows à jour, applications installées, paramètres faits.
+          J'ai d'abord inventorié les modèles utilisés en clientèle, puis préparé un poste de chaque modèle.
+        </p>
+        <p>
+          La capture par MDT échouait systématiquement sur ces postes, probablement à cause de leur configuration BIOS.
+          J'ai donc créé une clé USB Windows PE avec l'ADK (<code>copype</code>, <code>MakeWinPEMedia</code>) et capturé
+          chaque poste avec DISM, avant d'importer les images dans MDT.
+        </p>
+      </div>
+      <div>
+        <p class="col-title">Capture depuis Windows PE</p>
+<pre class="code" tabindex="0"><code>Dism /Capture-Image
+  /ImageFile:"C:\WIMFiles\MonImage.wim"
+  /CaptureDir:C:
+  /Name:"Windows 10"
+  /Compress:max</code></pre>
+        <p class="lesson">
+          <span>Retour d'expérience</span>
+          Mon planning prévisionnel tenait sur 8 semaines et oubliait beaucoup d'étapes intermédiaires.
+          Je l'ai entièrement refait en cours de route pour coller à la réalité.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="resultats">
+    <div class="section-head">
+      <h2>Résultats</h2>
+      <p class="section-intro">Mesurés sur le temps que le technicien passe devant le poste.</p>
+    </div>
+    <figure class="compare">
+      <figcaption class="col-title">Temps de présence du technicien, par poste</figcaption>
+      <div class="bar-row">
+        <span class="bar-label">Préparation manuelle</span>
+        <span class="bar-track"><span class="bar muted" style="width:100%"></span></span>
+        <span class="bar-val">≈ 30 min</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Serveur de déploiement</span>
+        <span class="bar-track"><span class="bar" style="width:13%"></span></span>
+        <span class="bar-val">3 à 4 min</span>
+      </div>
+      <p class="note">Le déploiement complet dure 15 minutes et jusqu'à 7 postes passent en même temps. Pendant ce temps, le technicien s'occupe d'autre chose.</p>
+    </figure>
+    <div class="feature-grid">
+      <div class="callout">
+        <p class="col-title">En production</p>
+        <p>Mis en production le 17 février après validation avec les techniciens, le serveur est utilisé au quotidien par l'équipe.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Tests</p>
+        <p>Connectivité vérifiée par ping, déploiement sur chaque modèle de poste, puis simulation en conditions réelles avec 7 machines en parallèle.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Coût</p>
+        <p>Aucun achat : serveur et switchs de récupération. Consommation mesurée de 8,4 kWh par jour, soit 45,36 € d'énergie par mois.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="exploitation">
+    <div class="section-head">
+      <h2>Exploitation</h2>
+      <p class="section-intro">Un serveur qui s'entretient seul, avant l'arrivée des techniciens.</p>
+    </div>
+    <ol class="timeline">
+      <li><time>04:30 · tous les 2 jours</time><div><h3>Nettoyage des sauvegardes</h3><p>Un script batch supprime l'ancienne sauvegarde : le disque de 500 Go ne peut en garder que deux.</p></div></li>
+      <li><time>05:00 · chaque jour</time><div><h3>Sauvegarde complète du serveur</h3><p>Sauvegarde Windows Server vers un disque dédié : le serveur peut être restauré en entier.</p></div></li>
+      <li><time>07:30 · chaque jour</time><div><h3>Redémarrage planifié</h3><p><code>shutdown /r /f /t 60</code> : applique les mises à jour en attente et relance les services.</p></div></li>
+      <li><time>08:00</time><div><h3>Arrivée des techniciens</h3><p>Le serveur est prêt pour la journée.</p></div></li>
+    </ol>
+    <div class="two-col">
+      <div class="callout">
+        <p class="col-title">Suivi</p>
+        <p>Contrôles réguliers pendant le reste de ma formation : erreurs de déploiement, mises à jour du serveur, masters tenus à jour.</p>
+      </div>
+      <div class="callout">
+        <p class="col-title">Pistes d'amélioration</p>
+        <p>Scripts PowerShell pour installer les applications et lancer Windows Update, automatisation du BIOS avec le fournisseur, supervision du serveur, documentation complète pour monter le même serveur dans d'autres agences.</p>
+      </div>
+    </div>
+  </section>
+
+  <nav class="next-case" aria-label="Autre étude de cas">
+    <a href="leon.html">
+      <span>Étude de cas suivante</span>
+      <strong>Renouvellement de la commutation réseau d'un site industriel →</strong>
+    </a>
+  </nav>
+
+</main>
+
+<footer class="wrap">
+  <div class="footer-inner">
+    <p>Thomas Jourda · Technicien systèmes &amp; réseaux · 2026</p>
+    <nav aria-label="Pied de page">
+      <a href="../index.html#projets">Projets</a>
+      <a href="../index.html#contact">Contact</a>
+      <a href="#top">Haut de page ↑</a>
+    </nav>
+  </div>
+</footer>
+
+<a id="to-top" class="to-top" href="#top" aria-label="Revenir en haut de la page" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+<!-- BODY:END -->
+<script src="../assets/main.js?v=20261102a"></script>
+</body>
+</html>

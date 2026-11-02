@@ -24,7 +24,7 @@
 <link rel="preload" href="../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="theme-color" content="#eef2f1" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
-<link rel="stylesheet" href="../assets/style.css?v=20260924g">
+<link rel="stylesheet" href="../assets/style.css?v=20261102a">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 </head>
@@ -196,6 +196,19 @@
         <ul class="stack"><li>Linux Lite</li><li>Remmina</li><li>RDS</li><li>LightDM</li></ul>
       </article>
 
+      <article class="project" data-kind="pro">
+        <p class="kind pro">Work · Smart Rx · GMSI final project</p>
+        <h3>Automated workstation deployment server</h3>
+        <p>A Windows Server 2022 server on reclaimed hardware: a workstation plugged into the bench boots over PXE and receives its master through WDS and MDT.</p>
+        <ul class="points">
+          <li>DHCP with PXE options, routing and NAT between two network cards</li>
+          <li>Masters captured with Windows PE and DISM, MDT task sequences</li>
+          <li>3 to 4 minutes of technician time per workstation instead of 30, 7 in parallel</li>
+        </ul>
+        <ul class="stack"><li>WDS</li><li>MDT</li><li>Windows PE</li><li>DHCP</li><li>NAT</li></ul>
+        <a class="case-link" href="../en/projects/deployment.html">Read the case study <span aria-hidden="true">→</span></a>
+      </article>
+
     </div>
 
     <article class="project wide" data-kind="perso">
@@ -266,6 +279,7 @@
             <li>Point of sale: Windows workstations, card terminals, French health-card readers (Sésame-Vitale)</li>
             <li>CCTV cameras, Pricer electronic shelf labels</li>
             <li>Networking: switches, 4G, Wi-Fi</li>
+            <li>Final project: <a href="../en/projects/deployment.html">WDS / MDT deployment server</a></li>
           </ul>
         </div>
       </li>
@@ -296,7 +310,7 @@
       <p class="section-intro">Tools used at work, at school or on my own projects.</p>
     </div>
     <dl class="skills">
-      <div><dt>Systems</dt><dd><ul class="chips"><li>Windows Server</li><li>RDS</li><li>FSLogix</li><li>Active Directory</li><li>GPO</li><li>Windows 10 / 11</li><li>Debian</li><li>Ubuntu</li><li>Linux Lite</li></ul></dd></div>
+      <div><dt>Systems</dt><dd><ul class="chips"><li>Windows Server</li><li>RDS</li><li>FSLogix</li><li>Active Directory</li><li>GPO</li><li>Windows 10 / 11</li><li>WDS / MDT</li><li>Debian</li><li>Ubuntu</li><li>Linux Lite</li></ul></dd></div>
       <div><dt>Networking</dt><dd><ul class="chips"><li>Routing</li><li>LAN / WAN</li><li>VLAN 802.1Q</li><li>IPsec VPN</li><li>Aruba switches</li><li>Wi-Fi</li><li>Cisco Packet Tracer</li></ul></dd></div>
       <div><dt>Security</dt><dd><ul class="chips"><li>Stormshield</li><li>MFA / TOTP</li><li>Cloudflare Zero Trust</li><li>SSH hardening</li><li>fail2ban</li></ul></dd></div>
       <div><dt>Virtualisation &amp; containers</dt><dd><ul class="chips"><li>Docker</li><li>Docker Compose</li><li>VMware</li><li>OVH VPS</li><li>Apache Guacamole</li><li>MariaDB</li><li>Nginx</li></ul></dd></div>
@@ -370,6 +384,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 <!-- BODY:END -->
-<script src="../assets/main.js?v=20260924g"></script>
+<script src="../assets/main.js?v=20261102a"></script>
 </body>
 </html>
