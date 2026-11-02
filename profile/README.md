@@ -12,13 +12,13 @@ Je travaille sur des infrastructures multi-sites (Windows Server, Active Directo
 
 | Domaine | Technologies |
 |---|---|
-| Systèmes | Windows Server, RDS, FSLogix, Active Directory, GPO, Windows 10/11, Linux (Debian, Ubuntu, Linux Lite) |
+| Systèmes | Windows Server, RDS, FSLogix, Active Directory, GPO, Windows 10/11, WDS / MDT, Linux (Debian, Ubuntu, Linux Lite) |
 | Réseau | Routage, LAN/WAN, VLAN 802.1Q, VPN IPsec, switchs Aruba, Wi-Fi, Cisco Packet Tracer |
 | Sécurité | Stormshield, MFA/TOTP, Cloudflare Zero Trust, durcissement SSH, fail2ban |
-| Virtualisation & conteneurs | Docker, Docker Compose, VMware, VPS OVH, Apache Guacamole, MariaDB, Nginx |
+| Virtualisation & conteneurs | Docker, Docker Compose, VMware, Hyper-V, VPS OVH, Apache Guacamole, MariaDB, Nginx |
 | Supervision | Zabbix, Aruba Instant On, Prometheus, Grafana, Loki, Grafana Alloy, cAdvisor, node-exporter |
 | Scripting | PowerShell, Bash |
-| Collaboration / M365 | Synchronisation AD vers Microsoft 365, Outlook / Exchange, ticketing GestSup |
+| Collaboration / M365 | Synchronisation AD vers Microsoft 365 (Entra Connect), Outlook / Exchange, ticketing GestSup et GLPI |
 
 ---
 
@@ -64,7 +64,7 @@ Next.js + TypeScript, PostgreSQL/Prisma, connexion Steam OpenID. Hébergé sur V
 
 - **2025 – 2026 · Bachelor ASR** (Bac+3, CESI Pau), alternance chez Scieries Lesbats (5 sites) : Windows Server, RDS, AD, Stormshield, Aruba, VPN, migration Windows 11, support multi-sites
 - **2023 – 2025 · GMSI** (Bac+2, CESI Pau), alternance chez Smart Rx : technicien de maintenance et d'installation
-- **07/2023 · Technicien informatique** (CDD), Info-Pix, Lescar
+- **04/2023 · Technicien informatique** (CDD), Info-Pix, Lescar
 - **2021 – 2023 · Bac pro SN option RISC**, Lycée Saint-Cricq, Pau (4 stages en entreprise)
 
 🌍 Anglais B2 · Espagnol B1 · Permis B, véhiculé

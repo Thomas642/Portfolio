@@ -112,23 +112,33 @@ filters.forEach((btn) => btn.addEventListener("click", () => {
 }));
 
 // ---------- Copie de l'adresse e-mail ----------
-const copyBtn = document.getElementById("copy-email");
 const email = document.getElementById("email");
-if (copyBtn && email) {
-  copyBtn.addEventListener("click", async () => {
-    const text = email.textContent.trim();
-    try {
-      await navigator.clipboard.writeText(text);
-      copyBtn.textContent = T.copied;
-    } catch {
-      // Repli : sélectionne l'adresse pour une copie manuelle
-      const range = document.createRange();
-      range.selectNodeContents(email);
-      const sel = window.getSelection();
-      sel.removeAllRanges();
-      sel.addRange(range);
-      copyBtn.textContent = T.selected;
-    }
-    setTimeout(() => { copyBtn.textContent = T.copy; }, 2000);
+async function copyEmail(btn, label) {
+  try {
+    await navigator.clipboard.writeText(email.textContent.trim());
+    btn.textContent = T.copied;
+  } catch {
+    // Repli : sélectionne l'adresse pour une copie manuelle
+    const range = document.createRange();
+    range.selectNodeContents(email);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    btn.textContent = T.selected;
+  }
+  setTimeout(() => { btn.textContent = label; }, 2000);
+}
+if (email) {
+  document.querySelectorAll("#copy-email, [data-copy-email]").forEach((btn) => {
+    const label = btn.textContent;
+    btn.addEventListener("click", () => copyEmail(btn, label));
   });
 }
+
+// ---------- Menu « Écrire un e-mail » : fermeture au clic extérieur et sur Échap ----------
+document.querySelectorAll(".mail-menu").forEach((menu) => {
+  document.addEventListener("click", (e) => { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+  menu.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menu.open) { menu.open = false; menu.querySelector("summary").focus(); }
+  });
+});
