@@ -684,6 +684,10 @@ table.data .num { text-align: right; font-variant-numeric: tabular-nums; }
 .next-case a:hover { border-color: var(--accent); box-shadow: var(--shadow); }
 .next-case span { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); }
 .next-case strong { font-size: 1.15rem; color: var(--accent); }
+.pager { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+.pager .next { text-align: right; align-items: flex-end; }
+.pager .prev strong { color: var(--ink); }
+@media (max-width: 640px) { .pager .next { order: -1; } }
 
 /* ---------- Impression ---------- */
 @media print {
@@ -762,3 +766,15 @@ pre.code code { background: none; padding: 0; font-size: inherit; }
 .mail-pop { position: absolute; z-index: 20; top: calc(100% + 6px); left: 0; min-width: 240px; display: flex; flex-direction: column; padding: 6px; background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--r); box-shadow: var(--shadow); }
 .mail-pop a, .mail-pop button { display: block; width: 100%; text-align: left; padding: 10px 12px; border: 0; border-radius: 6px; background: none; color: var(--ink); font: 500 0.93rem var(--sans); text-decoration: none; cursor: pointer; }
 .mail-pop a:hover, .mail-pop button:hover, .mail-pop a:focus-visible, .mail-pop button:focus-visible { background: var(--surface-2); }
+
+/* Mini-schémas des cartes de projet */
+.project .thumb.schema { background: var(--surface-2); border-color: var(--line); padding: 10px 12px; }
+.project .thumb.schema svg { display: block; width: 100%; height: auto; max-height: 150px; font-family: var(--sans); }
+.project .thumb.wide-thumb svg { max-height: 110px; }
+.project .thumb.schema .dg-box text, .project .thumb.schema .dg-core text { font-size: 14px; }
+.project .thumb.schema .dg-sub, .project .thumb.schema .dg-small { font-size: 10.5px; }
+.project .thumb.schema .dg-trunk { stroke-width: 3; }
+/* Dernière carte seule sur sa ligne : pleine largeur, vignette contenue */
+.project-grid > .project.span-all { grid-column: 1 / -1; }
+.project-grid > .project.span-all .thumb { max-width: 640px; }
+.case-note { margin: 0; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.02em; color: var(--ink-2); }

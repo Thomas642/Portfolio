@@ -97,6 +97,16 @@ const count = document.getElementById("filter-count");
 // Compteur calculé au chargement : il reste juste quand on ajoute un projet
 if (count && projects.length) count.textContent = T.project(projects.length);
 
+// Grille à deux colonnes : une dernière carte seule prend toute la largeur
+function balanceGrid() {
+  document.querySelectorAll(".project-grid").forEach((grid) => {
+    const shown = [...grid.children].filter((c) => !c.hidden);
+    [...grid.children].forEach((c) => c.classList.remove("span-all"));
+    if (shown.length % 2 === 1) shown[shown.length - 1].classList.add("span-all");
+  });
+}
+balanceGrid();
+
 filters.forEach((btn) => btn.addEventListener("click", () => {
   const f = btn.dataset.filter;
   filters.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
@@ -107,6 +117,7 @@ filters.forEach((btn) => btn.addEventListener("click", () => {
     if (show) n++;
   });
   if (count) count.textContent = T.project(n) + (T.kinds[f] || "");
+  balanceGrid();
 }));
 
 // ---------- Copie de l'adresse e-mail ----------

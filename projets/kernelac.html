@@ -15,10 +15,10 @@
 <meta property="og:title" content="Refonte du SI d'une mairie multi-sites">
 <meta property="og:description" content="Réseau segmenté, Hyper-V sur deux sites, VPN IPsec, sauvegarde 3-2-1-1-0, PCA et PRA. Étude de cas de Thomas Jourda.">
 <meta property="og:url" content="https://thomas642.github.io/Portfolio/projets/kernelac.html">
-<meta property="og:image" content="https://thomas642.github.io/Portfolio/assets/og-image.png">
+<meta property="og:image" content="https://thomas642.github.io/Portfolio/assets/og/kernelac.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Thomas Jourda, technicien systèmes et réseaux">
+<meta property="og:image:alt" content="Étude de cas de Thomas Jourda : Refonte du SI d'une mairie multi-sites">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="../assets/fonts/barlow-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -26,7 +26,7 @@
 <meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
 <!-- Thème choisi appliqué avant le premier affichage (évite un flash de l'autre thème) -->
 <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
-<link rel="stylesheet" href="../assets/style.css?v=20261125b">
+<link rel="stylesheet" href="../assets/style.css?v=20261125c">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 </head>
@@ -40,8 +40,8 @@
       <a href="#contexte">Contexte</a>
       <a href="#demarche">Démarche</a>
       <a href="#architecture">Architecture</a>
-      <a href="#choix">Choix</a>
-      <a href="#securite">Sécurité</a>
+      <a href="#choix">Choix techniques</a>
+      <a href="#securite">Maintenir et sécuriser</a>
     </nav>
     <div class="top-actions">
       <a class="lang-switch" href="../en/projects/kernelac.html" hreflang="en" lang="en" aria-label="English version">EN</a>
@@ -110,8 +110,8 @@
 
   <section id="demarche">
     <div class="section-head">
-      <h2>Trois blocs</h2>
-      <p class="section-intro">Chaque bloc reprend les choix du précédent et les pousse plus loin.</p>
+      <h2>Démarche</h2>
+      <p class="section-intro">Trois blocs : chacun reprend les choix du précédent et les pousse plus loin.</p>
     </div>
     <ol class="steps">
       <li>
@@ -131,7 +131,7 @@
 
   <section id="architecture">
     <div class="section-head">
-      <h2>Architecture cible</h2>
+      <h2>Architecture</h2>
       <p class="section-intro">Deux sites de production qui se secourent, dix sites distants reliés en VPN.</p>
     </div>
     <figure class="diagram">
@@ -257,10 +257,14 @@
     <p class="note">Mairie et chiffres fictifs : il s'agit d'une étude de cas réalisée dans le cadre de la formation, sans déploiement réel.</p>
   </section>
 
-  <nav class="next-case" aria-label="Autre étude de cas">
-    <a href="deploiement.html">
+  <nav class="next-case pager" aria-label="Autres études de cas">
+    <a class="prev" href="deploiement.html">
+      <span>Étude de cas précédente</span>
+      <strong>← Serveur de déploiement automatisé des postes</strong>
+    </a>
+    <a class="next" href="observabilite.html">
       <span>Étude de cas suivante</span>
-      <strong>Serveur de déploiement automatisé des postes →</strong>
+      <strong>Stack d'observabilité auto-hébergée →</strong>
     </a>
   </nav>
 
@@ -281,6 +285,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 <!-- BODY:END -->
-<script src="../assets/main.js?v=20261125b"></script>
+<script src="../assets/main.js?v=20261125c"></script>
 </body>
 </html>
