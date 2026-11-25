@@ -26,7 +26,7 @@
 <meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
 <!-- Thème choisi appliqué avant le premier affichage (évite un flash de l'autre thème) -->
 <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
-<link rel="stylesheet" href="../assets/style.css?v=20261125c">
+<link rel="stylesheet" href="../assets/style.css?v=20261125d">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 </head>
@@ -197,7 +197,7 @@
       <li><span class="badge ok">Diagnostic</span> Une grille de quatre vérifications, dans l'ordre, pour le cas « l'utilisateur se connecte mais ne voit rien ».</li>
       <li><span class="badge ok">Journaux</span> Mode debug réservé au diagnostic et désactivé aussitôt après : il écrit le contenu de l'annuaire dans les journaux.</li>
       <li><span class="badge wip">À surveiller</span> Échéances des certificats LDAPS et de l'autorité racine : un certificat expiré coupe l'authentification sans préavis.</li>
-      <li><span class="badge ok">OU dédiée</span> Les groupes <code>GRP-GUAC-*</code> sont regroupés dans une OU réservée à Guacamole, qui ne contient que ces groupes.</li>
+      <li><span class="badge ok">OU dédiée</span> Les groupes <code>GRP-GUAC-*</code> sont regroupés dans une OU réservée à Guacamole, qui ne contient que ces groupes ; la recherche des groupes de Guacamole pointe sur cette OU.</li>
     </ul>
     <p class="note">
       Deux documents livrés : une procédure d'exploitation formelle et un guide simplifié pour l'équipe.
@@ -234,6 +234,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 <!-- BODY:END -->
-<script src="../assets/main.js?v=20261125c"></script>
+<script src="../assets/main.js?v=20261125d"></script>
 </body>
 </html>

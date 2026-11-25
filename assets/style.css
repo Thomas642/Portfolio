@@ -131,7 +131,8 @@ code { font-family: var(--mono); font-size: 0.86em; background: var(--surface-2)
   font-size: 0.95rem; letter-spacing: 0.02em;
 }
 
-.mainnav { display: flex; justify-content: flex-end; gap: 4px; }
+.mainnav { display: flex; justify-content: safe flex-end; gap: 4px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.mainnav::-webkit-scrollbar { display: none; }
 .mainnav a {
   position: relative;
   color: var(--ink-2); text-decoration: none;
@@ -172,8 +173,8 @@ code { font-family: var(--mono); font-size: 0.86em; background: var(--surface-2)
   transform: scaleX(0); transform-origin: left;
 }
 
-/* Téléphone : la navigation passe sur une ligne défilante */
-@media (max-width: 760px) {
+/* Téléphone et tablette : la navigation passe sur une ligne défilante */
+@media (max-width: 1100px) {
   .topbar-inner { grid-template-columns: minmax(0, 1fr) auto; gap: 0 12px; padding-top: 8px; }
   .mainnav {
     grid-column: 1 / -1; grid-row: 2;
@@ -191,7 +192,7 @@ code { font-family: var(--mono); font-size: 0.86em; background: var(--surface-2)
 /* ---------- Sections ---------- */
 section { padding-block: 80px 0; }
 section[id], main[id] { scroll-margin-top: calc(var(--head-h) + 20px); }
-@media (max-width: 760px) { section[id] { scroll-margin-top: 120px; } }
+@media (max-width: 1100px) { section[id] { scroll-margin-top: 120px; } }
 
 .section-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; margin-bottom: 28px; }
 h2 {

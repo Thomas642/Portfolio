@@ -26,7 +26,7 @@
 <meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
 <!-- Thème choisi appliqué avant le premier affichage (évite un flash de l'autre thème) -->
 <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
-<link rel="stylesheet" href="../../assets/style.css?v=20261125c">
+<link rel="stylesheet" href="../../assets/style.css?v=20261125d">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
 </head>
@@ -244,10 +244,24 @@ SkipMoveData=YES</code></pre>
       </div>
       <p class="note">A full deployment takes 15 minutes and up to 7 workstations go through at once. Meanwhile, the technician works on something else.</p>
     </figure>
+    <figure class="compare">
+      <figcaption class="col-title">A full bench of 7 workstations</figcaption>
+      <div class="bar-row">
+        <span class="bar-label">Manual preparation</span>
+        <span class="bar-track"><span class="bar muted" style="width:100%"></span></span>
+        <span class="bar-val">210 min</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Deployment server</span>
+        <span class="bar-track"><span class="bar" style="width:20.5%"></span></span>
+        <span class="bar-val">43 min</span>
+      </div>
+      <p class="note">Manual: 7 workstations × 30 min. Server: 7 × 4 min of technician time (upper bound), plus the 15-minute deployment. That is 79.5% less time.</p>
+    </figure>
     <div class="feature-grid">
       <div class="callout">
         <p class="col-title">In production</p>
-        <p>Put into production on 17 February after sign-off with the technicians, the server is used daily by the team.</p>
+        <p>Put into production on 17 February 2025 after sign-off with the technicians, the server is used daily by the team.</p>
       </div>
       <div class="callout">
         <p class="col-title">Testing</p>
@@ -311,6 +325,6 @@ SkipMoveData=YES</code></pre>
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 <!-- BODY:END -->
-<script src="../../assets/main.js?v=20261125c"></script>
+<script src="../../assets/main.js?v=20261125d"></script>
 </body>
 </html>
