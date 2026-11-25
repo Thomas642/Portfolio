@@ -15,10 +15,10 @@
 <meta property="og:title" content="Self-hosted observability stack">
 <meta property="og:description" content="Prometheus, Loki and Grafana on a VPS, behind Cloudflare Zero Trust. A case study by Thomas Jourda.">
 <meta property="og:url" content="https://thomas642.github.io/Portfolio/en/projects/observability.html">
-<meta property="og:image" content="https://thomas642.github.io/Portfolio/assets/og-image-en.png">
+<meta property="og:image" content="https://thomas642.github.io/Portfolio/assets/og/observability-en.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Thomas Jourda, systems and network technician">
+<meta property="og:image:alt" content="Case study by Thomas Jourda: Self-hosted observability stack">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="../../assets/fonts/barlow-condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../../assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -26,7 +26,7 @@
 <meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
 <!-- Thème choisi appliqué avant le premier affichage (évite un flash de l'autre thème) -->
 <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
-<link rel="stylesheet" href="../../assets/style.css?v=20261125b">
+<link rel="stylesheet" href="../../assets/style.css?v=20261125c">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
 </head>
@@ -68,8 +68,8 @@
         Cloudflare Zero Trust access. A real-world training ground for monitoring.
       </p>
     </div>
-    <aside class="asset-tag" aria-label="Project card">
-      <p class="tag-head"><span>PROJECT CARD</span><span>OBS-VPS</span></p>
+    <aside class="asset-tag" aria-label="Project sheet">
+      <p class="tag-head"><span>PROJECT SHEET</span><span>OBS-VPS</span></p>
       <dl>
         <div><dt>Host</dt><dd>OVH VPS · Ubuntu</dd></div>
         <div><dt>Metrics</dt><dd>Prometheus · node-exporter · cAdvisor</dd></div>
@@ -174,7 +174,7 @@
   </section>
 
   <section id="results">
-    <div class="section-head"><h2>What it shows</h2></div>
+    <div class="section-head"><h2>Results</h2></div>
     <ul class="result-list">
       <li><span class="badge ok">Visible</span> Over 2 days: 1.22k failed SSH login attempts and 134 addresses banned. The Internet's background noise becomes measurable.</li>
       <li><span class="badge ok">Stable</span> At the time of the capture, the server had been running for 11.1 weeks without a reboot.</li>
@@ -182,8 +182,12 @@
     </ul>
   </section>
 
-  <nav class="next-case" aria-label="Another case study">
-    <a href="bako.html">
+  <nav class="next-case pager" aria-label="Other case studies">
+    <a class="prev" href="kernelac.html">
+      <span>Previous case study</span>
+      <strong>← IT overhaul for a multi-site town hall</strong>
+    </a>
+    <a class="next" href="bako.html">
       <span>Next case study</span>
       <strong>BAKO, a web platform for a gaming community →</strong>
     </a>
@@ -206,6 +210,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 <!-- BODY:END -->
-<script src="../../assets/main.js?v=20261125b"></script>
+<script src="../../assets/main.js?v=20261125c"></script>
 </body>
 </html>

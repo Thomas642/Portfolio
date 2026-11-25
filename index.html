@@ -26,7 +26,7 @@
 <meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
 <!-- Thème choisi appliqué avant le premier affichage (évite un flash de l'autre thème) -->
 <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
-<link rel="stylesheet" href="assets/style.css?v=20261125b">
+<link rel="stylesheet" href="assets/style.css?v=20261125c">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 </head>
@@ -66,6 +66,7 @@
         du périmètre informatique d'une entreprise de cinq sites : Windows Server et RDS, Active Directory,
         pare-feux Stormshield, réseau Aruba, VPN et accès distant. En parallèle, j'administre
         mon propre VPS Linux pour pratiquer l'auto-hébergement, la supervision et la sécurité.
+        Je suis aujourd'hui en mission chez SCC pour Safran Helicopter Engines.
       </p>
       <div class="cta">
         <a class="btn primary" href="#projets">Voir les projets</a>
@@ -77,8 +78,8 @@
     <aside class="asset-tag" aria-label="Fiche récapitulative">
       <p class="tag-head"><span>FICHE</span><span>TJ-ASR-2026</span></p>
       <dl>
-        <div><dt>Statut</dt><dd><span class="state ok"></span>En recherche de CDI / CDD</dd></div>
-        <div><dt>Dispo</dt><dd data-dispo="court">À partir d'octobre 2026</dd></div>
+        <div><dt>Statut</dt><dd><span class="state ok"></span>En mission d'intérim chez SCC</dd></div>
+        <div><dt>Recherche</dt><dd>Ouvert à un CDI / CDD</dd></div>
         <div><dt>Secteur</dt><dd>Pyrénées-Atlantiques (64)</dd></div>
         <div><dt>Mobilité</dt><dd>France entière · permis B, véhiculé</dd></div>
         <div><dt>Langues</dt><dd>Anglais B2 · Espagnol B1</dd></div>
@@ -146,10 +147,10 @@
     </article>
 
     <div class="project-grid">
-
       <article class="project" data-kind="pro">
         <p class="kind pro">Pro · anonymisé</p>
         <h3>Passerelle d'accès distant Apache Guacamole</h3>
+        <a class="thumb schema" href="projets/guacamole.html" tabindex="-1" aria-hidden="true"><svg viewBox="0 0 420 130" aria-hidden="true" focusable="false"><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M100 65 H150"/><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M280 65 H295 V32 H310 M295 65 V98 H310"/><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" stroke-dasharray="5 4" d="M215 90 V108"/><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="10" y="42" width="90" height="46" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="55.0" y="62.0" text-anchor="middle">Utilisateur</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="55.0" y="78.0" text-anchor="middle">navigateur</text></g><g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="150" y="40" width="130" height="50" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="215.0" y="62.0" text-anchor="middle">Guacamole</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="215.0" y="78.0" text-anchor="middle">Docker · TOTP</text></g><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="310" y="10" width="100" height="44" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="360.0" y="37.0" text-anchor="middle">Production</text></g><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="310" y="76" width="100" height="44" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="360.0" y="103.0" text-anchor="middle">Serveurs RDS</text></g><text class="dg-small" fill="#4b5b5a" font-size="11" x="215" y="124" text-anchor="middle">LDAPS → Active Directory</text></svg></a>
         <p>Remplacement d'AnyDesk par une passerelle Guacamole conteneurisée (guacd, MariaDB, Guacamole) sous Docker Compose, pour accéder aux postes et systèmes de production comme les séchoirs.</p>
         <ul class="points">
           <li>Authentification LDAP / Active Directory</li>
@@ -159,6 +160,49 @@
         </ul>
         <ul class="stack"><li>Docker Compose</li><li>Guacamole</li><li>MariaDB</li><li>LDAP</li></ul>
         <a class="case-link" href="projets/guacamole.html">Lire l'étude de cas <span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="project" data-kind="pro">
+        <p class="kind pro">Pro · anonymisé</p>
+        <h3>Clients légers Linux sur Dell Wyse</h3>
+        <div class="thumb schema" aria-hidden="true"><svg viewBox="0 0 420 130" aria-hidden="true" focusable="false"><path class="dg-trunk" fill="none" stroke="#0b6e8a" stroke-width="3" stroke-linecap="round" d="M170 65 H250"/><text class="dg-small" fill="#4b5b5a" font-size="11" x="210" y="55" text-anchor="middle">RDP</text><text class="dg-small" fill="#4b5b5a" font-size="11" x="210" y="84" text-anchor="middle">Remmina</text><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="5" y="35" width="165" height="60" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="87.5" y="62.0" text-anchor="middle">Dell Wyse</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="87.5" y="78.0" text-anchor="middle">Linux Lite</text></g><g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="250" y="35" width="165" height="60" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="332.5" y="62.0" text-anchor="middle">Serveur RDS</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="332.5" y="78.0" text-anchor="middle">session utilisateur</text></g></svg></div>
+        <p>Déploiement de Linux Lite sur Dell Wyse 3070 / 5070 avec accès RDS via Remmina et autologin LightDM.</p>
+        <ul class="points">
+          <li>Rédaction de procédures d'installation versionnées</li>
+          <li>Diagnostic d'une incompatibilité clavier HID sur douchette code-barres en session RDP</li>
+        </ul>
+        <ul class="stack"><li>Linux Lite</li><li>Remmina</li><li>RDS</li><li>LightDM</li></ul>
+        <p class="case-note">Projet présenté en résumé, sans étude de cas détaillée</p>
+      </article>
+
+      <article class="project" data-kind="pro">
+        <p class="kind pro">Pro · Smart Rx · PFE GMSI</p>
+        <h3>Serveur de déploiement automatisé des postes</h3>
+        <a class="thumb schema" href="projets/deploiement.html" tabindex="-1" aria-hidden="true"><svg viewBox="0 0 420 130" aria-hidden="true" focusable="false"><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M90 65 H120"/><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M290 65 H310"/><text class="dg-small" fill="#4b5b5a" font-size="11" x="105" y="55" text-anchor="middle">PXE</text><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="5" y="42" width="85" height="46" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="47.5" y="70.0" text-anchor="middle">Poste</text></g><g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="120" y="35" width="170" height="60" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="205.0" y="62.0" text-anchor="middle">WDS + MDT</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="205.0" y="78.0" text-anchor="middle">Windows Server 2022</text></g><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="310" y="35" width="105" height="60" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="362.5" y="62.0" text-anchor="middle">Poste prêt</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="362.5" y="78.0" text-anchor="middle">15 min · ×7</text></g></svg></a>
+        <p>Serveur Windows Server 2022 sur matériel de récupération : un poste branché au banc démarre en PXE et reçoit son master via WDS et MDT.</p>
+        <ul class="points">
+          <li>DHCP avec options PXE, routage et NAT entre deux cartes réseau</li>
+          <li>Masters capturés avec Windows PE et DISM, séquences de tâches MDT</li>
+          <li>3 à 4 minutes de technicien par poste au lieu de 30, 7 postes en parallèle</li>
+        </ul>
+        <ul class="stack"><li>WDS</li><li>MDT</li><li>Windows PE</li><li>DHCP</li><li>NAT</li></ul>
+        <a class="case-link" href="projets/deploiement.html">Lire l'étude de cas <span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="project" data-kind="ecole">
+        <p class="kind school">École · CESI · projet individuel</p>
+        <h3>Refonte du SI d'une mairie multi-sites</h3>
+        <a class="thumb schema" href="projets/kernelac.html" tabindex="-1" aria-hidden="true"><svg viewBox="0 0 420 130" aria-hidden="true" focusable="false"><path class="dg-trunk" fill="none" stroke="#0b6e8a" stroke-width="3" stroke-linecap="round" d="M140 40 H280"/><text class="dg-small" fill="#4b5b5a" font-size="11" x="210" y="30" text-anchor="middle">IPsec · FTTE + 4G</text><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M75 63 V90 H140"/><g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="10" y="18" width="130" height="46" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="75.0" y="38.0" text-anchor="middle">Mairie</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="75.0" y="54.0" text-anchor="middle">Hyper-V</text></g><g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="280" y="18" width="130" height="46" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="345.0" y="38.0" text-anchor="middle">Ateliers</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="345.0" y="54.0" text-anchor="middle">réplication</text></g><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="140" y="72" width="140" height="46" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="210.0" y="92.0" text-anchor="middle">10 sites distants</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="210.0" y="108.0" text-anchor="middle">VPN IPsec · 4G</text></g></svg></a>
+        <p>
+          Étude de cas menée en tant que responsable informatique : 79 agents sur 12 sites,
+          deux sites principaux reliés entre eux et dix sites distants en VPN IPsec sur 4G.
+        </p>
+        <ul class="points">
+          <li><em>Déployer</em> : plan d'adressage <code>10.SITE.VLAN.HOST/24</code>, Active Directory et GPO, virtualisation Hyper-V sur deux sites avec réplication, maquette Packet Tracer, plan de 63 tests unitaires</li>
+          <li><em>Maintenir et sécuriser</em> : écarts résiduels au regard de l'ANSSI, du RGPD et de NIS2, PCA, PRA et politique de sécurité du SI</li>
+        </ul>
+        <ul class="stack"><li>Hyper-V Replica</li><li>VPN IPsec</li><li>Sauvegarde 3-2-1-1-0</li><li>PCA / PRA</li></ul>
+        <a class="case-link" href="projets/kernelac.html">Lire l'étude de cas <span aria-hidden="true">→</span></a>
       </article>
 
       <article class="project" data-kind="perso">
@@ -175,45 +219,6 @@
         <a class="case-link" href="projets/observabilite.html">Lire l'étude de cas <span aria-hidden="true">→</span></a>
       </article>
 
-      <article class="project" data-kind="ecole">
-        <p class="kind school">École · CESI · projet individuel</p>
-        <h3>Refonte du SI d'une mairie multi-sites</h3>
-        <p>
-          Étude de cas menée en tant que responsable informatique : 79 agents sur 12 sites,
-          deux sites principaux reliés entre eux et dix sites distants en VPN IPsec sur 4G.
-        </p>
-        <ul class="points">
-          <li><em>Déployer</em> : plan d'adressage <code>10.SITE.VLAN.HOST/24</code>, Active Directory et GPO, virtualisation Hyper-V sur deux sites avec réplication, maquette Packet Tracer, plan de 63 tests unitaires</li>
-          <li><em>Maintenir et sécuriser</em> : écarts résiduels au regard de l'ANSSI, du RGPD et de NIS2, PCA, PRA et politique de sécurité du SI</li>
-        </ul>
-        <ul class="stack"><li>Hyper-V Replica</li><li>VPN IPsec</li><li>Sauvegarde 3-2-1-1-0</li><li>PCA / PRA</li></ul>
-        <a class="case-link" href="projets/kernelac.html">Lire l'étude de cas <span aria-hidden="true">→</span></a>
-      </article>
-
-      <article class="project" data-kind="pro">
-        <p class="kind pro">Pro · anonymisé</p>
-        <h3>Clients légers Linux sur Dell Wyse</h3>
-        <p>Déploiement de Linux Lite sur Dell Wyse 3070 / 5070 avec accès RDS via Remmina et autologin LightDM.</p>
-        <ul class="points">
-          <li>Rédaction de procédures d'installation versionnées</li>
-          <li>Diagnostic d'une incompatibilité clavier HID sur douchette code-barres en session RDP</li>
-        </ul>
-        <ul class="stack"><li>Linux Lite</li><li>Remmina</li><li>RDS</li><li>LightDM</li></ul>
-      </article>
-
-      <article class="project" data-kind="pro">
-        <p class="kind pro">Pro · Smart Rx · PFE GMSI</p>
-        <h3>Serveur de déploiement automatisé des postes</h3>
-        <p>Serveur Windows Server 2022 sur matériel de récupération : un poste branché au banc démarre en PXE et reçoit son master via WDS et MDT.</p>
-        <ul class="points">
-          <li>DHCP avec options PXE, routage et NAT entre deux cartes réseau</li>
-          <li>Masters capturés avec Windows PE et DISM, séquences de tâches MDT</li>
-          <li>3 à 4 minutes de technicien par poste au lieu de 30, 7 postes en parallèle</li>
-        </ul>
-        <ul class="stack"><li>WDS</li><li>MDT</li><li>Windows PE</li><li>DHCP</li><li>NAT</li></ul>
-        <a class="case-link" href="projets/deploiement.html">Lire l'étude de cas <span aria-hidden="true">→</span></a>
-      </article>
-
     </div>
 
     <article class="project wide" data-kind="perso">
@@ -227,6 +232,7 @@
           Google Sheets utilisé jusque-là.
         </p>
       </div>
+      <a class="thumb schema wide-thumb" href="projets/bako.html" tabindex="-1" aria-hidden="true"><svg viewBox="0 0 900 100" aria-hidden="true" focusable="false"><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M170 50 H190"/><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M350 50 H370"/><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M530 50 H550"/><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M710 50 H730"/><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="10" y="25" width="160" height="50" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="90.0" y="55.0" text-anchor="middle">Visiteurs</text></g><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="190" y="25" width="160" height="50" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="270.0" y="55.0" text-anchor="middle">Cloudflare</text></g><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="370" y="25" width="160" height="50" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="450.0" y="47.0" text-anchor="middle">Nginx</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="450.0" y="63.0" text-anchor="middle">HTTPS</text></g><g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="550" y="25" width="160" height="50" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="630.0" y="47.0" text-anchor="middle">Next.js</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="630.0" y="63.0" text-anchor="middle">systemd</text></g><g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="730" y="25" width="160" height="50" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="810.0" y="47.0" text-anchor="middle">PostgreSQL</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="810.0" y="63.0" text-anchor="middle">pg_dump</text></g></svg></a>
       <div class="wide-cols">
         <div>
           <p class="col-title">Application</p>
@@ -258,9 +264,23 @@
   <section id="experience">
     <div class="section-head">
       <h2>Expérience</h2>
-      <p class="section-intro">Trois ans d'alternance, du dépannage terrain à l'administration d'un SI multi-sites.</p>
+      <p class="section-intro">Trois ans d'alternance puis une mission en cours, du dépannage terrain à l'administration d'un SI multi-sites.</p>
     </div>
     <ol class="timeline">
+      <li>
+        <time>11/2026 – aujourd'hui</time>
+        <div>
+          <h3>Technicien informatique, en intérim</h3>
+          <p class="meta">SCC · pour le client Safran Helicopter Engines</p>
+          <ul class="points">
+            <li>Blanchiment et masterisation des postes de travail</li>
+            <li>Téléphonie : création de lignes, configuration des téléphones professionnels</li>
+            <li>Dépannage avec les utilisateurs : PC, téléphones, accessoires</li>
+            <li>Tickets traités dans ServiceNow, suivi de l'ensemble du parc dans la CMDB</li>
+            <li>Gestion des comptes utilisateurs</li>
+          </ul>
+        </div>
+      </li>
       <li>
         <time>10/2025 – 09/2026</time>
         <div>
@@ -324,7 +344,7 @@
       <div><dt>Virtualisation &amp; conteneurs</dt><dd><ul class="chips"><li>Docker</li><li>Docker Compose</li><li>VMware</li><li>Hyper-V</li><li>VPS OVH</li><li>Apache Guacamole</li><li>MariaDB</li><li>Nginx</li></ul></dd></div>
       <div><dt>Supervision</dt><dd><ul class="chips"><li>Zabbix</li><li>Aruba Instant On</li><li>Prometheus</li><li>Grafana</li><li>Loki</li><li>Grafana Alloy</li><li>cAdvisor</li><li>node-exporter</li></ul></dd></div>
       <div><dt>Scripting</dt><dd><ul class="chips"><li>PowerShell</li><li>Bash</li></ul></dd></div>
-      <div><dt>Support &amp; M365</dt><dd><ul class="chips"><li>Synchronisation AD → Microsoft 365 (Entra Connect)</li><li>Outlook / Exchange</li><li>GestSup</li><li>GLPI</li><li>Téléphonie IP Wildix</li></ul></dd></div>
+      <div><dt>Support &amp; M365</dt><dd><ul class="chips"><li>Synchronisation AD → Microsoft 365 (Entra Connect)</li><li>Outlook / Exchange</li><li>GestSup</li><li>GLPI</li><li>ServiceNow</li><li>CMDB</li><li>Téléphonie IP Wildix</li></ul></dd></div>
     </dl>
   </section>
 
@@ -353,7 +373,7 @@
     <div class="contact-grid">
       <div class="contact-pitch">
         <h2>Contact</h2>
-        <p><span data-dispo="long">Disponible à partir d'octobre 2026</span> pour un CDI ou un CDD en administration systèmes et réseaux, partout en France.</p>
+        <p>Actuellement en mission d'intérim, je reste ouvert à un CDI ou un CDD en administration systèmes et réseaux, partout en France.</p>
         <div class="cta">
           <details class="mail-menu">
             <summary class="btn primary">Écrire un e-mail</summary>
@@ -402,6 +422,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 <!-- BODY:END -->
-<script src="assets/main.js?v=20261125b"></script>
+<script src="assets/main.js?v=20261125c"></script>
 </body>
 </html>

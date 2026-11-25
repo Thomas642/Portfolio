@@ -3,26 +3,16 @@ const root = document.documentElement;
 // ---------- Textes selon la langue de la page ----------
 const EN = (root.lang || "").startsWith("en");
 const T = EN ? {
-  dispoCourt: "Immediately", dispoLong: "Available immediately",
   toLight: "Switch to light theme", toDark: "Switch to dark theme",
   project: (n) => `${n} project${n > 1 ? "s" : ""}`,
   kinds: { all: "", pro: " (work)", perso: " (personal)", ecole: " (school)" },
   copied: "Copied", selected: "Selected", copy: "Copy",
 } : {
-  dispoCourt: "Immédiate", dispoLong: "Disponible immédiatement",
   toLight: "Passer en thème clair", toDark: "Passer en thème sombre",
   project: (n) => `${n} projet${n > 1 ? "s" : ""}`,
   kinds: { all: "", pro: " pro", perso: " perso", ecole: " d'école" },
   copied: "Copié", selected: "Sélectionné", copy: "Copier",
 };
-
-// ---------- Disponibilité : bascule automatique au 1er octobre 2026 ----------
-if (new Date() >= new Date(2026, 9, 1)) {
-  const DISPO = { court: T.dispoCourt, long: T.dispoLong };
-  document.querySelectorAll("[data-dispo]").forEach((el) => {
-    el.textContent = DISPO[el.dataset.dispo] || el.textContent;
-  });
-}
 
 // ---------- Thème clair / sombre ----------
 const themeBtn = document.getElementById("theme-toggle");
@@ -107,6 +97,16 @@ const count = document.getElementById("filter-count");
 // Compteur calculé au chargement : il reste juste quand on ajoute un projet
 if (count && projects.length) count.textContent = T.project(projects.length);
 
+// Grille à deux colonnes : une dernière carte seule prend toute la largeur
+function balanceGrid() {
+  document.querySelectorAll(".project-grid").forEach((grid) => {
+    const shown = [...grid.children].filter((c) => !c.hidden);
+    [...grid.children].forEach((c) => c.classList.remove("span-all"));
+    if (shown.length % 2 === 1) shown[shown.length - 1].classList.add("span-all");
+  });
+}
+balanceGrid();
+
 filters.forEach((btn) => btn.addEventListener("click", () => {
   const f = btn.dataset.filter;
   filters.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
@@ -117,6 +117,7 @@ filters.forEach((btn) => btn.addEventListener("click", () => {
     if (show) n++;
   });
   if (count) count.textContent = T.project(n) + (T.kinds[f] || "");
+  balanceGrid();
 }));
 
 // ---------- Copie de l'adresse e-mail ----------

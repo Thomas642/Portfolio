@@ -26,7 +26,7 @@
 <meta name="theme-color" content="#0f1618" media="(prefers-color-scheme: dark)">
 <!-- Thème choisi appliqué avant le premier affichage (évite un flash de l'autre thème) -->
 <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
-<link rel="stylesheet" href="../assets/style.css?v=20261125b">
+<link rel="stylesheet" href="../assets/style.css?v=20261125c">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 </head>
@@ -65,6 +65,7 @@
         I worked across the whole IT scope of a five-site company: Windows Server and RDS, Active Directory,
         Stormshield firewalls, Aruba networking, VPN and remote access. On the side, I run my own Linux VPS to practise self-hosting,
         monitoring and security.
+        I am currently on assignment at SCC for Safran Helicopter Engines.
       </p>
       <div class="cta">
         <a class="btn primary" href="#projects">See projects</a>
@@ -76,8 +77,8 @@
     <aside class="asset-tag" aria-label="Summary card">
       <p class="tag-head"><span>ASSET TAG</span><span>TJ-ASR-2026</span></p>
       <dl>
-        <div><dt>Status</dt><dd><span class="state ok"></span>Looking for a permanent or fixed-term role</dd></div>
-        <div><dt>Available</dt><dd data-dispo="court">From October 2026</dd></div>
+        <div><dt>Status</dt><dd><span class="state ok"></span>On a temp assignment at SCC</dd></div>
+        <div><dt>Looking for</dt><dd>Permanent or fixed-term role</dd></div>
         <div><dt>Based in</dt><dd>Pyrénées-Atlantiques, France</dd></div>
         <div><dt>Mobility</dt><dd>Anywhere in France · driving licence, own car</dd></div>
         <div><dt>Languages</dt><dd>English B2 · Spanish B1</dd></div>
@@ -143,10 +144,10 @@
     </article>
 
     <div class="project-grid">
-
       <article class="project" data-kind="pro">
         <p class="kind pro">Work · anonymised</p>
         <h3>Apache Guacamole remote-access gateway</h3>
+        <a class="thumb schema" href="../en/projects/guacamole.html" tabindex="-1" aria-hidden="true"><svg viewBox="0 0 420 130" aria-hidden="true" focusable="false"><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M100 65 H150"/><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M280 65 H295 V32 H310 M295 65 V98 H310"/><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" stroke-dasharray="5 4" d="M215 90 V108"/><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="10" y="42" width="90" height="46" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="55.0" y="62.0" text-anchor="middle">User</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="55.0" y="78.0" text-anchor="middle">browser</text></g><g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="150" y="40" width="130" height="50" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="215.0" y="62.0" text-anchor="middle">Guacamole</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="215.0" y="78.0" text-anchor="middle">Docker · TOTP</text></g><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="310" y="10" width="100" height="44" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="360.0" y="37.0" text-anchor="middle">Production</text></g><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="310" y="76" width="100" height="44" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="360.0" y="103.0" text-anchor="middle">RDS servers</text></g><text class="dg-small" fill="#4b5b5a" font-size="11" x="215" y="124" text-anchor="middle">LDAPS → Active Directory</text></svg></a>
         <p>Replaced AnyDesk with a containerised Guacamole gateway (guacd, MariaDB, Guacamole) running on Docker Compose, to reach production workstations and systems such as drying kilns.</p>
         <ul class="points">
           <li>LDAP / Active Directory authentication</li>
@@ -156,6 +157,49 @@
         </ul>
         <ul class="stack"><li>Docker Compose</li><li>Guacamole</li><li>MariaDB</li><li>LDAP</li></ul>
         <a class="case-link" href="../en/projects/guacamole.html">Read the case study <span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="project" data-kind="pro">
+        <p class="kind pro">Work · anonymised</p>
+        <h3>Linux thin clients on Dell Wyse</h3>
+        <div class="thumb schema" aria-hidden="true"><svg viewBox="0 0 420 130" aria-hidden="true" focusable="false"><path class="dg-trunk" fill="none" stroke="#0b6e8a" stroke-width="3" stroke-linecap="round" d="M170 65 H250"/><text class="dg-small" fill="#4b5b5a" font-size="11" x="210" y="55" text-anchor="middle">RDP</text><text class="dg-small" fill="#4b5b5a" font-size="11" x="210" y="84" text-anchor="middle">Remmina</text><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="5" y="35" width="165" height="60" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="87.5" y="62.0" text-anchor="middle">Dell Wyse</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="87.5" y="78.0" text-anchor="middle">Linux Lite</text></g><g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="250" y="35" width="165" height="60" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="332.5" y="62.0" text-anchor="middle">RDS server</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="332.5" y="78.0" text-anchor="middle">user session</text></g></svg></div>
+        <p>Rolled out Linux Lite on Dell Wyse 3070 / 5070 with RDS access through Remmina and LightDM autologin.</p>
+        <ul class="points">
+          <li>Wrote versioned installation procedures</li>
+          <li>Diagnosed a HID keyboard incompatibility with a barcode scanner in an RDP session</li>
+        </ul>
+        <ul class="stack"><li>Linux Lite</li><li>Remmina</li><li>RDS</li><li>LightDM</li></ul>
+        <p class="case-note">Summary only, no detailed case study</p>
+      </article>
+
+      <article class="project" data-kind="pro">
+        <p class="kind pro">Work · Smart Rx · GMSI final project</p>
+        <h3>Automated workstation deployment server</h3>
+        <a class="thumb schema" href="../en/projects/deployment.html" tabindex="-1" aria-hidden="true"><svg viewBox="0 0 420 130" aria-hidden="true" focusable="false"><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M90 65 H120"/><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M290 65 H310"/><text class="dg-small" fill="#4b5b5a" font-size="11" x="105" y="55" text-anchor="middle">PXE</text><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="5" y="42" width="85" height="46" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="47.5" y="70.0" text-anchor="middle">Workstation</text></g><g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="120" y="35" width="170" height="60" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="205.0" y="62.0" text-anchor="middle">WDS + MDT</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="205.0" y="78.0" text-anchor="middle">Windows Server 2022</text></g><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="310" y="35" width="105" height="60" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="362.5" y="62.0" text-anchor="middle">Ready</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="362.5" y="78.0" text-anchor="middle">15 min · ×7</text></g></svg></a>
+        <p>A Windows Server 2022 server on reclaimed hardware: a workstation plugged into the bench boots over PXE and receives its master through WDS and MDT.</p>
+        <ul class="points">
+          <li>DHCP with PXE options, routing and NAT between two network cards</li>
+          <li>Masters captured with Windows PE and DISM, MDT task sequences</li>
+          <li>3 to 4 minutes of technician time per workstation instead of 30, 7 in parallel</li>
+        </ul>
+        <ul class="stack"><li>WDS</li><li>MDT</li><li>Windows PE</li><li>DHCP</li><li>NAT</li></ul>
+        <a class="case-link" href="../en/projects/deployment.html">Read the case study <span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="project" data-kind="ecole">
+        <p class="kind school">School · CESI · individual project</p>
+        <h3>IT overhaul for a multi-site town hall</h3>
+        <a class="thumb schema" href="../en/projects/kernelac.html" tabindex="-1" aria-hidden="true"><svg viewBox="0 0 420 130" aria-hidden="true" focusable="false"><path class="dg-trunk" fill="none" stroke="#0b6e8a" stroke-width="3" stroke-linecap="round" d="M140 40 H280"/><text class="dg-small" fill="#4b5b5a" font-size="11" x="210" y="30" text-anchor="middle">IPsec · FTTE + 4G</text><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M75 63 V90 H140"/><g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="10" y="18" width="130" height="46" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="75.0" y="38.0" text-anchor="middle">Town hall</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="75.0" y="54.0" text-anchor="middle">Hyper-V</text></g><g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="280" y="18" width="130" height="46" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="345.0" y="38.0" text-anchor="middle">Workshops</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="345.0" y="54.0" text-anchor="middle">replication</text></g><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="140" y="72" width="140" height="46" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="210.0" y="92.0" text-anchor="middle">10 remote sites</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="210.0" y="108.0" text-anchor="middle">VPN IPsec · 4G</text></g></svg></a>
+        <p>
+          Case study taken on as IT manager: 79 staff across 12 sites, two main sites linked together
+          and ten remote sites over IPsec VPN on 4G.
+        </p>
+        <ul class="points">
+          <li><em>Deploy</em>: <code>10.SITE.VLAN.HOST/24</code> addressing plan, Active Directory and GPOs, Hyper-V on two sites with replication, Packet Tracer lab, plan of 63 unit tests</li>
+          <li><em>Maintain and secure</em>: remaining gaps against ANSSI, GDPR and NIS2, business continuity and disaster recovery plans, IT security policy</li>
+        </ul>
+        <ul class="stack"><li>Hyper-V Replica</li><li>IPsec VPN</li><li>3-2-1-1-0 backup</li><li>BCP / DRP</li></ul>
+        <a class="case-link" href="../en/projects/kernelac.html">Read the case study <span aria-hidden="true">→</span></a>
       </article>
 
       <article class="project" data-kind="perso">
@@ -172,45 +216,6 @@
         <a class="case-link" href="../en/projects/observability.html">Read the case study <span aria-hidden="true">→</span></a>
       </article>
 
-      <article class="project" data-kind="ecole">
-        <p class="kind school">School · CESI · individual project</p>
-        <h3>IT overhaul for a multi-site town hall</h3>
-        <p>
-          Case study taken on as IT manager: 79 staff across 12 sites, two main sites linked together
-          and ten remote sites over IPsec VPN on 4G.
-        </p>
-        <ul class="points">
-          <li><em>Deploy</em>: <code>10.SITE.VLAN.HOST/24</code> addressing plan, Active Directory and GPOs, Hyper-V on two sites with replication, Packet Tracer lab, plan of 63 unit tests</li>
-          <li><em>Maintain and secure</em>: remaining gaps against ANSSI, GDPR and NIS2, business continuity and disaster recovery plans, IT security policy</li>
-        </ul>
-        <ul class="stack"><li>Hyper-V Replica</li><li>IPsec VPN</li><li>3-2-1-1-0 backup</li><li>BCP / DRP</li></ul>
-        <a class="case-link" href="../en/projects/kernelac.html">Read the case study <span aria-hidden="true">→</span></a>
-      </article>
-
-      <article class="project" data-kind="pro">
-        <p class="kind pro">Work · anonymised</p>
-        <h3>Linux thin clients on Dell Wyse</h3>
-        <p>Rolled out Linux Lite on Dell Wyse 3070 / 5070 with RDS access through Remmina and LightDM autologin.</p>
-        <ul class="points">
-          <li>Wrote versioned installation procedures</li>
-          <li>Diagnosed a HID keyboard incompatibility with a barcode scanner in an RDP session</li>
-        </ul>
-        <ul class="stack"><li>Linux Lite</li><li>Remmina</li><li>RDS</li><li>LightDM</li></ul>
-      </article>
-
-      <article class="project" data-kind="pro">
-        <p class="kind pro">Work · Smart Rx · GMSI final project</p>
-        <h3>Automated workstation deployment server</h3>
-        <p>A Windows Server 2022 server on reclaimed hardware: a workstation plugged into the bench boots over PXE and receives its master through WDS and MDT.</p>
-        <ul class="points">
-          <li>DHCP with PXE options, routing and NAT between two network cards</li>
-          <li>Masters captured with Windows PE and DISM, MDT task sequences</li>
-          <li>3 to 4 minutes of technician time per workstation instead of 30, 7 in parallel</li>
-        </ul>
-        <ul class="stack"><li>WDS</li><li>MDT</li><li>Windows PE</li><li>DHCP</li><li>NAT</li></ul>
-        <a class="case-link" href="../en/projects/deployment.html">Read the case study <span aria-hidden="true">→</span></a>
-      </article>
-
     </div>
 
     <article class="project wide" data-kind="perso">
@@ -223,6 +228,7 @@
           recruitment, sanctions, events, polls. It replaces the Google Sheets workbook used until then.
         </p>
       </div>
+      <a class="thumb schema wide-thumb" href="../en/projects/bako.html" tabindex="-1" aria-hidden="true"><svg viewBox="0 0 900 100" aria-hidden="true" focusable="false"><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M170 50 H190"/><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M350 50 H370"/><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M530 50 H550"/><path class="dg-link" fill="none" stroke="#4b5b5a" stroke-width="1.5" d="M710 50 H730"/><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="10" y="25" width="160" height="50" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="90.0" y="55.0" text-anchor="middle">Visitors</text></g><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="190" y="25" width="160" height="50" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="270.0" y="55.0" text-anchor="middle">Cloudflare</text></g><g class="dg-box"><rect fill="#ffffff" stroke="#b4c1c0" stroke-width="1.5" x="370" y="25" width="160" height="50" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="450.0" y="47.0" text-anchor="middle">Nginx</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="450.0" y="63.0" text-anchor="middle">HTTPS</text></g><g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="550" y="25" width="160" height="50" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="630.0" y="47.0" text-anchor="middle">Next.js</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="630.0" y="63.0" text-anchor="middle">systemd</text></g><g class="dg-core"><rect fill="#dcebef" stroke="#0b6e8a" stroke-width="1.5" x="730" y="25" width="160" height="50" rx="6"/><text fill="#152120" font-size="14" font-weight="600" x="810.0" y="47.0" text-anchor="middle">PostgreSQL</text><text class="dg-sub" fill="#4b5b5a" font-size="11" x="810.0" y="63.0" text-anchor="middle">pg_dump</text></g></svg></a>
       <div class="wide-cols">
         <div>
           <p class="col-title">Application</p>
@@ -253,9 +259,23 @@
   <section id="experience">
     <div class="section-head">
       <h2>Experience</h2>
-      <p class="section-intro">Three years of work-study, from field repairs to running a multi-site IT system.</p>
+      <p class="section-intro">Three years of work-study and a current assignment, from field repairs to running a multi-site IT system.</p>
     </div>
     <ol class="timeline">
+      <li>
+        <time>11/2026 – present</time>
+        <div>
+          <h3>IT technician, temp assignment</h3>
+          <p class="meta">SCC · for the client Safran Helicopter Engines</p>
+          <ul class="points">
+            <li>Wiping and re-imaging workstations</li>
+            <li>Telephony: setting up phone lines, configuring business phones</li>
+            <li>Hands-on support with users: PCs, phones, accessories</li>
+            <li>Tickets handled in ServiceNow, whole fleet tracked in the CMDB</li>
+            <li>User account management</li>
+          </ul>
+        </div>
+      </li>
       <li>
         <time>10/2025 – 09/2026</time>
         <div>
@@ -318,7 +338,7 @@
       <div><dt>Virtualisation &amp; containers</dt><dd><ul class="chips"><li>Docker</li><li>Docker Compose</li><li>VMware</li><li>Hyper-V</li><li>OVH VPS</li><li>Apache Guacamole</li><li>MariaDB</li><li>Nginx</li></ul></dd></div>
       <div><dt>Monitoring</dt><dd><ul class="chips"><li>Zabbix</li><li>Aruba Instant On</li><li>Prometheus</li><li>Grafana</li><li>Loki</li><li>Grafana Alloy</li><li>cAdvisor</li><li>node-exporter</li></ul></dd></div>
       <div><dt>Scripting</dt><dd><ul class="chips"><li>PowerShell</li><li>Bash</li></ul></dd></div>
-      <div><dt>Support &amp; M365</dt><dd><ul class="chips"><li>AD → Microsoft 365 sync (Entra Connect)</li><li>Outlook / Exchange</li><li>GestSup</li><li>GLPI</li><li>Wildix IP telephony</li></ul></dd></div>
+      <div><dt>Support &amp; M365</dt><dd><ul class="chips"><li>AD → Microsoft 365 sync (Entra Connect)</li><li>Outlook / Exchange</li><li>GestSup</li><li>GLPI</li><li>ServiceNow</li><li>CMDB</li><li>Wildix IP telephony</li></ul></dd></div>
     </dl>
   </section>
 
@@ -345,7 +365,7 @@
     <div class="contact-grid">
       <div class="contact-pitch">
         <h2>Contact</h2>
-        <p><span data-dispo="long">Available from October 2026</span> for a permanent or fixed-term role in systems and network administration, anywhere in France.</p>
+        <p>Currently on a temp assignment, I am open to a permanent or fixed-term role in systems and network administration, anywhere in France.</p>
         <div class="cta">
           <details class="mail-menu">
             <summary class="btn primary">Send an email</summary>
@@ -394,6 +414,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 <!-- BODY:END -->
-<script src="../assets/main.js?v=20261125b"></script>
+<script src="../assets/main.js?v=20261125c"></script>
 </body>
 </html>
