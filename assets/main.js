@@ -83,15 +83,21 @@ function setActive(id) {
     }
   });
 }
+// En bas de page, la dernière section (souvent courte) ne peut pas atteindre la bande observée
+const atBottom = () => window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 40;
 if ("IntersectionObserver" in window && sections.length) {
   const visible = new Map();
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => visible.set(e.target.id, e.isIntersecting));
+    if (atBottom()) return setActive(sections[sections.length - 1].id);
     const first = sections.find((s) => visible.get(s.id));
     if (first) setActive(first.id);
     else if (window.scrollY < sections[0].offsetTop - 200) setActive("");
   }, { rootMargin: "-35% 0px -55% 0px" });
   sections.forEach((s) => io.observe(s));
+  window.addEventListener("scroll", () => {
+    if (atBottom()) setActive(sections[sections.length - 1].id);
+  }, { passive: true });
 }
 
 // ---------- Filtre des projets ----------
