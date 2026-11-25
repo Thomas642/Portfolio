@@ -104,6 +104,8 @@ if ("IntersectionObserver" in window && sections.length) {
 const filters = [...document.querySelectorAll(".filter")];
 const projects = [...document.querySelectorAll("main [data-kind]")];
 const count = document.getElementById("filter-count");
+// Compteur calculé au chargement : il reste juste quand on ajoute un projet
+if (count && projects.length) count.textContent = T.project(projects.length);
 
 filters.forEach((btn) => btn.addEventListener("click", () => {
   const f = btn.dataset.filter;
