@@ -1,10 +1,10 @@
 # Thomas Jourda
 
-**Technicien systèmes & réseaux** | Alternant ASR (CESI Pau) | Sud-Ouest, mobile partout en France
+**Technicien systèmes & réseaux** | Intérim chez SCC (client Safran Helicopter Engines) | Sud-Ouest, mobile partout en France
 
 Je travaille sur des infrastructures multi-sites (Windows Server, Active Directory, RDS, pare-feux, VPN) et je m'entraîne en parallèle sur de l'auto-hébergement et de l'observabilité sur mon propre VPS.
 
-🌐 [Portfolio](https://thomas642.github.io/Portfolio/) · 📫 [LinkedIn](https://www.linkedin.com/in/thomas-jourda-a65731283/) · [Email](mailto:thomasjrd6453@gmail.com) · 🔎 En recherche de CDI / CDD en informatique, disponible immédiatement
+🌐 [Portfolio](https://thomas642.github.io/Portfolio/) · 📫 [LinkedIn](https://www.linkedin.com/in/thomas-jourda-a65731283/) · [Email](mailto:thomasjrd6453@gmail.com) · 🔎 En mission d'intérim, ouvert à un CDI / CDD en informatique
 
 ---
 
@@ -62,6 +62,7 @@ Next.js + TypeScript, PostgreSQL/Prisma, connexion Steam OpenID. Hébergé sur V
 
 ## 🎓 Parcours
 
+- **Depuis 11/2026 · Technicien informatique** (intérim), SCC pour Safran Helicopter Engines : blanchiment et masterisation, téléphonie, support utilisateurs, ServiceNow et CMDB, gestion des comptes
 - **2025 – 2026 · Bachelor ASR** (Bac+3, CESI Pau), alternance chez Scieries Lesbats (5 sites) : Windows Server, RDS, AD, Stormshield, Aruba, VPN, migration Windows 11, support multi-sites
 - **2023 – 2025 · GMSI** (Bac+2, CESI Pau), alternance chez Smart Rx : technicien de maintenance et d'installation
 - **04/2023 · Technicien informatique** (CDD), Info-Pix, Lescar

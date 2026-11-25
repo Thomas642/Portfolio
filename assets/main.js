@@ -3,26 +3,16 @@ const root = document.documentElement;
 // ---------- Textes selon la langue de la page ----------
 const EN = (root.lang || "").startsWith("en");
 const T = EN ? {
-  dispoCourt: "Immediately", dispoLong: "Available immediately",
   toLight: "Switch to light theme", toDark: "Switch to dark theme",
   project: (n) => `${n} project${n > 1 ? "s" : ""}`,
   kinds: { all: "", pro: " (work)", perso: " (personal)", ecole: " (school)" },
   copied: "Copied", selected: "Selected", copy: "Copy",
 } : {
-  dispoCourt: "Immédiate", dispoLong: "Disponible immédiatement",
   toLight: "Passer en thème clair", toDark: "Passer en thème sombre",
   project: (n) => `${n} projet${n > 1 ? "s" : ""}`,
   kinds: { all: "", pro: " pro", perso: " perso", ecole: " d'école" },
   copied: "Copié", selected: "Sélectionné", copy: "Copier",
 };
-
-// ---------- Disponibilité : bascule automatique au 1er octobre 2026 ----------
-if (new Date() >= new Date(2026, 9, 1)) {
-  const DISPO = { court: T.dispoCourt, long: T.dispoLong };
-  document.querySelectorAll("[data-dispo]").forEach((el) => {
-    el.textContent = DISPO[el.dataset.dispo] || el.textContent;
-  });
-}
 
 // ---------- Thème clair / sombre ----------
 const themeBtn = document.getElementById("theme-toggle");
